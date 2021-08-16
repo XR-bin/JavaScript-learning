@@ -23,8 +23,8 @@
         开始操作git
           1、打开git bash ，并cd 路径 进入当前我们要操作的文件夹
           2、配置git基本操作
-                $ git config --global user.name "Lonely-Journey"      GitHub的用户名
-                $ git config --global user.email "854866731@qq.com"   GitHub的邮箱
+                git config --global user.name "Lonely-Journey"      GitHub的用户名
+                git config --global user.email "854866731@qq.com"   GitHub的邮箱
                 
             【注】在git中输入命令后，没有消息就是好消息，有响应的信息说明出现错误了
             
@@ -60,6 +60,11 @@
               
           12、生成ssh密匙
               ssh-keygen -t rsa -C "GitHub注册用的邮箱"
+              
+          13、暂存区  =>  远程仓库
+              git remote add origin 仓库地址
+              git push -u origin master
+
       */
     </script>
   </head>
