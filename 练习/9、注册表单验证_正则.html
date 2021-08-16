@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>注册表单验证_正则</title>
+		<style type="text/css">
+			#div1{
+				width: 250px;
+				height: 250px;
+				border: 1px solid black;
+				padding: 50px;
+				text-align: center;
+				margin: 100px auto;
+				background-color: lightgray;
+			}
+			#div1 input{width: 250px; height: 30px; font-size: 18px; margin-top: 20px;}
+			#div1 span{margin-top: 5px; font-size: 14px; color: gray;}
+			#div1 .testCode{
+				width: 70px; height: 30px; line-height: 30px;
+				background-color: gray; color: white;float: left;
+				margin-left: 12px; margin-top: 10px;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				//用户名验证
+				//第一步：通过getElementById分别获取id为username和username_span的元素节点
+				//第二步：给username元素节点添加聚焦事件
+							// 1、获取username的value值
+							// 2、判断是个有输入东西
+							// 3、判断用户名长度有没有小于6或大于18
+							// 5、判断用户名首字符是不是英文字母
+							// 6、判断用户名是否由下划线、数字或字母组成
+							// 7、完全符合要求处理
+				
+				var Ousername = document.getElementById("username");
+				var Ousername_span = document.getElementById("username_span");
+				
+				Ousername.onblur = function(){
+					var Ovalue = Ousername.value;
+					
+					//当输入框没有任何
+					if(Ovalue.length == 0){
+						Ousername_span.innerHTML = "6~18个字符，可使用字母、数字、下划线，需以字母开头";
+						Ousername_span.style.color = "gray";
+					}
+					//判断用户名长度是否小于6或大于18
+					else if((Ovalue.length>0 && Ovalue.length<6) || Ovalue.length>18){
+						Ousername_span.innerHTML = "❗️长度应为6~18个字符";
+						Ousername_span.style.color = "red";
+					}
+					//判断用户名首字符是不是英文字母
+					else if(!/[a-zA-Z]/.test(Ovalue[0])){
+						Ousername_span.innerHTML = "❗️用户名必需以英文字母开头";
+						Ousername_span.style.color = "red";
+					}
+					//判断用户名是否由下划线、数字或字母组成
+					else if(/\W/.test(Ovalue)){
+						Ousername_span.innerHTML = "❗️用户名需由字母、数字或下划线组成";
+						Ousername_span.style.color = "red";
+					}
+					// 完全符合要求处理
+					else{
+						Ousername_span.innerHTML = "✅该用户名可注册";
+						Ousername_span.style.color = "green";
+					}
+				}
+				
+				/*
+					密码强度验证
+					
+					keydown事件触发的时间是文本输入之前
+					keyup事件触发时间在文本输入之后
+					
+					密码强度归类：
+					 1、弱  纯数字  纯小写  纯大写
+					 2、中  两两混合
+					 3、强  三种都有
+				*/
+				
+				// 第一步：通过getElementById获取id为password的元素节点
+				//        通过getElementsByClassName获取类名为testCode的元素节点
+				// 第二步：给Opassword节点添加keyup事件
+							// 1、获取username的value值
+							// 2、将所有testCode节点的上一次样式全部清空,恢复初始样式
+							// 3、判断密码长度是否达到6以上
+							// 4、开始验证密码强度
+									// 1)判断是否只是纯数字、纯小写或纯大写
+									// 2)判断是否三种都有
+									// 3)判断是否两两混合
+				
+				var Opassword = document.getElementById("password");
+				var OtestCode = document.getElementsByClassName("testCode");
+				
+				Opassword.onkeyup = function(){
+					var Ovalue = Opassword.value;
+					
+					//将所有testCode节点的上一次样式全部清空,恢复初始样式
+					for(var i=0; i<OtestCode.length; i++){
+						OtestCode[i].style.backgroundColor = "gray";
+					}
+					
+					// 判断密码长度是否达到6以上
+					if(Ovalue.length > 6){
+						//判断是否只是纯数字、纯小写或纯大写
+						if(/^\d+$/.test(Ovalue) || /^[a-z]+$/.test(Ovalue) || /^[A-Z]+$/.test(Ovalue)){
+							OtestCode[0].style.backgroundColor = "orange";
+						}
+						//判断是否三种都有
+						else if(/\d/.test(Ovalue) && /[a-z]/.test(Ovalue) && /[A-Z]/.test(Ovalue)){
+							OtestCode[2].style.backgroundColor = "orange";
+						}
+						//最后只剩下两两混合的情况
+						else{
+							OtestCode[1].style.backgroundColor = "orange";
+						}
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="div1">
+			<input id="username" type="text" placeholder="用户名" />
+			<span id="username_span">6~18个字符，可使用字母、数字、下划线，需以字母开头</span>
+			<input id="password" type="text" placeholder="密码" />
+			<div class="testCode">弱</div>
+			<div class="testCode">中</div>
+			<div class="testCode">强</div>
+		</div>
+	</body>
+</html>

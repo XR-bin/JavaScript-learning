@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>合并对象Object.assign</title>
+		<script type="text/javascript">
+			// Object     /ɒbdʒɪkt/
+			// assign     /əˈsaɪn/
+			// console    /kənˈsəʊl/
+			// log        /lɒɡ/
+		
+			/*
+				Object.assign
+					功能：将多个对象的属性和方法合并为一个
+					格式：Object.assign(对象1, 对象2, 对象3, ..., 对象n)
+					参数：
+						参数1：参数1的对象将会获得后面参数对象的所有属性和方法
+						
+				【注】将所有传入的对象，合并到第一个对象中
+			*/
+		   
+			var Obj1 = {
+				a: 10
+			}
+			
+			var Obj2 = {
+				b: 20,
+				c: "string"
+			}
+			
+			var Obj3 = {
+				d: 30,
+				e: "123",
+				f: [40, "321", true],
+				g: function(){
+					alert("123");
+				}
+			}
+			
+			Object.assign(Obj1, Obj2, Obj3);
+			
+			// console.log(Obj1);  //{a: 10, b: 20, c: "string", d: 30, e: "123", f: Array(3), g: ƒ}
+			// console.log(Obj2);  //{b: 20, c: "string"}
+			// console.log(Obj3);  //{d: 30, e: "123", f: Array(3), g: ƒ}
+			
+			/*
+				【注】Object.assign 是浅拷贝
+				
+				浅拷贝：只拷贝地址
+				深拷贝：将复合数据类型重新生成一份，进行拷贝
+			*/
+			//因为我们在拷贝这种基本数据类型时，不存在地址问题，所以拷贝后的和原来的没有关联
+			// Obj2.b = 200;
+			// alert(Obj2.b);   //200
+			// alert(Obj1.b);   //20
+			// Obj1.b = 100;
+			// alert(Obj2.b);   //200
+			// alert(Obj1.b);   //100
+			
+			//因为这里的f的数组并不是直接把Obj3的f数组拷贝给Obj1的f，而是把Obj3.f数组的地址赋值给Obj1.f
+			//所以Obj1.f和Obj3.f操作的是同一片地址
+			// Obj3.f.push("123");
+			// alert(Obj3.f);        //40,321,true,123
+			// alert(Obj1.f);        //40,321,true,123
+			// Obj1.f.push("abc");
+			// alert(Obj3.f);        //40,321,true,123,abc
+			// alert(Obj1.f);        //40,321,true,123,abc
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

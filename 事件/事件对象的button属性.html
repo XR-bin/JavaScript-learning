@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>事件对象的button属性</title>
+		<script type="text/javascript">
+			// mousedown    /ˈmaʊs  daʊn/
+			// button       /bʌtn/
+			// event   /ɪˈvent/
+		
+			/* 
+			对象事件：
+				button属性：
+				0 --- 鼠标左键
+				1 --- 鼠标滚轮
+				3 --- 鼠标右键
+			 */
+			
+			document.onmousedown = function(ev){
+				var e = ev || window.event;
+				alert(e.button);
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

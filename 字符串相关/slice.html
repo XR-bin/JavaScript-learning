@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>slice复制一定范围的字符串</title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//alert   /əˈlɜːrt/
+			//String   /strɪŋ/
+			//slice   /slaɪs/
+			
+			//slice方法可以基于当前字符串获取指定区域元素 [start, end)
+			/* 
+			【注意】slice两个参数可以为负数, 都是表示从末尾开始算起的位置slice可以截取字符
+				   slice的两个参数不会自己比较大小，所以第一个参数必须比第二个参数小
+			 */
+			var str = "0123456789";
+			alert(str.slice(2, 5));    //234
+			alert(str.slice(-8, -5));  //234
+			
+		</script> 
+	</head>
+	<body>
+	</body>
+</html>

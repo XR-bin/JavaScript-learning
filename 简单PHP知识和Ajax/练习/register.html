@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>登录页面</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" />
+    <script src="./ajax.js"></script>
+    <style type="text/css">
+      #register{width: 400px; margin: 150px auto;}
+      #alert_info{margin: 2px; padding: 2px; text-align: center; display: none; margin-bottom: 10px;}
+    </style>
+    <script type="text/javascript">
+      window.onload = function(){
+        var oBtn = document.getElementById("btn1");
+        var oInputs = document.getElementsByTagName("input");
+        var oAlert = document.getElementById('alert_info');
+        
+        oBtn.onclick = function(){
+          $ajax({
+            method: "post",
+            url: "register.php",
+            data: {
+              username: oInputs[0].value,
+              password: oInputs[1].value,
+              addTime: new Date().getTime()
+            },
+            success: function(result){
+              // let res = JSON.parse(result);
+              // console.log(res);
+              var obj = JSON.parse(result);
+              if(obj.code){
+                oAlert.className = "alert alert-danger";
+              }
+              else{
+                oAlert.className = "alert alert-success";
+              }
+              
+              oAlert
+              .style.display = "block";
+              oAlert.innerHTML = obj.message;
+            },
+            error: function(msg){
+              let res = JSON.parse(msg);
+              console.log(res);
+            }
+          });
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="panel panel-primary" id="register">
+        <div class="panel-heading">
+          注册
+        </div>
+        <div class="panel-body">
+          <div class="form-group">
+            <label for="username">用户名</label>
+            <input type="text" name="username" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="password">密码</label>
+            <input type="text" name="password" class="form-control" />
+          </div>
+          <div id="alert_info" class="alert alert-danger">xxxxxx</div>
+          <a href="login.html">马上登录</a>
+          <button id="btn1" class="btn btn-primary pull-right">注册</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

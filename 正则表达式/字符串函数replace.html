@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>字符串函数replace</title>
+		<script type="text/javascript">
+			// var   /vɑr/
+			// alert   /əˈlɜːrt/
+			// String   /strɪŋ/
+			// replace  /rɪˈpleɪs/
+		
+			/* 
+				replace函数
+					格式：字符串.replace(oldStr/正则, newStr);
+					功能：用newStr替代oldStr
+					返回值：替代完成的新字符串
+			 */
+			
+			var str = "How are Are ARE aRe you";
+			var box = /are/ig;
+			// alert(str.replace("are", "***"));    //How *** Are ARE aRe you
+			alert(str.replace(box, "***"));         //How *** *** *** *** you
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

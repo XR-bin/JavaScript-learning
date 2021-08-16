@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>元字符</title>
+		<script type="text/javascript">
+			
+			//	元字符：在正则表达式中有特殊含义的字符
+			
+			/* 	
+				单个数字和字符的元字符
+					.          匹配单个任意字符
+					
+					[范围]     匹配单个范围内的字符
+					例如
+						[0-9]           匹配单个数字
+						[a-zA-Z0-9_]    匹配单个字母、数字和下划线
+						
+					[^范围]    匹配单个任意除括号范围内的字符
+					例如
+						[^0-9]          匹配单个除数字外的字符
+						[^a-zA-Z0-9_]   匹配单个除字母、数字和下划线外的字符
+						
+					\w        匹配单个字母、数字和下划线    等价于[a-zA-Z0-9_] 
+					\W        匹配单个除字母、数字和下划线外的字符     等价于[^a-zA-Z0-9_] 
+					\d        匹配单个数字     等价于[0-9] 
+					\D        匹配单个除数字外的字符      等价于[^0-9]
+			*/	 
+			
+			// var str = "google";
+			// var box = /google/;
+			// alert(box.test(str));
+			
+			/***** .      匹配单个任意字符   *****/
+			// var box1 = /go.gle/;
+			// alert(box1.test("google"));  //true
+			// alert(box1.test("goxgle"));  //true
+			
+			
+			
+			/***** []       匹配单个范围内的字符   *****/
+			
+			// [0-9]     匹配单个数字
+			// var box2 = /go[0-9]gle/;
+			// alert(box2.test("google"));     //false
+			// alert(box2.test("go1gle"));     //true
+			
+			// [a-zA-Z0-9_]    匹配单个字母、数字和下划线
+			// var box3 = /go[a-zA-Z0-9_]gle/;
+			// alert(box3.test("google"));   //true
+			// alert(box3.test("goagle"));   //true
+			// alert(box3.test("go1gle"));   //true
+			// alert(box3.test("go_gle"));   //true
+			// alert(box3.test("go&gle"));    //false
+			
+			
+			
+			/***** [^范围]    匹配单个任意除括号范围内的字符   *****/
+			
+			// [^0-9]          匹配单个除数字外的字符
+			// var box4 = /go[^0-9]gle/;
+			// alert(box4.test("google"));     //true
+			// alert(box4.test("go1gle"));     //false
+			
+			// [^a-zA-Z0-9_]   匹配单个除字母、数字和下划线外的字符
+			// var box5 = /go[^a-zA-Z0-9_]gle/;
+			// alert(box5.test("google"));   //false
+			// alert(box5.test("goagle"));   //false
+			// alert(box5.test("go1gle"));   //false
+			// alert(box5.test("go_gle"));   //false
+			// alert(box5.test("go&gle"));    //true
+			
+			
+			
+			/*****  \w        匹配单个字母、数字和下划线    等价于[a-zA-Z0-9_]   *****/
+			// var box6 = /go\wgle/;
+			// alert(box6.test("google"));   //true
+			// alert(box6.test("goagle"));   //true
+			// alert(box6.test("go1gle"));   //true
+			// alert(box6.test("go_gle"));   //true
+			// alert(box6.test("go&gle"));    //false
+			
+			
+			
+			/*****  \W        匹配单个除字母、数字和下划线外的字符     等价于[^a-zA-Z0-9_]   *****/
+			// var box7 = /go\Wgle/;
+			// alert(box7.test("google"));   //false
+			// alert(box7.test("goagle"));   //false
+			// alert(box7.test("go1gle"));   //false
+			// alert(box7.test("go_gle"));   //false
+			// alert(box7.test("go&gle"));    //true
+			
+			
+			
+			/*****  \d        匹配单个数字     等价于[0-9]     *****/
+			// var box8 = /go\dgle/;
+			// alert(box8.test("google"));     //false
+			// alert(box8.test("go1gle"));     //true
+			
+			
+			
+			/*****  \D        匹配单个除数字外的字符      等价于[^0-9]   *****/
+			// var box9 = /go[^0-9]gle/;
+			// alert(box9.test("google"));     //true
+			// alert(box9.test("go1gle"));     //false
+			
+			
+			
+			
+			/*
+				重复字符   x(表示任意单个字符)
+				x?          匹配0个或1个x字符      非贪婪模式
+				x+          匹配至少1个x字符
+				x*          匹配任意个x字符
+				x{m,n}      匹配至少m个，最多n(包括n)个x字符
+				x{n}        必须匹配n个x字符
+				(xyz)+      小括号()括起来的部分当做单个字符来处理
+			*/
+			/*****  x?          匹配0个或1个x字符  *****/
+			// var box10 = /goo?gle/;
+			// alert(box10.test("google"));  //true
+			// alert(box10.test("gogle"));   //true
+			// alert(box10.test("go1gle"));  //false
+			// alert(box10.test("gooogle")); //false
+			
+			
+			
+			/*****  x+          匹配至少1个x字符  *****/
+			// var box11 = /goo+gle/;
+			// alert(box11.test("google"));   //true
+			// alert(box11.test("gooogle"));  //true
+			// alert(box11.test("gogle"));    //false
+			
+			
+			
+			/*****  x*          匹配任意个x字符  *****/
+			// var box12 = /goo*gle/;
+			// alert(box12.test("google"));   //true
+			// alert(box12.test("goooogle")); //true
+			// alert(box12.test("gogle"));    //true
+			
+			
+			
+			/*****  x{m,n}      匹配至少m个，最多n(包括n)个x字符  *****/
+			// var box13 = /goo{2,3}gle/;
+			// alert(box13.test("google"));     //false
+			// alert(box13.test("gooogle"));    //true
+			// alert(box13.test("goooogle"));   //true
+			// alert(box13.test("gooooogle"));  //false
+			
+			
+			
+			/*****  x{n}        必须匹配n个x字符  *****/
+			// var box14 = /goo{2}gle/;
+			// alert(box14.test("google"));    //false
+			// alert(box14.test("gooogle"));   //true
+			// alert(box14.test("goooogle"));  //false
+			
+			
+			
+			/*****  (xyz)+      小括号()括起来的部分当做单个字符来处理  *****/
+			// var box15 = /goo(abc)+gle/;
+			// alert(box15.test("google"));      //false
+			// alert(box15.test("gooagle"));     //false
+			// alert(box15.test("gooabcgle"));   //true
+			// alert(box15.test("gooabcabcgle"));//true
+			
+			
+			
+			
+			/*
+				空白字符
+					\s     匹配空白符、空格、制表符和换行符
+					\S     匹配非空白符、空格、制表符和换行符
+			*/
+			// \s
+			// var box16 = /goo\sgle/;
+			// alert("goo\ngle");
+			// alert(box16.test("goo\ngle"));     //true
+			// alert(box16.test("goo gle"));      //true
+			
+			// \S
+			// var box16 = /goo\Sgle/;
+			// alert("goo\ngle");
+			// alert(box16.test("goo\ngle"));     //false
+			// alert(box16.test("goo gle"));      //false
+			
+			
+			
+			/*
+				锚字符
+					^       行首匹配    必须以这个正则开头
+					$       行尾匹配    必须以这个正则结尾
+			*/
+			/*****  ^       行首匹配    必须以这个正则开头  *****/
+			// var box17 = /^google/;
+			// alert(box17.test("google 123 asfgsdgd"));        //true
+			// alert(box17.test("asdfg google 123 asfgsdgd"));  //false
+			
+			
+			
+			/*****  $       行尾匹配    必须以这个正则结尾  *****/
+			// var box18 = /google$/;
+			// alert(box18.test("123 google 123 asfgsdgd"));        //false
+			// alert(box18.test("asdfg 123 asfgsdgd  google"));     //true
+			
+			// var box19 = /^google$/;
+			// alert(box19.test("asdfg 123 asfgsdgd  google"));    //false
+			// alert(box19.test("google 123 asfgsdgd"));           //fasle
+			// alert(box19.test("google"));                        //true
+			
+			
+			
+			/*
+				替代字符   |      可以说是或运算符的效果
+			*/
+			// var box20 = /google|baidu|sogou/;
+			// alert(box20.test("google"));     //true
+			// alert(box20.test("baidu"));      //true
+			// alert(box20.test("sogou"));      //true
+			// alert(box20.test("asdf"));       //false
+			
+			
+			
+			
+			/*
+				修饰符
+					i        忽略大小写
+					g        全局匹配
+					m        换行匹配 【注】这里的意思是如果遇到换行，重新开始计算首行
+			*/
+			// i        忽略大小写
+			// var box21 = /google/;
+			// var box22 = /google/i;
+			// alert(box21.test("Google"));     //false
+			// alert(box22.test("Google"));     //true
+			
+			// g        全局匹配
+			// var str = "a1a2a3a4a5a6a7a8a9";
+			// var box23 = /\d/;
+			// var box24 = /\d/g;
+			// alert(str.replace(box23,'*'));     //a*a2a3a4a5a6a7a8a9
+			// alert(str.replace(box24,'*'));        //a*a*a*a*a*a*a*a*a*
+			
+			// m        换行匹配 【注】这里的意思是如果遇到换行，重新开始计算首行
+			// var str = "1.第一点\n2.第二点\n3.第三点";
+			// alert(str);
+			// var box25 = /^\d/g;
+			// var box26 = /^\d/gm;
+			// alert(str.replace(box25,'*'));
+			// alert(str.replace(box26,'*'));
+			
+			
+			
+			
+			/*
+				转义符   \
+				例如
+					我们想表示.时，而不像表示匹配单个任意字符，可以用 \.
+				    我们想表示*时，而不像表示匹配任意个x字符，可以用 \*
+			*/
+			// var box27 = /go.gle/;
+			// var box28 = /go\.gle/;
+			// alert(box27.test("google"));    //true
+			// alert(box27.test("go.gle"));    //true
+			// alert(box28.test("google"));    //false
+			// alert(box28.test("go.gle"));    //true
+		</script> 
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>splice实现 增、删、改 </title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//Array  /əˈreɪ/ 
+			//length  /leŋkθ/
+			//alert   /əˈlɜːrt/
+			//splice  /splaɪs/
+			
+			//splice() 方法由于其参数的特殊性，可以完成 增、删、改三个功能
+			/* 
+			splice方法的三个参数：
+				参数1：规定从何处添加/删除元素
+				参数2：规定删除的元素个数
+				参数3：添加到数组的新元素
+				参数4：添加到数组的新元素
+				.
+				.
+				.
+				参数n：添加到数组的新元素
+			 */
+			//splice的增添功能,无返回值，改变原来的数组
+			// var arr1 = ["北京","上海","广州","深圳"];
+			// alert(arr1);   //"北京","上海","广州","深圳"
+			// alert(arr1.length);   //4
+			// alert(arr1.splice(4,0,"重庆"));    //空
+			// alert(arr1);    //"北京","上海","广州","深圳","重庆"
+			
+			
+			//splice的删除功能,返回值是被删掉的元素，改变原来的数组
+			// var arr2 = ["北京","上海","广州","深圳"];
+			// alert(arr2);   //"北京","上海","广州","深圳"
+			// alert(arr2.length);   //4
+			// alert(arr2.splice(2,1));   //"广州"
+			// alert(arr2)    //"北京","上海","深圳"
+			
+			//splice的替换功能,返回值是被删掉的元素，改变原来的数组
+			var arr3 = ["北京","上海","深圳","广州"];
+			alert(arr3);   //"北京","上海","深圳","广州"
+			alert(arr3.length);   //4
+			alert(arr3.splice(3, 1, "重庆"));   //广州
+			alert(arr3);    //北京,上海,深圳,重庆
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

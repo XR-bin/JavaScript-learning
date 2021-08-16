@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>charCodeAt找字符并获得它的ASCII</title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//alert   /əˈlɜːrt/
+			//String   /strɪŋ/
+			//charCodeAt   /tʃɑː(r)  kəʊd  æt/
+			
+			// charCodeAt方法返回指定位置的字符的ASCII码值(十进制的)
+			var str = new String("Web");
+			alert(str.charCodeAt(1));  //101
+			var str1 = String("你好");
+			alert(str1.charCodeAt(0));   //20320   如果是中文就返回utf-8码值(十进制的)
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

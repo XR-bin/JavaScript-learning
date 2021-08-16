@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>认识MySQL</title>
+    <script type="text/javascript">
+      /* 
+        shell  壳
+        core   核
+        
+        1、DOS界面： 不是内部或外部指令
+          解决办法：配置环境变量
+          
+          在http://localhost/index.php在这个网页里连接数据库，找到当前用的是那个数据库，
+          我们的用的是 (5.1.50-community-log)，然后在安装这个库的文件夹丽找到C:\PHPnow\MySQL-5.1.50\bin
+          把它配置到电脑的环境变量里
+          
+        MySQL的结构示意图
+          客户端client(我们的控制台cmd)  =>   MySQL dbms(MySQL管理系统)  =>  DB数据库   =>   表
+      */
+     
+      /* 
+        MySQL的启动方式
+          1、可以在电脑的服务界面启动    计算机右键 -- 管理 -- 服务
+          2、直接用命令行启动  
+                net stop mysql   关闭数据库
+                net start mysql  启动数据库
+                
+        登录MySQL
+          mysql -u -p   +  回车
+          按键ctrl  +  c  结束当前程序
+          
+        查看数据库(接下来的MySQL命令操作都必须加分号;)
+          show databases;
+          
+        创建数据库(编码是utf-8)
+          create database 库名 character set utf8;
+          
+        选择数据库
+          use 数据库名;
+          
+        在库里创建表(基本语法)(表中一定要设置id这一项内容)
+          create table 表名(
+            字段名1 数据类型,
+            字段名2 数据类型,
+            ...
+            字段名n 数据类型,
+          )character 字符集 collate 校对规则;
+        
+        数据类型
+          int  、 float 、
+          
+          char(10)    这里的10表示字符长度至于10个字符，这个是不可超过的
+          varchar(10) 这里的10表示字符长度至于10个字符，这个是预期值，可超过
+          
+          data  日期  格式 "2021-10-10"
+          text  文本  格式(理论上没上线)
+          
+          
+          
+        我们来创建一个mytable
+          create table mytable(
+            id int unsigned,
+            name char(30) not null default '',
+            sex char(3) not null default 'nan',
+            brithday date,
+            job varchar(50) not null default '',
+            salary float not null default 0.0,
+            resume text not null default '')character set utf8; 
+            
+            
+        查看当前数据库下的表
+          show tables;
+          
+        查看表结构
+          desc 表名;
+          
+        向表格中插入数据
+          insert into 表名(字段1，字段2，...)values(具体的值1,具体值2,...);
+          
+        查看表里的所有的数据
+          select * from 表名;
+          
+        修改表内数据操作
+          update 表名 set 字段名1 = 新值1,字段名2 = 新值1,... where 条件(修改目标)
+          
+        删除表中某个数据操作
+          delete from 表名 where 条件;
+          
+        删除表
+          drop table 表名;
+          
+        删除数据库
+          drop database 库名;    
+          drop database if exists 库名;       if exists 表示如果库不存在就不进行下面删库操作，即不会报错
+          
+        查询
+          select 字段1,字段2,... from 表名 where 条件;
+          select distinct 字段1,字段2,... from 表名 where 条件;       distinct作用是过滤重复的 
+          
+          
+          例如 ：select name from student;
+                select distinct english from student;
+                
+          这里的 &&是and   ||是and
+          例如：select * from student where english>50 and english<80;
+          
+          如果要求名字name中必须以T开头的条件
+          例如：select * from student where name like 'T%';
+          
+          如果要求名字name中带有o的条件(只有有o就行)
+          例如：select * from student where name like '%o%';  
+          
+          如果要求名字name中必须以B结尾的条件
+          例如：select * from student where name like 'B%';  
+          
+          数据排序
+            降序例子  
+                select name,math from student order by math asc;
+                select name,math from student order by math;    默认降序，可以不写ase
+                
+            升序
+                select name,math from student order by math desc;
+            
+       */
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

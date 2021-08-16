@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>class类语法</title>
+		<script type="text/javascript">
+			// constructor     /kənˈstrʌktə(r)/
+			// create          /kriˈeɪt/
+			// extends         /ɪk'stendz;/
+			// super           /suːpər/
+		
+			/*******************我们一般的构造函数*******************/
+			//******创建构造函数
+			//人的构造函数
+			// function Person(name, age){
+			// 	this.name = name;
+			// 	this.age = age;
+			// }
+			
+			// Person函数构造方法，添加在构造函数原型对象prototype上
+			// Person.prototype.showName = function(){
+			// 	alert(`我的名字叫${this.name}，今年${this.age}岁`);
+			// }
+			
+			
+			
+			//******构造函数的继承与多态
+			//打工人的构造函数
+			// function Worker(name, age, job){
+			// 	Person.call(this, name, age);
+			// 	this.job = job;
+			// }
+			
+			//原型链   继承父级方法
+			/*1、通过for...in遍历继承*/
+			// for(let funcName in Person.prototype){
+			// 	Worker.prototype[funcName] = Person.prototype[funcName];
+			// }
+			
+			/*2、通过Object.create*/
+			// Worker.prototype = Object.create(Person.prototype);
+			
+			/*3、调佣构造函数继承*/
+			// Worker.prototype = new Person();
+			
+			
+			
+			//构造新方法
+			// Worker.prototype.showWork = function(){
+			// 	alert(`我的工作是${this.job}`);
+			// }
+			
+			
+			
+			//修改原方法
+			// Worker.prototype.showName = function(){
+			// 	alert(`我的名字叫${this.name}，今年${this.age}岁，我的工作是${this.job}`);
+			// }
+			
+			// var p1 = new Person("小明", 18);
+			// var p2 = new Worker("小刚", 24, "程序员");
+			
+			// p1.showName();    //我的名字叫小明，今年18岁
+			// p2.showName();    //我的名字叫小刚，今年24岁，我的工作是程序员
+			
+			
+			/*******************ECMA6推出的class语法*******************/
+			//******创建class类
+			// class Person{
+			// 	//添加属性，一定要写在constructor构造函数器里
+			// 	constructor(name, age) {
+			// 	    this.name = name;
+			// 		this.age = age;
+			// 	}
+				
+			// 	//直接添加方法
+			// 	showName = function(){
+			// 		alert(`我的名字叫${this.name}，今年${this.age}岁`);
+			// 	}
+			// }
+	
+	
+	
+			//******class类的继承与多态
+			//通过extends继承
+			// class Worker extends Person{
+			// 	constructor(name, age, job){
+			// 		//继承父级属性super
+			// 		super(name, age);
+			// 		this.job = job;
+			// 	}
+				
+			// 	//直接创造新方法，原有方法已经通过extends继承了
+			// 	showWork = function(){
+			// 		alert(`我的工作是${this.job}`);
+			// 	}
+				
+			// 	//修改原有方法
+			// 	showName = function(){
+			// 		alert(`我的名字叫${this.name}，今年${this.age}岁，我的工作是${this.job}`);
+			// 	}
+			// }
+			
+			
+			// var p1 = new Person("小明", 18);
+			// var p2 = new Worker("小刚", 24, "程序员");
+			
+			// p1.showName();    //我的名字叫小明，今年18岁
+			// p2.showName();    //我的名字叫小刚，今年24岁，我的工作是程序员
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>getAttribute</title>
+		<script type="text/javascript">
+			// var   /vɑr/
+			// alert   /əˈlɜːrt/
+			// document  /ˈdɒkjumənt/ 
+			// onload   /ˌɒnˈləʊd/
+			// getElementById   /ɡet  elɪmənt  baɪ  ˌaɪ ˈdiː/ 
+			// setAttribute    /set  əˈtrɪbjuːt/
+			
+			// setAttribute 设置元素中某个属性和值。它需要接受两个参数：属性名和值。如果属性本身已存在，那么就会被覆盖。
+			
+			
+			window.onload =function(){
+				var Odiv = document.getElementById("id2");
+				
+				// 区别： 创建自定义属性时，.属性 的方法虽然能创建，但浏览器中查看器无法看到，而setAttribute方法可以.
+				//        而且setAttribute自定义的属性， .属性的方法无法访问
+				Odiv.xxx = "xxx5";
+				alert(Odiv.xxx);
+				Odiv.setAttribute("yyy", "yyy6");
+				alert(Odiv.yyy);   //无法访问
+				alert(Odiv.getAttribute("yyy"));
+			}
+		</script>
+	</head>
+	<body>
+		<div class="class1" id="id2" name="name3" title="title4">这是一个div</div>
+	</body>
+</html>

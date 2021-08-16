@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>search找某个元素首次出现位置</title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//String   /strɪŋ/
+			//alert   /əˈlɜːrt/
+			//search   /sɜːtʃ/
+		
+			// search方法用于检索字符串中指定的子字符串，或检索与正则表达式相匹配的子字符串，并返回所在位置。如果没有找到任何匹配的子串，则返回 -1。效果和indexOf()类似，区别在于
+			// search不能指定开始搜索的位置，search可以接受正则表达式。
+			/* 
+			注意：
+				i：表示忽略大小写      
+				g：表示区分大小写,且全局匹配(全局匹配在这里体现不出，在替换函数中能明显看出效果)
+				ig: 表示不区分大小写,且全局匹配
+			*/
+			
+			var str1 = new String("123abcd");
+			var str2 = new String("123abCd");
+			//普通检索
+			alert(str1.search("abc"));   //3
+			alert(str2.search("abc"));   //-1
+			//正则表达式
+			alert(str2.search(/abc/));   //-1
+			alert(str2.search(/abc/i));  //3
+			alert(str2.search(/abc/ig)); //3
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>sort数组排序</title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//Array  /əˈreɪ/ 
+			//length  /leŋkθ/
+			//alert   /əˈlɜːrt/
+			//sort    /sɔːrt/
+			
+			//sort方法根据参数(函数)来判断排序规则
+			
+			//无参数时,是从小到大排序，但它并不是完全按数值大小排序的，
+			//它是根据数字的最高位排序的，例如 12 的最高位是1，因为1<2，那么 12 就会排在 2 的前面
+			// var arr1 = new Array(1,4,7,2,5,8,3,6,9);
+			// alert(arr1);
+			// alert(arr1.sort());
+			// var arr2 = [1,2,3,4,5,6,12,13,14];
+			// alert(arr2);          //1,2,3,4,5,6,12,13,14
+			// alert(arr2.sort());   //1,12,13,14,2,3,4,5,6
+			
+			//有参时，从小到大排序的参数
+			// var arr3 = [12,13,14,1,2,3,4,5,6];
+			// alert(arr3);       //12,13,14,1,2,3,4,5,6
+			// //这个就是真正意义的从小到大排
+			// alert(arr3.sort((a,b)=>a-b));    //1,2,3,4,5,6,12,13,14
+			
+			//有参时，从大到小排序的参数
+			var arr4 = [12,1,2,3,4,5,6,13,14];
+			alert(arr4);     //12,1,2,3,4,5,6,13,14
+			alert(arr4.sort((a,b)=>b-a));    //14,13,12,6,5,4,3,2,1
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

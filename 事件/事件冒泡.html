@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>事件冒泡</title>
+		<style type="text/css">
+			div{padding: 50px;}
+			#div1{background-color: red;}
+			#div2{background-color: green;}
+			#div3{background-color: blue;}
+		</style>
+		<script type="text/javascript">
+			// var     /vɑr/
+			// alert   /əˈlɜːrt/
+			// click        /klɪk/
+			// event        /ɪˈvent/
+			// cancelBubble    /kænsl  bʌbl/
+			// stopPropagation /stɒp ˌprɒpəˈɡeɪʃn/
+		
+		
+		
+			// 浏览器上事件天生的一个特点：事件流
+			
+			// 事件流概述:
+			// 	事件流是描述的从页面接受事件的顺序，当几个都具有事件的元素层叠在一起
+			// 	的时候， 那么你点击其中一个元素，并不是只有当前被点击的元素会触发事件，
+			// 	而层叠在你点击范围 的所有元素都会触发事件。
+			
+			// 事件流包括两种模式：冒泡和捕获。
+			
+			// 事件冒泡：由里向外逐级触发
+			// 事件捕获：由外向里逐级触发
+			
+			// 阻止事件冒泡:
+			// 	有两种方式，一种是事件对象的属性cancelBubble=true，
+			//             一种是事件对象的方法stopPropagation()
+			
+			
+			window.onload = function(){
+				//下面的代码出现的状况就是事件冒泡
+				// var Odiv = document.getElementsByTagName("div");
+				// for(var i=0; i<Odiv.length; i++){
+				// 	Odiv[i].onclick = function(){
+				// 		alert(this.id);
+				// 	}
+				// }
+				
+				//下面的代码是使用阻止事件冒泡方法
+				var Odiv = document.getElementsByTagName("div");
+				for(var i=0; i<Odiv.length; i++){
+					Odiv[i].onclick = function(ev){
+						var e = ev || window.event;
+						stopBubble(e);
+						alert(this.id);
+					}
+				}
+			}
+			
+			//封装跨浏览器兼容的阻止事件冒泡
+			function stopBubble(e){
+				// e是事件对象
+				if(e.stopPropagation){
+					e.stopPropagation();
+				}
+				else{
+					e.cancelBubble = true;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="div1">
+			<div id="div2">
+				<div id="div3"></div>
+			</div>
+		</div>
+	</body>
+</html>

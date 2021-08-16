@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>立即执行函数</title>
+		<script type="text/javascript">
+			//正常情况下得写法和调用
+			
+			//方式1
+			// function show(){
+			// 	alert("hello worid1");
+			// }
+			// show();
+			
+			//方式2
+			// var show = function(){
+			// 	alert("hello world2");
+			// }
+			// show();
+			
+			//立即执行函数的写法  【注】这种写法，当函数创建出来后便会立马执行
+			(function(){
+				alert("hello world3");
+			})();
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

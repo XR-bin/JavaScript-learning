@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>学员信息插入数据库</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" />
+    <script src="./ajax.js"></script>
+    <script type="text/javascript">
+      /* 
+        实现方式：
+          1、from表单点击提交数据以后，需要跳转页面
+          2、ajax 异步进行数据传输
+        【注意】两者选其一
+      */
+      window.onload = function(){
+        var oSubmit = document.getElementById("submit");
+        var oInputs = document.getElementsByTagName("input");
+        
+        oSubmit.onclick = function(){
+          $ajax({
+            method: "post",
+            url: "insertStudent.php",
+            data: {
+              name: oInputs[0].value,
+              Chinese: oInputs[1].value,
+              math: oInputs[2].value,
+              english: oInputs[3].value
+            },
+            success: function(result){
+              var obj = JSON.parse(result);
+              alert(obj.message);
+            },
+            error: function(msg){
+              var obj = JSON.parse(msg);
+              alert(obj.message);
+            }
+          });
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h2>输入学员成绩</h2>
+        </div>
+        <div class="panel-body">
+          <div class="form-group">
+            <label for="name">学员姓名</label>
+            <input type="text" class="form-control" name="name" />
+          </div>
+          <div class="form-group">
+            <label for="name">语文成绩</label>
+            <input type="text" class="form-control" name="Chinese" />
+          </div>
+          <div class="form-group">
+            <label for="name">数学成绩</label>
+            <input type="text" class="form-control" name="math" />
+          </div>
+          <div class="form-group">
+            <label for="name">英语成绩</label>
+            <input type="text" class="form-control" name="english" />
+          </div>
+          <div class="form-group">
+            <button id="submit" class="btn btn-primary form-control">提交学员成绩</button>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <a href='showStudent.html'>查看学员成绩</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

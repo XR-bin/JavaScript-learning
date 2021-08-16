@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>修改键属性</title>
+		<script type="text/javascript">
+			// var     /vɑr/
+			// alert   /əˈlɜːrt/
+			// Array   /əˈreɪ/ 
+			// push    /pʊʃ/ 
+			// mousedown    /ˈmaʊs  daʊn/
+			// event        /ɪˈvent/
+			// shiftKey     /ʃɪft ki/
+			// ctrlKey      /kən'trol  ki/
+			// altKey       /ˈɔːlt  ki/
+			// metaKey      /metə  ki/
+			
+			// shiftKey：判断是否按下Shift键，按下值为true，没按下则为false。
+			// ctrlKey：判断是否按下Ctrl键，按下值为true，没按下则为false。
+			// altKey：判断是否按下Alt键，按下值为true，没按下则为false。
+			// metaKey：这个比较特殊。
+			//			如果是在window系统下，则是判断是否按下window(开始)键。
+			//			如果是在苹果系统下，则是判断是否按下command键，
+			//			按下值为true，没按下则为false。
+			//          【注】IE不兼容
+			
+			
+			window.onload = function(){
+				var arr = new Array();
+				
+				document.onmousedown = function(ev){
+					var e = ev || window.event;
+					
+					if(e.shiftKey){
+						arr.push("Shift");
+					}
+					
+					if(e.ctrlKey){
+						arr.push("Ctrl");
+					}
+					
+					if(e.altKey){
+						arr.push("Alt");
+					}
+					
+					if(e.metaKey){
+						arr.push("metaKey");
+					}
+					
+					alert(arr);
+				}
+			}				
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

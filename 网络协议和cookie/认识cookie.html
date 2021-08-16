@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>认识cookie</title>
+		<script type="text/javascript">
+			// cookie   /ˈkʊki/
+			// encodeURIComponent    /ɪnˈkoʊd  URI  kəmˈpoʊnənt/
+			// decodeURIComponent    /diː'kəʊd URI  kəmˈpoʊnənt/
+			// expires     /ɪk'spaɪəz/
+			// path    /pɑːθ/
+			// domain   /dəˈmeɪn/
+		
+			/*
+				cookie：
+					Cookie 用于存储 web 页面的用户信息。
+					Cookie 是一些数据, 存储于你电脑上的文本文件中。
+					当浏览器从服务器上请求 web 页面时， 属于该页面的 cookie 会被添加到该请求中。服务端通过这种方式来获取用户的信息。
+					
+				cookie特点：
+					1、可以设置过去时间
+					2、最大可以存储4KB，每个域名下最多可以存储50条数据(不同的浏览器，有偏差)
+					【注】只能存字符串，一般只存储一些重要的信息。登录、购物车信息。是否点赞、视频播放进度等。
+			
+				cookie的语法
+					格式：name=value;[expires=date];[path=path];[domain=somewhere.com];[secure];
+					
+					name键和value值  都是自定义的
+					【注意】name=value;之后的中括号的内容(中括号是为了我自己区分可选项，实际写的时候不用中括号)，都是可选项。
+					【注意】火狐支持本地加载的文件缓冲cookie，而谷歌不支持，谷歌只支持服务文件缓冲cookie
+			*/
+			
+			//设置(或者可以说是创建)cookie
+			// document.cookie = "my=xxx";
+			// document.cookie = "xixi=xxx";
+			
+			//获取cookie(把cookie上所有的数据都获取)
+			// alert(document.cookie);
+			
+			/* 
+				cookie存在中文时，中文部分可能会出现乱码
+				解决方法就是把中文编译成字符
+					encodeURIComponent     将中文编译成对应的字符
+					decodeURIComponent     将对应的字符编译成中文
+					
+				
+			*/
+			// document.cookie = "my=" + encodeURIComponent("哈哈哈");
+			// alert(decodeURIComponent(document.cookie));
+			
+			/*
+				expires：过期时间
+					必须填写日期对象。
+					【注】系统会自动清除过期的coolie
+					【注】当没填写这里数据时，默认是会话结束(即窗口关闭)时被清除
+			*/
+		   
+			// 获取n天后的日期
+			function afterOfDate(n){
+				var d = new Date();
+				var day = d.getDate();
+				d.setDate(day + n);
+				return d;
+			}
+			// document.cookie = "my=xxx;expires=" + afterOfDate(2);
+			
+			//如果要删除，可以使用过期系统自动清除的特点，直接设置cookie过期日期过期就行了
+			document.cookie = "my=xxx;expires=" + new Date(0);
+			
+			/*
+				path   限制访问路径
+				如果不去设置，默认是加载当前.html文件的路径
+				【注】我们设置的cookie的路径，和加载当前文档的路径，必须一致，如果不一致，cookie访问失败
+			*/
+		   
+			// document.cookie = "my2=xxx1;path=/C:/Users/Administrator/Desktop/JavaScript/DOM";
+			
+			/*
+				domain  限制访问域名
+				如果不去设置，默认是加载当前.html文件的服务器域名/ip
+				【注意】如果加载当前文件域名和设置的域名不一样，设置cookie失败
+			*/
+		   
+			/*
+				secure
+					如果不设置，设置cookie，可以通过http协议加载文件设置，也可以通过https协议加载文件设置
+					
+				【注】设置这个字段后，只能设置https协议加载cookie
+				
+				http：无证书认证的协议
+				https：证书认证的协议
+			*/
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

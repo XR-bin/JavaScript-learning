@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>字符串函数match</title>
+		<script type="text/javascript">
+			// var   /vɑr/
+			// alert   /əˈlɜːrt/
+			// String   /strɪŋ/
+			// match  /mætʃ/
+		
+			/* 
+				match函数
+					格式：字符串.match(正则或者字符串);
+					功能：在字符串中匹配是否有符合正则表达式或参数字符串的
+					返回值：匹配成功，返回装有子字符串的数组
+							匹配失败，返回null
+			 */
+			
+			var str = "How are Are ARE aRe you";
+			var box = /are/ig;
+			alert(str.match("are"));    //are
+			alert(str.match(box));      //are,Are,ARE,aRe
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

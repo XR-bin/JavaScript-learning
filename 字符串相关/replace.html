@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>replace替换字符串中的某些字符</title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//alert   /əˈlɜːrt/
+			//String   /strɪŋ/
+			//replace  /rɪˈpleɪs/
+			
+			// replace方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。
+			// replace参数：
+				// 参数1：替换目标
+				// 参数2：要换上去的字符串
+			/* 
+			注意：
+				i：表示忽略大小写      
+				g：表示区分大小写,且全局匹配
+				ig: 表示不区分大小写,且全局匹配
+				
+				【注】全局匹配整个字符串中相同的都是我们的操作目标。如我们要are替换为old are，那么字符
+					 串中有两个are，那两个are都会被替换
+			*/
+			
+			var str1 = new String("Are are ARe are");
+			
+			//普通字符串
+			// alert(str1.replace("are", "ARE"));   //Are ARE ARe are
+			//正则表达式
+			// alert(str1.replace(/are/, "ARE"));   //Are ARE ARe are
+			// alert(str1.replace(/are/g, "ARE"));  //Are ARE ARe ARE
+			// alert(str1.replace(/are/i, "ARE"));  //ARE are ARe are
+			// alert(str1.replace(/are/ig, "ARE")); //ARE ARE ARE ARE
+			
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

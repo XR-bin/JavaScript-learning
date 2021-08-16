@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>初识this</title>
+		<script type="text/javascript">
+			// var   /vɑr/
+			// alert   /əˈlɜːrt/
+			// Object  /ˈɒbdʒɪkt;/
+			// document  /ˈdɒkjumənt/
+			// onload   /ˌɒnˈləʊd/
+			// getElementsByTagName   /ɡet  elɪmənt  baɪ  tæɡ  neɪm/ 
+			// onclick    /ˌɒn  klɪk/
+			// this     /ðɪs/
+		
+			window.onload = function(){
+				//如何解决下面这种刻舟求剑的现象
+				// var Obtns = document.getElementsByTagName("button");
+				
+				// for(var i=0; i<Obtns.length; i++){
+				// 	Obtns[i].onclick = function(){
+				// 		alert(i);
+				// 	}
+				// }
+				// alert(i);
+				
+				// 上面这种情况是因为在运行完for之后i已经是等于3了，由于整个程序并没有结束
+				// 所以i一直都等于3，因为每次发生点击事件时都是访问这个i，所以一直都等于3
+				
+				
+				
+				
+				
+				//在解决上面的刻舟求剑的问题前，我们得先了解一下this的概念
+				/* 
+				this概念：只要封装函数，任何一个函数，系统都会给它内置一个叫做this的变量，
+						 this存储的是一个地址，是当前函数主人的地址
+				【注】：this永远指向当前函数的主人，函数主人要通过当前上下文进行判断
+						这个this有点类似写作中用的“我”这个词。
+						例如：
+							小明对着坐在旁边的小红说道：“我已经预约到了疫苗了。”
+							-----这里的“我”的主人就是小明
+				 */
+				
+				//以编程为例
+				//情况一
+				// var person = {
+				// 	name : "小明",
+				// 	old : 18,
+				// 	show : function(){
+				// 		alert(person.name);
+				// 		//一般情况下，对象的方法的this一般指向方法的对象本身，即对象是该对象本身方法的主人
+				// 		alert(this.old);
+				// 	}
+				// }
+				// person.show();
+				
+				//情况二
+				//当方法没有主人时，默认主人都是window
+				// function show(){
+				// 	alert(this);   
+				// }
+				// show();   //[object Window]
+				
+				// 情况三
+				// var person = new Object();
+				// person.show = function(){
+				// 	alert(this);
+				// }
+				// person.show();   //[object Object]
+				// alert(person);   //[object Object]
+				
+				
+				
+				// 有没有发现情况三的形式和我们按键的很像
+				// person.show = function(){}
+				// Obtns[i].onclick = function(){}
+				
+				// 这个时候，我们就可以破解刻舟求剑的情况了
+				var Obtns = document.getElementsByTagName("button");
+				
+				for(var i=0; i<Obtns.length; i++){
+					//给按键添加一个index属性用来存i值
+					Obtns[i].index = i+1;
+					Obtns[i].onclick = function(){
+						//这个时候按键对象就已经有index的属性了，这个时候我们通过this去访问对象的属性就行了
+						alert(this.index);
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<button>按键1</button>
+		<button>按键2</button>
+		<button>按键3</button>
+	</body>
+</html>

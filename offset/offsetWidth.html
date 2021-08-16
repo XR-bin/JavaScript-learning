@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>offsetWidth</title>
+		<style type="text/css">
+			#div1{
+				width: 100px; height: 100px;
+				background-color: red;
+			}
+			#div2{
+				width: 100px; height: 100px;
+				background-color: red;
+				border:1px solid black;
+			}
+			#div3{
+				width: 100px; height: 100px;
+				background-color: red;
+				border:1px solid black;
+				padding: 10px;
+			}
+			#div4{
+				width: 100px; height: 100px;
+				background-color: red;
+				border:1px solid black;
+				padding: 10px;
+				margin: 10px;
+			}
+		</style>
+		<script type="text/javascript">
+			// var   /vɑr/
+			// alert   /əˈlɜːrt/
+			// document  /ˈdɒkjumənt/ 
+			// onload   /ˌɒnˈləʊd/
+			// getElementsByTagName   /ɡet  elɪmənt  baɪ  tæɡ  neɪm/ 
+			// currentStyle   /kɜːrənt  staɪl/
+			// getComputedStyle    /ɡet  kəmˈpjuːtɪd  staɪl/ 
+			// offsetWidth    /ɒfset  wɪdθ /
+			
+			//解决兼容问题的获取Style方法
+			function getStyle(node, cssStyle){
+				return node.currentStyle ? node.currentStyle[cssStyle] : getComputedStyle(node)[cssStyle];
+			}
+			
+			// offsetWidth方法是获取对象可视的宽(即我们肉眼可见的宽)
+			// offsetWidth获取的宽度 = width + border*2 + padding*2
+			
+			window.onload = function(){
+				var Odiv = document.getElementsByTagName("div");
+				
+				// 普通width属性和offsetWidth比较
+				alert("div1：" + getStyle(Odiv[0], "width"));    //div1：100px
+				alert("div1：" + Odiv[0].offsetWidth);           //div1：100
+				
+				alert("div2：" + getStyle(Odiv[1], "width"));    //div2：100px
+				alert("div2：" + Odiv[1].offsetWidth);           //div2：102
+				
+				alert("div3：" + getStyle(Odiv[2], "width"));    //div3：100px
+				alert("div3：" + Odiv[2].offsetWidth);           //div3：122
+				
+				alert("div4：" + getStyle(Odiv[3], "width"));    //div4：100px
+				alert("div4：" + Odiv[3].offsetWidth);           //div4：122
+				
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div id="div1"></div><br>
+		<div id="div2"></div><br>
+		<div id="div3"></div><br>
+		<div id="div4"></div><br>
+	</body>
+</html>

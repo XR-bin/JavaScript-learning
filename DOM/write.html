@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>write</title>
+		<script type="text/javascript">
+			// var   /vɑr/
+			// alert   /əˈlɜːrt/
+			// document  /ˈdɒkjumənt/ 
+			// onload   /ˌɒnˈləʊd/
+			// getElementById   /ɡet  elɪmənt  baɪ  ˌaɪ ˈdiː/ 
+			// onclick  /ˌɒn  klɪk/
+			// write    /raɪt/
+			
+			// document.write :把写入的内容插入到页面中(会解析标签)
+			// 【注意】这个方法会覆盖页面上原有的内容
+			
+			window.onload = function(){
+				var Obtn = document.getElementById("btn");
+				Obtn.onclick = function(){
+					document.write("<h1>Hello World</h1>");
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="div1">
+			<p>这里是一个在div里的p</p>
+		</div>
+		<button id="btn">按键</button>
+	</body>
+</html>

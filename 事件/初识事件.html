@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>初识事件</title>
+		<script type="text/javascript">
+			
+			// 事件是发生并得到处理的操作，即：事情来了，然后处理。
+			// 如在点击窗体中的按键被点击后，出发某些事情
+			/* 
+			事件绑定：
+				1、内联模式
+				2、外联模式/脚本模式
+			事件绑定格式
+				元素节点.on + 事件 = 匿名函数
+				
+				例如：
+					click    事件类型
+					onclivk  事件处理函数
+					
+				事件类型种类：
+					1、鼠标事件
+					2、键盘事件
+					3、HTML事件
+						1)、window事件
+						2)、表单事件
+			 */
+			//内联方式
+			function Clickbnt(){
+				alert("内联模式");
+			}
+			
+			//外联模式
+			window.onload = function(){
+				var Obnt = document.getElementById("btn");
+				Obnt.onclick = function(){
+					alert("外联模式");
+				}
+			}
+			
+			
+			
+		</script>
+	</head>
+	<body>
+		<button onclick="Clickbnt()">内联模式</button>
+		<button id="btn">外联模式</button>
+	</body>
+</html>

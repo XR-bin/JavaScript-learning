@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>HTML事件</title>
+		<script type="text/javascript">
+			//load    /ləʊd/
+			//unload  /ˌʌnˈləʊd/
+			//scroll  /skroʊl/
+			//resize  /ˌriːˈsaɪz/
+			//blur     /blɜːr/
+			//focus    /fəʊkəs/
+			//select   /sɪˈlekt/
+			//change   /tʃeɪndʒ/
+			//submit   /səbˈmɪt/
+			//reset    /ˌriːˈset/
+		
+			/*
+			HTML事件
+				1)、window事件
+					load       当页面完全加载后在 window 上面触发，或当框架集加载完毕后在框架集上触发。
+					unload     当页面完全卸载后在 window 上面触发，或当框架集卸载后在框架集上触发。(刷新页面，关闭当前页面)
+					scroll     当用户滚动带滚动条的元素时触发。
+					resize     当窗口或框架的大小变化时在 window 或框架上触发。
+					
+				2)、表单事件
+					blur       失去焦点
+					focus      获取焦点
+					select     当我们在输入框内选择文本时触发
+					change     当我们对输入框的文本进行修改并失去焦点时触发
+					
+					【注意】下面两个事件必须加到<from>标签上
+					submit     当我们点击submit(提交按键)上的按钮才触发
+					reset      当我们点击reset(重置按键)上的按钮才触发
+			 */
+			
+			
+			
+/*********************************window事件**********************************/
+			//load事件
+			// window.onload = function(){
+			// 	alert("这是onload");
+			// }
+			
+			//scroll事件
+			// var i = 0;
+			// window.onscroll = function(){
+			// 	document.title = i++;
+			// }
+			
+			//resize事件
+			// var i = 0;
+			// window.onresize = function(){
+			// 	document.title = i++;
+			// }
+
+/*********************************表单事件**********************************/
+			window.onload = function(){
+				// var Oinput = document.getElementById("input1");
+				
+				//blur事件
+				// Oinput.onblur = function(){
+				// 	Oinput.value = "失去焦点";
+				// }
+				
+				//focus事件
+				// Oinput.onfocus = function(){
+				// 	Oinput.onfocus = function(){
+				// 		Oinput.value = "获取焦点";
+				// 	}
+				// }
+				
+				//select事件
+				// Oinput.onselect = function(){
+				// 	alert("被选中");
+				// }
+				
+				//change事件
+				// Oinput.onchange = function(){
+				// 	alert("被修改了");
+				// }
+				
+				
+				
+				
+				
+				var Of1 = document.getElementById("f1");
+				//submit事件
+				Of1.onsubmit = function(){
+					alert("提交");
+				}
+				//reset事件
+				Of1.onreset = function(){
+					alert("重置");
+				}
+			}
+		</script>
+	</head>
+	<body style="height: 3000px;">
+		<!-- <input value="默认文本" id="input1" type="text" /> -->
+		<form id="f1">
+			<input type="text" />
+			<input type="submit" />
+			<input type="reset" />
+		</form>
+	</body>
+</html>

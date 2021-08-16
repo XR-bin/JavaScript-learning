@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>多物体运动1</title>
+		<style type="text/css">
+			div{width: 80px; height: 80px; background-color: blue; margin: 60px;}
+		</style>
+		<script type="text/javascript">
+			// parseInt       /pɑːrs  ɪnt /
+			// ceil           /siːl/
+			// floor          /flɔː(r)/
+			
+			
+			/*
+				多物体运动：
+					1、定时器不能共用
+					2、任何数据不能共用
+			*/
+		
+			window.onload = function(){
+				var oDiv = document.getElementsByTagName("div");
+				
+				for(var i=0; i<oDiv.length; i++){
+					oDiv[i].onmouseover = function(){
+						stratMove(this, 300);
+					}
+					
+					oDiv[i].onmouseout = function(){
+						stratMove(this, 80);
+					}
+				}
+			}
+			
+			function stratMove(node, myTarget){
+				//关闭定时器
+				clearInterval(node.timer);
+				
+				//开启定时器
+				node.timer = setInterval(function(){
+					var speed = (myTarget - node.offsetWidth) / 8;
+					speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+					
+					if(node.offsetWidth == myTarget){
+						cleatInterval(node.timer);
+					}
+					else{
+						node.style.width = node.offsetWidth + speed + "px";
+					}
+				}, 30)
+			}
+		</script>
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</body>
+</html>

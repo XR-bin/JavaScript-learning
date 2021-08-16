@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>键盘事件</title>
+		<script type="text/javascript">
+			// keydown     /ki   daʊn/
+			// keyup       /ki   ʌp/
+			// keypress    /ki  pres/
+		
+			/*
+			键盘事件
+				keydown       当用户按下键盘上任意键触发，如果按住不放，会重复触发。
+				keyup         当用户释放键盘上的键触发。
+				
+				keypress      当用户按下键盘上的字符键触发，如果按住不放，会重复触发
+							  【注】只支持字符键,回车和换行这里都是字符键
+			 */
+			
+			window.onload = function(){
+				var i = 0;
+
+				//keydow事件
+				// window.onkeydown = function(){
+				// 	document.title = i++;
+				// }
+				
+				// keypress事件
+				window.onkeypress = function(){
+					document.title = i++;
+				}
+				
+				// keyup事件
+				window.onkeyup = function(){
+					document.title = "抬起";
+				}
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

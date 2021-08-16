@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>parentNode</title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//alert   /əˈlɜːrt/
+			// document  /ˈdɒkjumənt/ 
+			// onload   /ˌɒnˈləʊd/
+			// getElementById   /ɡet  elɪmənt  baɪ  ˌaɪ ˈdiː/ 
+			// parentNode      /peərənt  noʊd/
+			// nodeType      / noʊd   taɪp/
+			// nodeName      / noʊd   neɪm/
+			// nodeValue     / noʊd   vælju/
+			
+			/*
+						  nodeType      nodeName      nodeValue
+				元素节点      1           标签名         null
+				属性节点      2           元素名         属性值
+				文本节点      3           #text          文本内容
+			 */
+			
+			// node.parentNode  返回该node节点的父节点
+			
+			window.onload = function(){
+				var Op = document.getElementById("p1");
+				alert(Op.parentNode.nodeName);    //DIV 
+			}
+		</script>
+	</head>
+	<body>
+		<div>
+			<p id="p1">这是一个在div里的p</p>
+		</div>
+	</body>
+</html>

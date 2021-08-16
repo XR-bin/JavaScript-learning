@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>封装cookie</title>
+		<script type="text/javascript">
+			// cookie   /ˈkʊki/
+			// encodeURIComponent    /ɪnˈkoʊd  URI  kəmˈpoʊnənt/
+			// decodeURIComponent    /diː'kəʊd URI  kəmˈpoʊnənt/
+			// expires     /ɪk'spaɪəz/
+			// path    /pɑːθ/
+			// domain   /dəˈmeɪn/
+			// secure   /sɪˈkjʊə(r)/
+		
+			/*
+				我们要封装的函数
+						setCookie()
+						getCookie()
+						removeCookie()
+						
+						cookie格式：name=value;[expires=date];[path=path];[domain=somewhere.com];[secure];
+						【注意】name=value;之后的中括号的内容(中括号是为了我自己区分可选项，实际写的时候不用中括号)，都是可选项。
+			
+				encodeURIComponent    将中文编译成对应的字符
+				decodeURIComponent    将对应的字符编译成中文
+			*/
+			
+			//创建cookie
+			function setCookie(name, value, {expires, path, domain, secure}){
+				var cookieStr = encodeURIComponent(name) + "=" + encodeURIComponent(value) + ';';
+				if(expires){
+					cookieStr += "expires=" + afterOfDate(expires) + ';';
+				}
+				if(path){
+					cookieStr += "path=" + path + ';';
+				}
+				if(domain){
+					cookieStr += "domain=" + demain + ';';
+				}
+				if(secure){
+					cookieStr += "secure;"
+				}
+				
+				document.cookie = cookieStr;
+			}
+			
+			// 获取n天后的日期
+			function afterOfDate(n){
+				var d = new Date();
+				var day = d.getDate();
+				d.setDate(day + n);
+				return d;
+			}
+			
+			
+			//获取cookie
+			function getCookie(name){
+				var cookieStr = decodeURIComponent(document.cookie);
+				var start = cookieStr.indexOf(name + "=");
+				if(start == -1){
+					return null;
+				}
+				else{
+					var end = cookieStr.indexOf(';', start);
+					if(end == -1){
+						end = cookieStr.length;
+					}
+					
+					//进行字符串提取
+					var str = cookieStr.substring(start, end);
+					
+					return str;
+				}
+			}
+			
+			//删除cookie
+			function removeCookie(name){
+				document.cookie = encodeURIComponent(name) + "=;expires=" + new Date(0);
+			}
+			
+			
+			/*
+				【注】在使用一个方法实现三个功能的时候：
+					  通过传入参数的数量来识别：
+					  
+					  设置cookie
+					  $cookie(name, value)
+					  $cookie(name, value,{})
+					  
+					  获取cookie
+					  $cookie(name);
+					  
+					  删除cookie
+					  $cookie(name, null)
+			*/
+			function $cookie(name){
+				switch(arguments.length){
+					//获取cookie
+					case 1:
+						return getCookie(name);
+						
+					//设置cookie或删除cookie
+					case 2:
+						if(arguments[1] != null){
+							setCookie(name, arguments[1]);
+						}
+						else{
+							removeCookie(name);
+						}
+						
+					//设置cookie
+					case 3:
+						setCookie(name, arguments[1], arguments[2]);
+						
+				}
+			}
+			
+			window.onload = function(){
+				var oBtn = document.getElementsByTagName("button");
+				
+				oBtn[0].onclick = function(){
+					// setCookie("my", "钢铁侠", {expires: 5});
+					$cookie("my", "钢铁侠", {expires: 5});
+				}
+				oBtn[1].onclick = function(){
+					// alert(getCookie("my"));
+					alert($cookie("my"));
+				}
+				oBtn[2].onclick = function(){
+					// removeCookie("my");
+					alert($cookie("my", null));
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<button id="btn0">创建</button>
+		<button id="btn1">获取</button>
+		<button id="btn2">删除</button>
+	</body>
+</html>

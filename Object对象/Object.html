@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Object  了解对象</title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//alert   /əˈlɜːrt/
+			//Object  /ˈɒbdʒɪkt;/
+		
+			// 创建 Object 类型有三种。一种是使用 new Object，一种是直接Object，一种是字面量表示法。
+			
+			//方法一  new Object
+			// var obj1 = new Object();
+			// alert(typeof obj1);
+			
+			//方法二  Object
+			// var obj2 = Object();
+			// alert(typeof obj2);
+			
+			//方法三  字面量表示法
+			// var obj3 = {};
+			// alert(typeof obj3);
+			
+			
+			/*-------------给对象Object增添新属性-------------*/
+			
+			// 创建时添加
+			// var obj4 = {
+			// 	name : "Bin",
+			// 	age : 23
+			// };
+			// alert(obj4.name);
+			
+			// var obj5 = {
+			// 	'name' : "Bin",
+			// 	'age' : 23
+			// };
+			// alert(obj5.age);
+			
+	
+			// var obj6 = new Object();
+			// 采用和普通变量定义后赋值差不多的方式新添对象属性
+			// obj6.name = "Bin";
+			// obj6.age = 23;
+			//采用数组赋值差不多的方式添加新属性
+			//【注意】：[]填写的必须是字符串
+			// obj6['job'] = "student";
+			
+			//输出方式和上面这两个赋值方式一样
+			// alert(obj6.name);
+			// alert(obj6['age']);
+			// alert(obj6['job']);
+			
+			/*-------------给对象增添新方法-------------*/
+			// 创建时添加
+			// var obj7 = {
+			// 	run1 : function(){
+			// 		alert("This is obj7.run1 the function");
+			// 	},
+				
+			// 	'run2' : function(){
+			// 		alert("This is obj7.run2 the function");
+			// 	}
+			// }
+			// obj7.run1();
+			// obj7.run2();
+			
+			
+			
+			
+			// var obj8 = new Object();
+			// 采用和普通变量定义后赋值差不多的方式新添对象属性
+			// obj8.run1 = function(){
+			// 	alert("This is obj8.run1 the function");
+			// }
+			//采用数组赋值差不多的方式添加新属性
+			//【注意】：[]填写的必须是字符串
+			// obj8['run2'] = function(){
+			// 	alert("This is obj8.run2 the function");
+			// }
+			
+			//输出方式和上面这两个赋值方式一样
+			// obj8.run1();
+			// obj8['run2']();
+			
+			
+			//使用 delete 删除对象属性
+			// var obj9 = {
+			// 	name : "Bin",
+			// 	age : 18,
+			// 	run : function(){
+			// 		alert("This is obj9.run the function");
+			// 	}
+			// };
+			// alert(obj9.age);
+			// alert(obj9.name);
+			// obj9.run();
+			
+			// delete obj9.age;
+			// delete obj9.run;
+			
+			// alert(obj9.age);
+			// alert(obj9.run);
+			
+			
+			
+			
+			//判断类型
+			var Obj10 = new Object();
+			alert(Object.prototype.toString.call(Obj10));
+			/*
+				放进对象前     ------>     放进对象后
+				普通变量       ------>     对象属性
+				普通函数       ------>     对象方法
+			*/
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

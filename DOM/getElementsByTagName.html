@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>getElementByTagName</title>
+		<script type="text/javascript">
+			// var   /vɑr/
+			// alert   /əˈlɜːrt/
+			// document  /ˈdɒkjumənt/ 
+			// onload   /ˌɒnˈləʊd/
+			// getElementsByTagName   /ɡet  elɪmənt  baɪ  tæɡ  neɪm/ 
+			
+			// getElementByTagName("标签名")
+			// 功能：通过标签名找到符合条件的元素节点
+			// 返回值：Object---伪数组
+			
+			window.onload = function(){
+				var Odiv1 = document.getElementsByTagName("div");
+				alert(Odiv1.length);
+				//因为可能有多个同一标签名的元素节点，所以这里的节点可能不止一个，
+				//所以不能以Odi1.id输出属性节点，而是以数组的形式输出属性节点----Odiv[0].id
+				//整体的属性节点获取和赋值都和 getElementById 方法是一样的。
+				// alert(Odiv1[0].id);
+				
+				//套用的形式
+				//自己套自己
+				// var Odiv2 = document.getElementsByTagName("div");
+				// var Oli1 = Odiv2[1].getElementsByTagName("li");
+				// alert(Oli1[0].id);
+				
+				//和其他获取方式套用
+				//【注】getElementById 和 getElementsByName 的对象只能是 document 对象
+				var Odiv3 = document.getElementById("div2");
+				var Oli2 = Odiv3.getElementsByTagName("li");
+				alert(Oli2[0].id);
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div id="div1">
+			这里是div1
+		</div>
+		
+		<div id="div2">
+			<li id = "li1">这里是div2中的li</li>
+		</div>
+	</body>
+</html>

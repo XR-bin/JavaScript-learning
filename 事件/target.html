@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>target事件的目标/触发事件的元素节点</title>
+		<script type="text/javascript">
+			// var     /vɑr/
+			// alert   /əˈlɜːrt/
+			// click        /klɪk/
+			// innerHTML    /ɪnər  HTML/
+			// target       /ˈtɑːɡɪt/ 
+			// event        /ɪˈvent/
+			// srcElement   /sɔːs elɪmənt/
+			
+			/* 
+				target   目标对象/触发对象     事件对象的属性
+				【注意】这个target指的是这个事件是由谁而且起的(哪个元素)
+				IE8一下不兼容target，要用window.event.srcElement做兼容处理
+				格式：var target = e.target || window.event.srcElement;
+			 */
+			
+			window.onload = function(){
+				// var Oli = document.getElementById("li1");
+				// Oli.onclick = function(ev){
+				// 	var e = ev || window.event;
+				// 	var target = e.target || window.event.srcElement;
+					
+				// 【注】这里的this和target指向的都是id为li1的li元素，但他们的寓意不一样
+				// 	alert(this.innerHTML);
+				// 	alert(target.innerHTML);
+				// }
+				
+				
+				//这里的代码是为了证明this和target的不同
+				var Oul = document.getElementById("ul1");
+				Oul.onclick = function(ev){
+					var e = ev || window.event;
+					var target = e.target || window.event.srcElement;
+					
+					// this用于指向当前函数的主人
+					// target指向的是最先触发该事件的元素
+					// 举个例子：在我们大腿上铺张纸，用拳头打纸，然后我们大腿痛而叫了一声，
+					//          这个过程中拳头最先触碰到的是纸，再透过纸让我们的腿感觉到痛，
+					//          所以target指向的是纸。
+					//          以同样的思路去看下面的target，就知道了，我们先点击到了li后再触发的ul
+					alert(this.tagName);     // UL
+					alert(target.tagName);   // LI
+					alert(target.innerHTML);
+				}
+			}
+			
+		</script>
+	</head>
+	<body>
+		<ul id="ul1">
+			<li id="li1">1111</li>
+			<li>2222</li>
+			<li>3333</li>
+			<li>4444</li>
+		</ul>
+	</body>
+</html>

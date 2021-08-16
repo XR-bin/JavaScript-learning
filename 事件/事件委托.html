@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>事件委托</title>
+		<script type="text/javascript">
+			// var     /vɑr/
+			// alert   /əˈlɜːrt/
+			// click        /klɪk/
+			// innerHTML    /ɪnər  HTML/
+			// target       /ˈtɑːɡɪt/ 
+			// event        /ɪˈvent/
+			// srcElement   /sɔːs elɪmənt/
+			// createElement    /kriˈeɪt   elɪmənt/
+			// appendChild    /əˈpend   tʃaɪld/
+			
+			/*****************没有使用事件委托的方式********************/
+			// window.onload = function(){
+			// 	var Oli = document.getElementsByTagName("li");
+			// 	var Obtn = document.getElementById("btn");
+			// 	var Oul = document.getElementById("ul1");
+				
+			// 	//给每个li添加点击事件
+			// 	for(var i=0; i<Oli.length; i++){
+			// 		Oli[i].onclick = function(){
+			// 			this.style.backgroundColor = "red";
+			// 		}
+			// 	}
+			// 	var t = 6;
+			// 	Obtn.onclick = function(){
+			// 		var newNode = document.createElement("li");
+			// 		newNode.innerHTML = t++ * 1111;
+			// 		Oul.appendChild(newNode);
+			// 	}
+			// }
+			/*
+				出现的状况：
+					1.资源浪费，每个li的点击事件都是一样的，但又要给没一个li重复添加相同的点击事件
+					2.后续添加上去的li没有点击事件
+			*/
+			
+			
+			
+			/*
+				委托：
+					A委托B去买饭
+					A是发布任务   委托方
+					B是执行任务   代理方
+					
+					A是事件的受益者，B是事件的执行者
+			 */
+			
+			/*
+				事件委托实现步骤：
+					1、找到当前节点的父节点或者祖先节点
+					2、把事件添加到你找到的父节点或祖先节点上
+					3、找到触发对象，判断触发对象是否是想要的触发对象，然后进行后续操作。
+			*/
+			/*****************使用事件委托的方式********************/
+			window.onload = function(){
+				var Obtn = document.getElementById("btn");
+				var Oul = document.getElementById("ul1");
+				
+				Oul.onclick = function(ev){
+					var e = ev || window.event;
+					var target = e.target || window.event.srcElement;
+					
+					if(target.nodeName.toLowerCase() == "li"){
+						target.style.backgroundColor = "blue";
+					}
+				}
+				
+				var t = 6;
+				Obtn.onclick = function(){
+					var newNode = document.createElement("li");
+					newNode.innerHTML = t++ * 1111;
+					Oul.appendChild(newNode);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<button id="btn">添加li</button>
+		<ul id="ul1">
+			<li>1111</li>
+			<li>2222</li>
+			<li>3333</li>
+			<li>4444</li>
+			<li>5555</li>
+		</ul>
+	</body>
+</html>

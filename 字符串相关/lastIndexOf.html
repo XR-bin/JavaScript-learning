@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>lastIndexOf找某个元素最后一次出现位置</title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//String   /strɪŋ/
+			//alert   /əˈlɜːrt/
+			//lastIndexOf    /læst ˈɪndeks  əv/
+			
+			// lastIndexOf方法可以返回一个指定的字符串值从前向后数最后一次出现的位置(也可以
+			// 理解为从后向前数第一次出现的位置)
+			
+			/*
+			lastIndexOf的参数
+				1、参数1：检索的字符或字符串、数   ----  必填
+				2、参数2：从字符串的哪个位置开始检索   ----  可不填(默认字符串末尾位置)
+			*/	
+		   
+		   var str1 = new String("abcabcabc");
+		   var str2 = String("abc");   
+		   
+		   alert(str1.lastIndexOf(str2));  //6
+		   //这里有特别，虽然从0位置开始向前检索只遍历到一个a，但方法会给出对比开始的位置
+		   //足够的空间，它会自己移位比较后面的字符。
+		   alert(str1.lastIndexOf(str2, 0));  //0
+		   alert(str.lastIndexOf(str2, 6));   //6
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

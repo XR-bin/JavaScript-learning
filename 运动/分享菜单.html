@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>分享菜单</title>
+		<style type="text/css">
+			#div1{width: 50px; height: 200px; background-color: gray; position: absolute; left: -50px; top: 200px;}
+			#div1 span{width: 20px; height: 60px; background-color: orange; position: absolute; left: 50px; top: 70px; line-height: 20px;}
+		</style>
+		<script type="text/javascript">
+			
+			/*
+				鼠标移入：div1的位置从-50px ——> 0px
+				鼠标移出：div1的位置从0px ——> -50px
+			*/
+			
+			window.onload = function(){
+				var oDiv = document.getElementById("div1");
+				
+				//移入时
+				oDiv.onmouseover = function(){
+					startMove(0);
+				}
+				
+				//移出时
+				oDiv.onmouseout = function(){
+					startMove(-50);
+				}
+			}
+			
+			var timer = null;
+			function startMove(myTarget){
+				var oDiv = document.getElementById("div1");
+				var speed = 5;
+				if(oDiv.offsetLeft > myTarget){
+					speed = -Math.abs(speed);
+				}
+				else{
+					speed = Math.abs(speed);
+				}
+				
+				//关闭定时器
+				clearInterval(timer);
+				
+				//打开定时器
+				timer = setInterval(function(){
+					if(oDiv.offsetLeft == myTarget){
+						clearInterval(timer);
+					}
+					else{
+						oDiv.style.left = oDiv.offsetLeft + speed +"px";
+					}
+				},30);
+			}
+		</script>
+	</head>
+	<body>
+		<div id="div1">
+			<span>分享到</span>
+		</div>
+	</body>
+</html>

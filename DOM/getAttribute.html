@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>getAttribute</title>
+		<script type="text/javascript">
+			// var   /vɑr/
+			// alert   /əˈlɜːrt/
+			// document  /ˈdɒkjumənt/ 
+			// onload   /ˌɒnˈləʊd/
+			// getElementById   /ɡet  elɪmənt  baɪ  ˌaɪ ˈdiː/ 
+			// getAttribute    /ɡet  əˈtrɪbjuːt/
+			
+			// getAttribute 获取元素中某个属性的值,效果和元素节点对象.属性的效果差不多，但也有些区别
+			
+			
+			window.onload =function(){
+				var Odiv = document.getElementById("id2");
+				
+				// 区别一 ： class表示不一样
+				// alert(Odiv.className);
+				// alert(Odiv.getAttribute("class"));
+				
+				// 区别二 ： .属性 的方式无法访问到自定义的属性，而getAttribute可以
+				alert(Odiv.xxx);     //undefined
+				alert(Odiv.getAttribute("xxx"));    //xxx5
+			}
+		</script>
+	</head>
+	<body>
+		<div class="class1" id="id2" name="name3" title="title4" xxx="xxx5">这是一个div</div>
+	</body>
+</html>

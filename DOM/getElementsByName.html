@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>getElementsByName</title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//alert   /əˈlɜːrt/
+			// document  /ˈdɒkjumənt/ 
+			// onload   /ˌɒnˈləʊd/
+			// getElementByName   /ɡet  elɪmənt  baɪ  neɪm/ 
+			
+			/* 
+				document.getElementsByName("Name")
+				功能：通过标签的name属性获取符合条件的所有元素节点
+				返回值：Object---伪数组
+				
+				【注】getElementsByName 的对象只能是 document 对象
+				【注】getElementsByName 一般使用在表格单元里
+			 */
+			
+			window.onload = function(){
+				// var Oli1 = document.getElementsByName("li1");
+				// alert(Oli1.length);     //4
+				//因为可能有多个同一属性name名的元素节点，所以这里的节点可能不止一个，
+				//所以不能以Oli1.id输出属性节点，而是以数组的形式输出属性节点----Oli1[0].id
+				//整体的属性节点获取和赋值都和 getElementById 方法是一样的。
+				// alert(Oli1[0].id);      //li1
+				
+				//和其他获取方式套用
+				//【注】getElementById 和 getElementsByName 的对象只能是 document 对象
+				var Odiv1 = document.getElementsByName("div1");
+				alert(Odiv1.length);
+				var Oli = Odiv1[1].getElementsByClassName("li");
+				alert(Oli.length);
+				alert(Oli[1].id);
+			}
+			
+		</script>	
+	</head>
+	<body>
+		<div name="div1">
+			这里是div1
+		</div>
+		
+		<div name="div1">
+			<li name="li1" id="li1" class="li">这里是div2中的li</li>
+			<li name="li1" id="li2" class="li">这里是div2中的li</li>
+			<li name="li1" id="li3" class="li">这里是div2中的li</li>
+			<li name="li1" id="li4">这里是div2中的li</li>
+		</div>
+	</body>
+</html>

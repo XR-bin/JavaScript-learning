@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>实现拖拽效果</title>
+		<style type="text/css">
+			div{width: 100px; height: 100px; position: absolute;}
+			#div1{background-color: red;}
+			#div2{background-color: blue; left: 200px;}
+		</style>
+		<script type="text/javascript">
+			// var     /vɑr/
+			// alert   /əˈlɜːrt/
+			// click        /klɪk/
+			// event        /ɪˈvent/
+			// client    /klaɪənt/
+			// offsetWidth    /ɒfset  wɪdθ /
+			// offsetTop    /ɒfset  tɒp/
+			// offsetLeft    /ɒfset  left/
+			// offsetHeight    /ɒfset  haɪt/
+			// mousemove    /ˈmaʊs  muːv/
+			// mousedown    /ˈmaʊs  daʊn/
+			// mouseup      /ˈmaʊs  ʌp/
+		
+		
+			/* 
+				拖拽三剑客(mousedown/mousemove/mouseup)
+				mousedown事件
+					记录鼠标按下位置与被拖拽物体相对距离
+					var offsetX = e.clientX - node.offsetLeft;
+					var offsetY = e.clientY - node.offsetTop;
+				mousemove事件
+					保持距离一致，即鼠标和被拖拽物体距离一致。
+					改变被拖拽物体与窗体距离
+					node.style.left = e.clientX - offsetX + "px";
+					node.style.top = e.clientY - offsetY + "px";
+				mouseup事件
+					取消拖拽(即取消mousemove事件)
+			 */	
+			window.onload = function(){
+				var Odiv1 = document.getElementById("div1");
+				var Odiv2 = document.getElementById("div2");
+				
+				limitDrag(Odiv1);
+				drag(Odiv2);
+			}
+			
+			
+			//封装拖拽函数
+			function drag(node){
+				// node:元素节点
+				
+				node.onmousedown = function(ev){
+					var e = ev || window.event;
+					
+					// 记录鼠标按下位置与被拖拽物体相对距离
+					var offsetX = e.clientX - node.offsetLeft;
+					var offsetY = e.clientY - node.offsetTop;
+					
+					document.onmousemove = function(ev){
+						var e = ev || window.event;
+						// 保持距离一致，即鼠标和被拖拽物体距离一致。
+						// 改变被拖拽物体与窗体距离
+						node.style.left = e.clientX - offsetX + "px";
+						node.style.top = e.clientY - offsetY + "px";
+					}
+				}
+				
+				node.onmouseup = function(){
+					// 取消拖拽(即取消mousemove事件)
+					document.onmousemove = null;
+				}
+			}
+			
+			
+			
+			//封装有限制拖拽出界的拖拽函数
+			function limitDrag(node){
+				// node:元素节点
+				
+				node.onmousedown = function(ev){
+					var e = ev || window.event;
+					
+					// 记录鼠标按下位置与被拖拽物体相对距离
+					var offsetX = e.clientX - node.offsetLeft;
+					var offsetY = e.clientY - node.offsetTop;
+					
+					document.onmousemove = function(ev){
+						var e = ev || window.event;
+						var x = e.clientX - offsetX;
+						var y = e.clientY - offsetY;
+						
+						//限制拖拽出界
+						if(x < 0) x = 0;
+						//获取窗体的宽
+						var windowWidth = document.documentElement.clientWidth || document.body.clientWidth;
+						if(x >= windowWidth - node.offsetWidth){
+							x = windowWidth - node.offsetWidth;
+						}
+						
+						if(y < 0) y = 0;
+						//获取窗体的长
+						var windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+						if(y >= windowHeight - node.offsetHeight){
+							y = windowHeight - node.offsetHeight;
+						}
+						
+						// 保持距离一致，即鼠标和被拖拽物体距离一致。
+						// 改变被拖拽物体与窗体距离
+						node.style.left = x + "px";
+						node.style.top = y + "px";
+					}
+				}
+				
+				node.onmouseup = function(){
+					// 取消拖拽(即取消mousemove事件)
+					document.onmousemove = null;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<div id="div2"></div>
+	</body>
+</html>

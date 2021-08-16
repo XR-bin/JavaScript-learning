@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>lastChild</title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//alert   /əˈlɜːrt/
+			// document  /ˈdɒkjumənt/ 
+			// onload   /ˌɒnˈləʊd/
+			// getElementById   /ɡet  elɪmənt  baɪ  ˌaɪ ˈdiː/ 
+			// childNodes    /tʃaɪld  noʊdz /
+			// lastChild     /lɑːst  tʃaɪld/
+			// nodeType      / noʊd   taɪp/
+			// nodeName      / noʊd   neɪm/
+			// nodeValue     / noʊd   vælju/
+			
+			/*
+						  nodeType      nodeName      nodeValue
+				元素节点      1           标签名         null
+				属性节点      2           元素名         属性值
+				文本节点      3           #text          文本内容
+			 */
+			
+			// lastChild  用于获取当前元素节点的最后一个子节点，相当于 childNodes[box.childNodes.length- 1]。
+			
+			window.onload = function(){
+				var Odiv = document.getElementById("div1");
+				
+				alert(Odiv.lastChild.nodeType);    //1
+				alert(Odiv.lastChild.nodeName);    //STRONG
+				alert(Odiv.lastChild.nodeValue);   //null
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div id="div1"><em>em文本</em>div文本<strong>strong文本</strong></div>
+	</body>
+</html>

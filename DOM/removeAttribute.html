@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>removeAttribute</title>
+		<script type="text/javascript">
+			// var   /vɑr/
+			// alert   /əˈlɜːrt/
+			// document  /ˈdɒkjumənt/ 
+			// onload   /ˌɒnˈləʊd/
+			// getElementById   /ɡet  elɪmənt  baɪ  ˌaɪ ˈdiː/ 
+			// removeAttribute    /rɪˈmuːv  əˈtrɪbjuːt/
+			
+			// removeAttribute 可以移除 HTML 属性。它需要接受1个参数：属性名。
+		
+			window.onload =function(){
+				var Odiv = document.getElementById("id2");
+				
+				// .属性 的方式无法移除属性，只能用""空白覆盖原来的值。
+				//而removeAttribute方法是真正移除这个属性
+				alert(Odiv.className);
+				Odiv.className = "";
+				alert(Odiv.className);
+				
+				alert(Odiv.title);
+				Odiv.removeAttribute("title");
+				alert(Odiv.title);
+				
+				//这个现象需要打开浏览器的查看器才能观察到
+			}
+		</script>
+	</head>
+	<body>
+		<div class="class1" id="id2" name="name3" title="title4">这是一个div</div>
+	</body>
+</html>

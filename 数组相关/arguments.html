@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>函数中的arguments</title>
+		<script type="text/javascript">
+		/* 
+			//arguments   /'ɑrɡjumənts/
+			【注】每个函数内部都有一个arguments伪数组，是JavaScript内置的。
+			【注】arguments数组是用来存储实际传入函数的参数。   
+			属性：
+				arguments.length 输出当前传入函数的参数个数
+			通过arguments访问传入参数：
+				arguments[下标]；
+				【注】下标是从0开始的。
+				【注】优先使用形参，除非特殊情况
+		*/
+	    /* 
+		function show(){
+			//alert   /əˈlɜːrt/
+			//length  /leŋkθ/
+			alert(arguments.length);    
+			alert(arguments[1]);       
+		}
+		// show();       //0   undefined
+		// show(123, 'abc', true);   //3   'abc' 
+		*/    
+	   
+		function show(t0, t1){
+			// alert(arguments.length);
+			// alert(arguments[0]);
+			// alert(t0);
+			// alert(arguments[2]);
+			
+			// alert(arguments instanceof Array);    //是个伪数组
+			// alert(Object.prototype.toString.call(arguments));    //是个伪数组
+			
+		}
+		// show(123, "abc", false);   //3   123   123   false
+		// show(123,"abc");              //2   123   123   undefined
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

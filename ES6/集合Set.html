@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>集合Set</title>
+		<script type="text/javascript">
+			// set      /set/
+			// add      /æd/
+			// delete   /dɪˈliːt/
+			// has      /həz;/
+			// clear    /klɪr/
+			// keys     /kiːz/
+			// values   /væljuːz/
+			// entries  /'entrɪs/
+			
+			/*
+				集合的特点：    无序     不重复
+			*/
+		   
+			// Set集合是默认去重复的，但前提是两个添加的元素严格相等 所以5和"5"不相等，两个new出来的字符串不相等。
+			// Set 的 键名 和 键值 是一样的
+			
+			// var mySet = new Set();
+			
+			//集合Set添加成员的方法是add
+			// mySet.add(1);
+			// mySet.add(1);
+			// mySet.add("1");
+			// mySet.add("1");
+			// 每次用new创建的字符串都是不一样的对象，他们属于完全地址不一样的对象
+			// mySet.add(new String("1"));
+			// mySet.add(new String("123"));
+			// mySet.add(new String("123"));
+			
+			// console.log(mySet);    //{1, "1", String, String, String}
+			
+			//集合Set删除成员的方法是delete
+			// mySet.delete("123");
+			// console.log(mySet);
+			
+			
+			
+			// var mySet = new Set([1,2,3,4,5,6]);
+			
+			// Set集合.has(value)     返回布尔值，表示value是否为 Set 的成员
+			// alert(mySet.has(3));   //true
+			// alert(mySet.has(7));   //false
+			
+			// Set集合.clear()        清除所有成员，没有返回值
+			// console.log(mySet);    //Set(6) {1, 2, 3, 4, 5, 6}
+			// mySet.clear();
+			// console.log(mySet);    //Set(0) {}
+			
+			
+			
+			/*
+				集合遍历
+					for...of
+			*/
+			// var mySet = new Set(['a', 'b', 1, 2, 3]);
+			
+			// keys()    返回键名的遍历器    配合for...of使用
+			// for(let item of mySet.keys()){
+			// 	console.log(item);    
+			// }   //a  b  1  2  3 
+			
+			// values()  返回键值的遍历器   配合for...of使用
+			// for(let item of mySet.values()){
+			// 	console.log(item);    
+			// }   //a  b  1  2  3 
+			
+			// entries()   返回键值对的遍历器   配合for...of使用
+			// for(let item of mySet.entries()){
+			// 	console.log(item);    
+			// }   //["a", "a"] ["b", "b"] [1, 1] [2, 2] [3, 3] 
+			
+			
+			
+			
+			/*
+				集合的使用：数组去重
+			*/
+			// var arr = [1,1,2,3,2,1,5,6,4,5,8,9,9];
+			
+			//数组变集合-----借助集合的特性去重
+			// var mySet = new Set(arr);
+			//集合变数组  [...集合]---将数据结构展开成数组
+			// arr = [...mySet];
+			// alert(arr);    //1,2,3,5,6,4,8,9
+			
+			//将上面的形式结合一下
+			// arr = [...new Set(arr)];
+			// alert(arr);    //1,2,3,5,6,4,8,9
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ECMA6新增数组方法</title>
+		<script type="text/javascript">
+			// Array   /əˈreɪ/
+			// from    /frəm/
+			// find    /faɪnd/
+			// findIndex  /faɪnd  ˈɪndeks/
+			// copyWithin  /kɒpi  wɪˈðɪn/
+		
+			/*
+				from
+					功能：将一个伪数组转化为真正的数组
+					格式：Array.from(伪数组名);
+					参数：伪数组
+					返回值：一个真正的数组
+			*/
+			// window.onload = function(){
+			// 	var Oli = document.getElementsByTagName("li");
+				
+				//伪数组有数组的一些特性，但没有数组的方法
+				// alert(Oli.length);    //5
+				// Oli.push("hello");    //报错
+				
+				//我们用from来将伪数组变为真数组
+				// var Oli1 = Array.from(Oli);
+				// alert(Oli1.length);   //5
+				// Oli1.push("hello");
+				// alert(Oli1);    //[object HTMLLIElement],[object HTMLLIElement],[object HTMLLIElement],[object HTMLLIElement],[object HTMLLIElement],hello
+			// }
+			
+			
+			
+			/*
+				find
+					功能：在数组中查找符合条件的元素，只要找到第一个符合条件的元素，就会终止遍历，并返回该元素
+					格式：数组.find(函数);
+					参数：
+						参数1：函数
+							函数的参数1：当前遍历到的元素
+							函数的参数2：当前遍历元素的下标
+							函数的参数3：被遍历的数组
+						参数2：可不填，该值是传递给函数的this值，我们一般不填，默认为undefined
+					返回值：返回找到第一个符合条件的元素
+			*/
+			// var arr = [10,20,40,30,50];
+			// var item = arr.find(function (item, index, arr){
+			// 	return item > 20;
+			// });
+			// alert(item);    //40
+			
+			//箭头函数
+			// var item = arr.find(item => item >20);
+			// alert(item);       //40
+			
+			
+			/*
+				findIndex
+					功能：在数组中查找符合条件的元素，只要找到第一个符合条件的元素，就会终止遍历，并返回该元素的下标
+					格式：数组.findIndex(函数);
+					参数：
+						参数1：函数
+							函数的参数1：当前遍历到的元素
+							函数的参数2：当前遍历元素的下标
+							函数的参数3：被遍历的数组
+						参数2：可不填，该值是传递给函数的this值，我们一般不填，默认为undefined
+					返回值：返回找到第一个符合条件的元素的下标
+			*/
+			// var arr = [10,20,30,40,50];
+			// var index = arr.findIndex(function(item, index, arr){
+			// 	return item > 20;
+			// });
+			// alert(index);  //2
+			
+			//箭头函数
+			// var index = arr.findIndex(item => item >20);
+			// alert(index);   //2
+			
+			
+			
+			/*
+				copyWithin
+					功能：用于从数组的指定位置拷贝元素到数组的另一个指定位置中(原来位置的元素会被替代掉)。
+					格式：数组.copyWithin(替代的位置的下标, 被拷贝的开始位置, 被拷贝的结束位置)
+					参数：
+						参数1：从哪个下标开始替代被拷贝的元素
+						参数2和参数2：被拷贝的范围[start, end)
+			*/
+			// var arr = [0,1,2,3,4,5,6,7,8,9];
+			// alert(arr);             //0,1,2,3,4,5,6,7,8,9
+			// arr.copyWithin(2,5,7);
+			// alert(arr);             //0,1,5,6,4,5,6,7,8,9
+		</script>
+	</head>
+	<body>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</body>
+</html>

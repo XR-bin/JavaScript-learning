@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>prototype和__proto__</title>
+		<script type="text/javascript">
+			// constructor     /ənˈstrʌktə(r)/
+		
+			//实现方法共享
+			function Person(name, sex){
+				this.name = name;
+				this.sex = sex;
+			}
+			
+			// Person函数构造方法，添加在构造函数原型对象prototype上
+			Person.prototype.showName = function(){
+				alert("我的名字叫" + this.name);
+			}
+			Person.prototype.showSex = function(){
+				alert("性别：" + this.sex);
+			}
+			
+			
+			/*
+				在JS里，万物皆对象。方法（Function）是对象，方法的原型(Function.prototype)是对象。因此，它们都会具有对象共有的特点。
+				
+				构造函数构造出来的对象都有一个属性__proto__，__proto__指向构造出这个对象的构造函数的原型。
+				
+				关系图请参考prototype和__proto__.jpg
+				想更深了解请看https://www.zhihu.com/question/34183746里的第一个回答
+			*/
+			var p = new Person("小明", 18);
+			// alert(p.__proto__ === Person.prototype);   //true
+			// alert(Person === Person.prototype.constructor);   //true
+			// alert(Person.prototype.__proto__ === Object.prototype);   //true
+			// alert(Object.prototype.__proto__ === null);   //true
+			// alert(Person.__proto__ === Function.prototype);  //true
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

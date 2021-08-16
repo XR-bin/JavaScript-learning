@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>获取鼠标事件位置</title>
+		<script type="text/javascript">
+			// client    /klaɪənt/
+			// page      /peɪdʒ/ 
+			// screen    /skriːn/
+			// mousedown    /ˈmaʊs  daʊn/
+			// event   /ɪˈvent/
+			// height    /haɪt/
+			
+			// 三种获取鼠标当前位置(原点位置不一样):
+			// 	clientX      clientY     以可视窗口的左上角为原点(即使页面到大需要滚动条，但我们这里的还是以可视的窗体为标准)
+			// 	pageX        pageY       整个页面的左上角为原点(包含混动条滚出去的距离)
+			// 	screenX      screenY     以整个电脑屏幕的左上角为原点
+			
+			
+			document.onmousedown = function(ev){
+				e = ev || window.event;
+				alert(e.clientX + " , " + e.clientY);
+				alert(e.pageX + " , " + e.pageY)
+				alert(e.screenX + " , " + e.screenY);
+			}
+		</script>
+	</head>
+	<body style="height: 1000px;">
+		<h1>Hello World</h1>
+	</body>
+</html>

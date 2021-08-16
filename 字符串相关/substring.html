@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>substring下标范围提取字符串</title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//alert   /əˈlɜːrt/
+			//String   /strɪŋ/
+			//substring   /ˈsʌbstrɪŋ/
+			
+			// substring方法用于提取字符串中介于两个指定下标之间的字符,返回的
+			// 子串包括开始提取的位置到提取结束的位置之间的字符(包括开始位置的字符，但不包含结束位置的字符)。
+			// substring参数（我们默认写法）
+			// 	参数1：开始位置(包含开始位置的字符)
+			// 	参数2：结束位置(不包含开始位置的字符)
+			/* 
+			【注意】substring的两个参数要求是非负整数,另外它是以两个参数中较小
+			       一个作为起始位置，较大的参数作为结束位置。若果一个参数是负数, 
+				   他会默认这个参数为 0
+			 */
+			var str1 = new String("0123456789");
+			alert(str1.substring(2, 6));   //2345
+			alert(str1.substring(6, 2));   //2345
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

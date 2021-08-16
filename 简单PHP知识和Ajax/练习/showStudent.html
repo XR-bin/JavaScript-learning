@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>获取数据库信息</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" />
+    <script src="./ajax.js"></script>
+    <script type="text/javascript">
+      /* 
+        使用bootstrap框架的说明事项
+          .css      的文件是开发版本的
+          .min.css  的文化是上线版本的(被压缩过的)
+          
+          bootstrap.css   别人写好的css样式
+      */
+      window.onload = function(){
+        var oBtn = document.getElementById("btn1");
+        var oT1 = document.getElementById("t1");
+        
+        oBtn.onclick = function(){
+          $ajax({
+            method: 'get',
+            url: "./showStudent_json.php",
+            success: function(result){
+              var arr = JSON.parse(result);
+              var str = ``;
+              for(let i=0; i<arr.length; i++){
+                str += `<tr>
+                  <td>${arr[i].id}</td>
+                  <td>${arr[i].name}</td>
+                  <td>${arr[i].Chinese}</td>
+                  <td>${arr[i].math}</td>
+                  <td>${arr[i].english}</td>
+                </tr>`;
+              }
+              oT1.innerHTML = str;
+            },
+            error: function(msg){
+              alert(msg);
+            }
+          });
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h2>获取学员信息</h2>
+        </div>
+        <div class="panel-body">
+          <button id="btn1" class="btn btn-primary">获取所有学员信息</button><br />
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td>学员学号</td>
+                <td>学员名字</td>
+                <td>语文成绩</td>
+                <td>数学成绩</td>
+                <td>英语成绩</td>
+              </tr>
+            </thead>
+            <tbody id="t1"></tbody>
+          </table>
+        </div>
+        <div class="panel-footer">
+          <a href='showStudent2.html'>新增学员成绩</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

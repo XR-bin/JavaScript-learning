@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>队列方法(push、shift和unshift)</title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//Array  /əˈreɪ/ 
+			//length  /leŋkθ/
+			//alert   /əˈlɜːrt/
+			//push  /pʊʃ/ 
+			//shift  /ʃɪft/ 
+			//unshift  /ʌnˈʃɪft/
+			
+			var arr = new Array(1,2,3,4,5);
+			
+			//push方法可以接收任意数量的参数，把它们逐个添加到数组的末尾，并返回修改后数组的长度。
+			// alert(arr);     //5
+			// alert(arr.length);    //1,2,3,4,5
+			// var res = arr.push(6,7,8);
+			// alert(arr);     // 8
+			// alert(res);     //1,2,3,4,5,6,7,8
+			
+			//shift()方法可以移除数组首位元素，并且返回移除的元素
+			// alert(arr);       //1,2,3,4,5
+			// alert(arr.length);  //5
+			// var res = arr.shift();
+			// alert(arr);      //2,3,4,5
+			// alert(res);      //1
+			
+			//unshift()方法可以接收任意数量的参数，把它们逐个添加到数组的开头，并返回修改后数组的长度。
+			alert(arr);        //1,2,3,4,5
+			alert(arr.length); //5
+			var res = arr.unshift(0,0,0,0);
+			alert(arr);       //0,0,0,0,1,2,3,4,5
+			alert(res);       //9
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

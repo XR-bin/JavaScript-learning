@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>节点操作案例</title>
+		<style type="text/css">
+			#div1{
+				width: 400px;
+				height: 100px;
+				background-color: orange;
+			}
+			#div2{
+				width: 400px;
+				height: 500px;
+				background-color: peachpuff;
+			}
+			#input1{
+				width: 380px;
+				height: 30px;
+				font-size: 18px;
+				margin-left: 5px;
+				margin-top: 5px;
+			}
+			#div1 button{
+				width: 100px;
+				height: 30px;
+				font-size: 18px;
+				background-color: black; color: white;
+				margin-left: 20px;
+				margin-top: 10px;
+			}
+			
+			#div2 div{
+				border-bottom: 1px dashed gray;
+				padding: 2px;
+				position: relative;
+			}
+			
+			#div2 div button{
+				position: absolute;
+				right: 0px;
+			}
+		</style>
+		<script type="text/javascript">
+			//第一步：获取div1、div2、input1和button的元素节点
+			//第二步：给每个button添加点击事件
+					// 增加按键
+					// 	1、判断输入框是否为空
+					// 	2、如果为空，跳出警告框
+					//  3、如果不为空
+							// 1) 创建一个div元素节点
+							// 2) 通过input输入的内容创建文本节点
+							// 3) 创建一个button节点
+							// 4) 创建 文本内容为"删除"的文本节点
+							// 5) 把文本节点添加到新div元素节点中
+							// 6) 把"删除"文本节点添加到button元素节点中
+							// 7) 把button元素节点添加到新div元素节点中
+							// 8) 把新div元素节点添加到id为div2的div元素节点中
+							// 9) 给新创的button添加点击事件(删除这个新创节点的功能)
+							// 9）清空输入框
+							
+					// 删除按键
+						// 1、使用removeChild删除id为div2节点中的末尾子节点
+					
+					// 拷贝按键
+						// 1、使用cloneNode克隆id为div2节点中的末尾子节点
+						// 2、把克隆好的节点添加到id为div2节点中
+						// 3、获取克隆节点中的button节点
+						// 4、给克隆的button节点添加点击事件(因为克隆无法克隆点击事件)
+			
+			window.onload = function(){
+				//通过getElementById获取div1/div2/input1元素节点
+				var Odiv1 = document.getElementById("div1");
+				var Odiv2 = document.getElementById("div2");
+				var Oinput1 = document.getElementById("input1");
+				//通过getElementByTagName获取button的元素节点伪数组
+				var Obtn = document.getElementsByTagName("button");
+				
+				//给按键添加点击事件
+				//增加按键
+				Obtn[0].onclick = function(){
+					//判断输入框是否为空
+					if(!Oinput1.value){
+						alert("输入框不能为空");
+					}
+					else{
+						var newDiv = document.createElement("div");
+						var newText = document.createTextNode(Oinput1.value);
+						var newBnt = document.createElement("button");
+						var BntName = document.createTextNode("X");
+						
+						//把新创的节点添加起来
+						newDiv.appendChild(newText);
+						newBnt.appendChild(BntName);
+						newDiv.appendChild(newBnt);
+						Odiv2.appendChild(newDiv);
+						
+						//给新创按键添加点击事件
+						newBnt.onclick = function(){
+							Odiv2.removeChild(newDiv);
+						}
+						
+						//清空输入框
+						Oinput1.value = "";
+					}
+				}
+				
+				//删除按键
+				Obtn[1].onclick = function(){
+					if(Odiv2.children.length)
+						Odiv2.removeChild(Odiv2.lastChild);
+				}
+				
+				//拷贝按键
+				Obtn[2].onclick = function(){
+					if(Odiv2.children.length){
+						var newOdiv2 = Odiv2.lastChild.cloneNode(true);
+						Odiv2.appendChild(newOdiv2);
+						
+						//获取克隆节点中的button节点，并添加点击事件
+						newOdiv2.lastChild.onclick = function(){
+							Odiv2.removeChild(newOdiv2);
+						}
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="div1">
+			<input type="text" id="input1" placeholder="输入内容"><br>
+			<button>增加</button>
+			<button>删除</button>
+			<button>拷贝</button>
+		</div>
+		<div id="div2">
+		</div>
+	</body>
+</html>

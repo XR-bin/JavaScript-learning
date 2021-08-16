@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>箭头函数</title>
+		<script type="text/javascript">
+			/*
+				箭头函数：是一种新潮的函数写法，现在非常流行，但并没有给开发效率提高多少，反而牺牲的却是最基本的代码可读性
+				
+				【注】箭头函数就是适当的省略了函数中的function和return关键
+			*/
+		   
+			/*
+				各种形式的箭头函数
+			*/
+			//第一种：无参数，无返回值
+			// function show(){
+			// 	alert("普通函数");
+			// }
+			// show();
+			
+			// var show = () => alert("箭头函数");
+			// show();
+			
+			
+			
+			//第二种：有一个参数，无返回值
+			// function show(num){
+			// 	alert(num);
+			// }
+			// show(10);
+			
+			// var show = num => alert(num);
+			// show(100);
+			
+			
+			
+			//第三种：有一个参数，有返回值
+			// function show(num){
+			// 	return num + 10;
+			// }
+			// alert(show(10));
+			
+			// var show = num => {
+			// 	return num+10;
+			// }
+			// alert(show(50));
+			
+			// var show = num => num+10;
+			// alert(show(50));
+			
+			
+			
+			//第四种：有多个参数，有返回值
+			// function show(x, y){
+			// 	return x+y;
+			// }
+			// alert(show(10,20));
+			
+			// var show = (x, y) => {
+			// 	return x+y;
+			// }
+			// alert(show(100, 200));
+			
+			// var show = (x, y) => x + y;
+			// alert(show(100, 200));
+			
+			
+			
+			
+			
+			/*
+				箭头函数与ECMA5的数组方法结合----filter、map
+			*/
+		   
+			//filter  过滤
+			// var arr = [10, 20, 30, 40, 50, 60];
+			
+			// var newArr = arr.filter(function(item){
+			// 	return item > 20;
+			// })
+			// alert(newArr);   //30,40,50,60
+			
+			// var newArr = arr.filter(item => item > 20);
+			// alert(newArr);    //30,40,50,60
+			
+			
+			
+			
+			//map   映射
+			// var newArr = arr.map(function(item){
+			// 	return item * 10;
+			// })
+			// alert(newArr);     //100,200,300,400,500,600
+			
+			// var newArr = arr.map(item => item * 10);
+			// alert(newArr);        //100,200,300,400,500,600
+			
+			
+			
+			
+			
+			/*
+				箭头函数需要注意的部分：
+					1、箭头函数不能用new，这个后续会提到
+					2、箭头函数返回一个对象一定要用小括号()将对象括起来
+					3、箭头函数中的this，指向的是上一层函数的主人
+			*/
+		   
+			//2、箭头函数返回一个对象一个要用小括号()将对象括起来
+			
+			//没用小括号(),直接报错
+			// var show = () => {
+			// 	name: "钢铁侠",
+			// }
+			
+			// var show = () => ({
+			// 	name: "钢铁侠",
+			// })
+			// alert(show().name);//钢铁侠
+			
+			
+			
+			//3、箭头函数中的this，指向的是上一层函数的主人
+			
+			//普通函数
+			// var person = {
+			// 	name: "钢铁侠",
+			// 	show: function (){
+			// 		alert(this);
+			// 		alert(this.name);
+			// 		alert(person.name);
+			// 	}
+			// }
+			// person.show();  //  [object Object]   钢铁侠   钢铁侠
+			
+			//箭头函数
+			// var person = {
+			// 	name: "蜘蛛侠",
+			// 	show: () => {
+			// 		alert(this);
+			// 		alert(this.name);
+			// 		alert(person.name);
+			// 	},
+			// }
+			// person.show();    //[object Window]    空    蜘蛛侠
+			
+			//我们试着给他套一层函数
+			var person = {
+				name: "绿巨人",
+				show: function (){
+					person2 = {
+						name: "洛基",
+						show1: () => {
+							alert(this);
+							alert(this.name);
+							alert(person2.name);
+						}
+					}	
+					
+					person2.show1();
+				},
+			}
+			
+			person.show();   //[object Object]   绿巨人   洛基
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

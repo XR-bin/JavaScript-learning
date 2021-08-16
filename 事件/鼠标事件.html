@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>鼠标事件</title>
+		<style type="text/css">
+			#div1{
+				width: 200px; height: 200px;
+				background-color: #000000;
+			}
+			#div2{
+				width: 200px; height: 200px;
+				background-color: yellow;
+				font-size: 30px;
+			}
+			#div3{
+				width: 200px; height: 200px;
+				background-color: #000000;
+			}
+		</style>
+		<script type="text/javascript">
+			// innerHTML    /ɪnər  HTML/
+			// click        /klɪk/
+			// dblclick     /dʌbl  klɪk/
+			// mouseover    /ˈmaʊs oʊvər/
+			// mouseout     /ˈmaʊs  aʊt/
+			// mousemove    /ˈmaʊs  muːv/
+			// mousedown    /ˈmaʊs  daʊn/
+			// mouseup      /ˈmaʊs  ʌp/
+			// mouseenter   /ˈmaʊs  entər/
+			// mouseleave   /ˈmaʊs  liːv/
+			
+			/* 
+			鼠标事件
+				click        鼠标单击
+				dblclick     鼠标双击
+				mouseover    鼠标移入
+				mouseout     鼠标移出
+				mousemove    鼠标移动(会不停的出发)
+				mousedown    鼠标按键按下
+				mouseup      鼠标按键抬起
+				mouseenter   鼠标移入
+				mouseleave   鼠标移除
+			 */
+			
+			window.onload = function(){
+				var Obtn1 = document.getElementById("BtnClick");
+				var Obtn2 = document.getElementById("BtnDblclick");
+				var Obtn3 = document.getElementById("DownUp");
+				var Odiv1 = document.getElementById("div1");
+				var Odiv2 = document.getElementById("div2");
+				var Odiv3 = document.getElementById("div3");
+				
+				//鼠标单击事件函数
+				Obtn1.onclick = function(){
+					alert("单击事件");
+				}
+				
+				//鼠标双击事件函数
+				Obtn2.ondblclick = function(){
+					alert("双击事件");
+				}
+				
+				//鼠标按键按下事件
+				Obtn3.onmousedown = function(){
+					this.innerHTML = "按下";
+				}
+				
+				//鼠标按键抬起事件
+				Obtn3.onmouseup = function(){
+					this.innerHTML = "抬起";
+				}
+				
+				//鼠标移入事件
+				Odiv1.onmouseover = function(){
+					this.style.backgroundColor = "red";
+				}
+				
+				//鼠标移出事件
+				Odiv1.onmouseout = function(){
+					this.style.backgroundColor = "blue";
+				}
+				
+				//鼠标移动事件
+				var i = 0;
+				Odiv2.onmousemove = function(){
+					this.innerHTML = i++;
+				}
+				
+				//鼠标移入事件
+				Odiv3.onmouseenter = function(){
+					this.style.backgroundColor = "green";
+				}
+				//鼠标移除事件
+				Odiv3.onmouseleave = function(){
+					this.style.backgroundColor = "pink";
+				}
+				
+				// onmouseover/onmouseout  和  onmouseenter/onmouseleave
+				//虽然现在看起来好像没区别，但当他们有子节点时就能看出区别，这个我单独再写一个实验
+			}
+		</script>
+	</head>
+	<body>
+		<button id="BtnClick">单击</button>
+		<button id="BtnDblclick">双击</button>
+		<button id="DownUp">抬起</button><br>
+		<div id="div1"></div>
+		<div id="div2"></div>
+		<div id="div3"></div>
+	</body>
+</html>

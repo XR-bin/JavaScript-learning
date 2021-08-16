@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>currentStyle/getComputedStyle</title>
+		<style type="text/css">
+			div{
+				width: 200px;
+				height: 300px;
+			}
+		</style>
+		<script type="text/javascript">
+			// var   /vɑr/
+			// alert   /əˈlɜːrt/
+			// document  /ˈdɒkjumənt/ 
+			// onload   /ˌɒnˈləʊd/
+			// getElementsByTagName   /ɡet  elɪmənt  baɪ  tæɡ  neɪm/ 
+			// currentStyle   /kɜːrənt  staɪl/ 
+			// getComputedStyle    /ɡet  kəmˈpjuːtɪd  staɪl/ 
+			
+			//通过  元素节点对象.style.css样式名  的方式只能获取到行内样式，无法获取到行外样式
+			//currentStyle和getComputedStyle 则可以获取当前有效样式，即行内没有设置，但行外有设置，就能获取到
+			//currentStyle和getComputedStyle效果一样，区别在于他们的兼容性
+			//currentStyle 是IE使用的
+			//getComputedStyle 是火狐、谷歌、safari支持的
+			
+			//格式
+			//元素节点对象.currentStyle["css样式名"];
+			//getComputedStyle(元素节点对象)["css样式名"];
+			
+			window.onload = function(){
+				var Odiv = document.getElementsByTagName("div");
+				alert(Odiv[0].style.backgroundColor);   //blue
+				alert(Odiv[0].style.width);   //空
+				// alert(Odiv[0].currentStyle['width']);      //IE 打开不报错  其他浏览器打开会报错
+				// alert(getComputedStyle(Odiv[0])['width']); 
+			}
+		</script>
+	</head>
+	<body>
+		<div style="background-color: blue;">这是一个div</div>
+	</body>
+</html>

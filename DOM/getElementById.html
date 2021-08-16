@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>getElementById 通过id获取节点</title>
+		<style type="text/css">
+			#div1{height: 300px;}
+		</style>
+		<script type="text/javascript">
+			// var   /vɑr/
+			// alert   /əˈlɜːrt/
+			// document  /ˈdɒkjumənt/ 
+			// onload   /ˌɒnˈləʊd/
+			// getElementById   /ɡet  elɪmənt  baɪ  ˌaɪ ˈdiː/ 
+			
+			/* 
+				document.getElementById("id")
+				功能：通过id获取符合条件的元素(id必须是唯一的)
+				返回值：就是符合条件的一个节点
+				
+				【注】getElementById 的对象只能是 document 对象
+			 */
+			
+			//我们依然以div标签为例
+			window.onload = function(){
+				var Odiv = document.getElementById("div1");
+				alert(Odiv);    //[object HTMLDivElement]
+				
+				//获取行间属性值
+				alert(Odiv.id);
+				alert(Odiv.title);
+				alert(Odiv.className);   //【注】由于class是JavaScript的关键，所以这里要获取class的属性值要用className
+				alert(Odiv.style);     //这个style值是一个对象，而不是内容
+				
+				//给行间属性值赋值
+				Odiv.title = "我把它改掉了";
+				Odiv.className = "box1";
+				
+				//获取style属性中的行内CSS样式
+				alert(Odiv.style.width);
+				alert(Odiv.style.height);            //因为这样访问只能访问到行内的CSS，行外的CSS无法范围，所以这里显示为空白
+				alert(Odiv.style.backgroundColor);   //【注】因为 "-" 在javascript中是非法符号，所以 - 后面的字母直接大写来代替 - 符号
+				
+				//修改style属性中的行内CSS样式
+				Odiv.style.width = "400px";
+				Odiv.style.height = "400px";          //【注意】这里不是改掉了行外的CSS样式，而是在行内创建一个height样式
+				Odiv.style.backgroundColor = "blue";
+			}
+			
+			
+		</script>	
+	</head>
+	<body>
+		<div id="div1" title="这是一个title" class="box" style="width: 300px; background-color: red;">这里有个div节点</div>
+	</body>
+</html>

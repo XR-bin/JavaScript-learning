@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>跟随鼠标一串的效果</title>
+		<style type="text/css">
+			*{margin: 0px; padding: 0px;}
+			div{
+				width: 20px; height: 20px;
+				background-color: red;
+				border-radius: 50%;
+				position: absolute;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				var arrDiv = document.getElementsByTagName("div");
+				
+				document.onmousemove = function(ev){
+					var e = ev || window.event;
+					
+					//后一个div会跟随前一个div移动
+					for(var i=arrDiv.length-1; i>0; i--){
+						arrDiv[i].style.left = arrDiv[i-1].offsetLeft + "px";
+						arrDiv[i].style.top = arrDiv[i-1].offsetTop + "px";
+					}
+					
+					//第0个div会跟随鼠标移动
+					arrDiv[0].style.left = e.clientX + "px";
+					arrDiv[0].style.top = e.clientY + "px";
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</body>
+</html>

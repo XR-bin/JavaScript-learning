@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>substr下标范围提取字符串</title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//alert   /əˈlɜːrt/
+			//String   /strɪŋ/
+			//substr   /ˈsʌbstr/
+			
+			// substr方法可在字符串中抽取从 开始 下标截取指定数目的字符，提取的字符串包括开始位置的字符。
+			
+			// 注意：ECMAscript 没有对该方法进行标准化，因此反对使用它。
+			
+			// substr的参数
+			// 	参数一：开始截取的下标
+			// 	参数二：要截取字符的个数(长度)
+			/* 
+			【注】substr第一个参数可以是负数,如果是负数，那么该参数声明从字符串的尾部开始算起的位置。
+				 也就是说，-1 指字符串中最后一个字符，-2 指倒数第二个字符，以此类推。
+			 */
+			var str = new String("012345789");
+			alert(str.substr(2,5));   //234567
+			alert(str.substr(-1, 5)); //9
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

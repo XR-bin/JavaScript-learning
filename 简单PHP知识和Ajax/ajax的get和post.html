@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>尝试使用ajax</title>
+    <script type="text/javascript">
+      // ajax   /ˈeɪdʒæks/
+      // XMLHttpRequest   /XML Http rɪˈkwest/
+      // ActiveXObject    /æktɪv X  ˈɒbdʒɪkt;/
+      // Microsoft.XMLHTTP   /ˈmaɪkrəsɔːft  XML Http/
+      // open   /əʊpən/
+      // send   /send/
+      // onreadystatechange    /ɒn  redi  steɪt  tʃeɪndʒ/
+      // readyState       /redi  steɪt/
+      // responseText     /rɪˈspɒns tekst/
+      // get      /ɡet/
+      // post     /pəʊst/
+      // setRequestHeader    /set rɪˈkwest ˈhedər/
+      
+    
+    
+      /* 
+        XMLHttpRequest   IE8以下不兼容
+        
+        IE8以下声明ajax的方法是
+            ActiveXObject("Microsoft.XMLHTTP");
+      */
+     
+      /* 
+        ajax使用步骤
+          1、创建ajax对象(要考虑兼容性问题)
+          2、调用open方法对ajax进行设置
+          3、调用send方法运行ajax
+          3、等待数据响应(有点类似单片机的串口接收中断)
+      */
+     
+      window.onload = function(){
+        var oBtn = document.getElementById("btn");
+        
+        oBtn.onclick = function(){
+          // 1、创建ajax对象(要考虑兼容性问题)
+          var xhr = null;
+          if(window.XMLHttpRequest){
+            xhr = new XMLHttpRequest();
+          } else {
+            xhr = new ActiveXObject("Microsoft.XMLHTTP");
+          }
+          
+          // 2、调用open方法对ajax进行设置
+          // 3、调用send方法运行ajax
+          /*  
+            get的方式
+              open的
+                第一个参数填"get"
+                第二个参数在url地址后面添加 ?+数据
+                  例如./1_get.php?username=xxx&age=18&password=123
+          */
+          xhr.open("get", "./1_get.php?username=xxx&age=18&password=123", true);
+          xhr.send();
+          
+          /*
+            post的方式
+              open的
+                第一个参数填"post"
+                第二个参数填url地址
+                
+              在send方法前还得设置请求格式
+                xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded")
+          */
+          // xhr.open("post", "./1_post.php", true);
+          // xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded")
+          // xhr.send("username=xxx&age=18&password=123");
+          
+          // 3、等待数据响应(有点类似单片机的串口接收中断)
+          xhr.onreadystatechange = function(){
+            //readyState为4时，表示数据接收完成并解析好了
+            if(xhr.readyState == 4){
+              //接收到的内容
+              alert(xhr.responseText + "  " +xhr.status);
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <button id="btn">获取数据</button>
+  </body>
+</html>

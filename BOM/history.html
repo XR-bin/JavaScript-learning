@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>history当前窗体的历史记录</title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//alert   /əˈlɜːrt/
+			//Bom    /bɒm/
+			//Browser  /ˈbraʊzə(r)/
+			//Object   /ˈɒbdʒɪkt/
+			//Model    /ˈmɒdl/
+			//history    /ˈhɪstri/
+			
+			/* 
+			history对象  window.history 掌管的是当前窗口(注意不是浏览器)历史记录
+			属性
+				histor.lnegth 输出当前窗口历史记录的条数
+				
+			方法
+				history.back     返回上一条历史记录
+				history.forward  前进到下一条历史记录
+				history.go       
+					参数： 0 刷新当前页面
+					      正整数  前进n条记录
+						  负整数  退后n条记录
+			 */
+			function historyLength(){
+				//当前窗体法人URL发生改变，则记录一次
+				//例如：
+					// 原本URL为：file:///C:/Users/Administrator/Desktop/JavaScript/Bom/history.html
+					// 记录是1
+					// 稍微改变URL：file:///C:/Users/Administrator/Desktop/JavaScript/Bom/history.html%20#4
+					// 记录变为2
+					
+					//关掉窗体，后再打开又变回1
+				alert(history.length);
+			}
+			
+			
+		</script>
+	</head>
+	<body>
+		<button onclick= "historyLength();">获取记录条</button>
+		<button onclick= "history.forward();">记录前进</button>
+		<button onclick= "history.back();">记录后退</button>
+		<button onclick= "history.go(2);">记录前进2</button>
+		<button onclick= "history.go(-2);">记录后退2</button>
+	</body>
+</html>

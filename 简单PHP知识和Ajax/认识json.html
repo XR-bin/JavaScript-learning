@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>认识json数据传输</title>
+    <script type="text/javascript">
+      // ajax   /ˈeɪdʒæks/
+      // json    /jeisen/
+      // parse   /pɑːrs/
+    
+      /*
+        json数据传输格式(字符串的一种格式)
+        
+        前端         运输       后端
+        数据结构     字符串     数据结构
+        
+        
+        
+        JSON对象
+        
+        JSON.stringify()   数据结构  =>  JSON格式字符串
+        JSON.parse()       JSON格式字符串  =>  数据结构
+      */
+      // 数组
+      // var arr = ['1', '2', '3'];
+      // var str = JSON.stringify(arr);
+      // alert(arr);
+      // alert(str);
+      // str = JSON.parse(str);
+      // alert(str);
+      
+      
+      
+      // 对象
+      // var obj = {
+      //   name: "xxx",
+      //   age: 18
+      // }
+      // alert(obj);
+      // str = JSON.stringify(obj);
+      // alert(str);
+      // str = JSON.parse(str);
+      // alert(str);
+      
+      var str = '{"name": "xxx", "age": 18}';
+      alert(str);
+      var obj = JSON.parse(str);
+      alert(obj.age);
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

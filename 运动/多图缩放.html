@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>多图缩放</title>
+		<style type="text/css">
+			*{margin: 0px; padding: 0px;}
+			#ul1 li{width: 100px; height: 100px; border: 1px solid black; list-style: none; margin: 10px; float: left;}
+			#ul1{width: 366px; height: 366px; border: 1px solid black;margin: 100px auto;}
+			#ul1 li img{width: 100%; height: 100%;}
+		</style>
+		<script type="text/javascript">
+			/*
+				九宫格布局
+					
+				布局的时候：相对定位
+				实际放大的时候：必须绝对定位
+				文档流的转换: 相对定位 => 绝对定位
+			*/
+			
+			window.onload = function(){
+				// createElement    /kriˈeɪt   elɪmənt/
+				// appendChild    /əˈpend   tʃaɪld/
+				
+				var oUl = document.getElementById("ul1");
+				var oLis = oUl.getElementsByTagName("li");
+				
+				//相对位置  转为  绝对位置
+				for(let i=0; i<oLis.length; i++){
+					//【注意】：offsetLeft只获取li的实际距离，这个是忽略margin的
+					oLis[i].style.left = oLis[i].offsetLeft + "px";
+					oLis[i].style.top = oLis[i].offsetTop + "px";
+					
+					var oImg = document.createElement("img");
+					oImg.src = `img/cat${i+1}.jpeg`;
+					oLis[i].appendChild(oImg);
+				}
+				
+				for(let i=0; i<oLis.length; i++){
+					oLis[i].style.position = "absolute";
+					//这里必须把margin去掉，不然会在实际距离上又加上margin,导致错位
+					oLis[i].style.margin = "0px";
+					
+					oLis[i].onmouseover = function(){
+						this.style.zIndex = oLis.length;
+						stratMove(this, {
+							width: 200,
+							height: 200,
+							marginLeft: -50,
+							marginTop: -50
+						});
+					}
+					
+					oLis[i].onmouseout = function(){
+						this.style.zIndex = 1;
+						stratMove(this, {
+							width: 100,
+							height: 100,
+							marginLeft: 0,
+							marginTop: 0
+						});
+					}
+				}
+			}
+			
+			
+			
+			
+			function getStyle(node, cssStyle){
+				return node.currentStyle ? node.currentStyle[cssStyle] : getComputedStyle(node)[cssStyle]; 
+			}                                                       
+			
+			/*
+				回调函数：我们把函数当做参数传入，并且在适合的时机调用该函数的方式，叫做回调函数，在别的编程语言叫做指针函数
+			*/
+			
+			function stratMove(node, cssObj, complete=null){
+				clearInterval(node.timer);
+				
+				node.timer = setInterval(function(){
+					var isEnd = true;    //假设所有运动都达到目标值
+					for(let attr in cssObj){
+						var iCur = null;
+						var myTarget = cssObj[attr];
+						
+						if(attr == "opacity"){
+							iCur = parseInt(parseFloat(getStyle(node, attr)) * 100);
+						}
+						else{
+							iCur = parseInt(getStyle(node, attr));
+						}
+						
+						var speed = (myTarget - iCur) / 8;
+						speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+						
+						if(attr == "opacity"){
+							iCur += speed;
+							node.style.opacity = iCur / 100;
+							node.style.filter = `alpha(opacity=${iCur})`;
+						}
+						else{
+							node.style[attr] = iCur + speed + "px";
+						}
+						
+						if(iCur != myTarget){
+							isEnd = false;
+						}
+					}
+					
+					if(isEnd){
+						clearInterval(node.timer);
+						
+						if(complete){
+							complete.call(node);
+						}
+					}
+				}, 30);
+			}
+		</script>
+	</head>
+	<body>
+		<ul id="ul1">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</body>
+</html>

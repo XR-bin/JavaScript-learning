@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>继承和多态</title>
+		<script type="text/javascript">
+			//prototype     /ˈprəʊtətaɪp/
+		
+			/*
+				面向对象：封装(封装构造函数) 、 继承 、 多态
+			*/
+		   
+			//下面是一个封装好的构造函数-----关于狗的对象创建函数
+			function Dog({name, type, age}){
+				this.name = name;
+				this.type = type;
+				this.age = age;
+			}
+			
+			Dog.prototype = {
+				run: function(){
+					alert(this.name + "会飞快地奔跑");
+				},
+				
+				showSelf: function(){
+					alert(`这是一只${this.type}的，${this.age}岁的，叫${this.name}的小狗`);
+				}
+			}
+			
+			
+			
+			/*
+				这个时候突然有个需求，需要在原来关于狗的构造函数基础上创建一个泰迪构造函数。
+				
+				这里我们就需要运用继承这个概念了
+			*/
+			/*
+				继承了父级构造函数的属性
+			*/
+			
+			// function Teddy({name, type, age}){
+			// 	//new会帮我们创建创建一个新对象，并将this指向这个对象
+			// 	// this = new Object();
+				
+			// 	// 继承父级构造函数的所有属性
+			// 	// 构造函数的伪装
+			// 	Dog.call(this, {
+			// 		name: name,
+			// 		type: type,
+			// 		age: age
+			// 	});
+				
+			// 	//new会帮我们装箱出厂(return返回对象)
+			// 	// return this;
+			// }
+			
+			/*
+				继承了父级构造函数的属性后，我们要开始继承父级的方法
+			*/
+			//下面是错误的方法，这样虽然继承了父级的方法，但这种继承是继承了父级prototype的地址
+			//即子级的prototype和父级的prototype共同指向同一片空间，这时候子级添加方法，父级也
+			//会跟着添加该方法，也就是说子级和父级的方法并不是独立开的，这不是我们想要的继承方法。
+			
+			// Teddy.prototype = Dog.prototype;   //这是非常错误的方法继承写法
+			
+			//正确写法如下
+			// for(let FuncName in Dog.prototype){
+			// 	Teddy.prototype[FuncName] = Dog.prototype[FuncName];
+			// }
+			
+			// Teddy.prototype.showColor = function(){
+			// 	alert("他的毛发是棕色的");
+			// }
+			
+			// var xiaohong = new Teddy({
+			// 	name: "小红",
+			// 	type: "泰迪",
+			// 	age: 5
+			// });
+			
+			// var xiaohei = new Dog({
+			// 	name: "小黑",
+			// 	type: "多不拉多",
+			// 	age: 6
+			// });
+			
+			// alert(xiaohong.name);
+			// alert(xiaohong.type);
+			// alert(xiaohong.age);
+			// xiaohong.showSelf();
+			// xiaohong.showColor();
+			// xiaohei.showSelf();
+			// xiaohei.showColor();    //报错，因为Dog构造函数根本就没这个方法
+			
+			
+			
+			
+			
+			/*
+				已经了解了继承，接下来我们来了解一下多态。
+				一般情况下，儿子不可能和父母一模一样，这是因为存在基因突变，儿子必然会出现新的特征
+				
+				这我们的多态概念就是围绕着这个新的特征
+			*/
+			
+			//添加新特征(新属性)，这个比较简单，就不详写了
+			// function Teddy({name, type, age, color}){
+			// 	//new会帮我们创建创建一个新对象，并将this指向这个对象
+			// 	// this = new Object();
+				
+			// 	// 继承父级构造函数的所有属性
+			// 	// 构造函数的伪装
+			// 	Dog.call(this, {
+			// 		name: name,
+			// 		type: type,
+			// 		age: age
+			// 	});
+				
+			// 	this.color = color;
+				
+			// 	//new会帮我们装箱出厂(return返回对象)
+			// 	// return this;
+			// }
+			
+			// for(let FuncName in Dog.prototype){
+			// 	Teddy.prototype[FuncName] = Dog.prototype[FuncName];
+			// }
+			
+			// //添加新特征(新方法)
+			// Teddy.prototype.showColor = function(){
+			// 	alert(`他的毛发是${this.color}的`);
+			// }
+			
+			// //改变继承父级的方法，这里是不会影响到父级的方法的
+			// Teddy.prototype.showSelf = function(){
+			// 	alert(`这是一只${this.type}的，${this.age}岁的，毛发是${this.color}的，叫${this.name}的小狗`);
+			// }
+			
+			// var xiaohong = new Teddy({
+			// 	name: "小红",
+			// 	type: "泰迪",
+			// 	age: 5,
+			// 	color: "棕色"
+			// });
+			
+			// var xiaohei = new Dog({
+			// 	name: "小黑",
+			// 	type: "多不拉多",
+			// 	age: 6
+			// });
+			
+			// xiaohong.showSelf();
+			// xiaohong.showColor();
+			// xiaohei.showSelf();
+			
+			
+			
+			
+			
+			/*
+				小结：
+					继承和多态同一件事的两种不同的侧重
+					继承：侧重从父级构造函数，继承到的属性和方法
+					多态：侧重的是子级构造函数，自己重新和新添加属性和方法
+			
+				面向对象是一个编程思想，支撑面向对象编程思想的语法是类(ECMA6之前是没有的)和对象，构造函数在ECMA6之前是充当类这个角色
+				
+			*/
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

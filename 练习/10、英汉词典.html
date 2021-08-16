@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>英汉词典</title>
+		<style type="text/css">
+			#div1{width: 200px; height: 200px; padding: 50px; background-color: lightgray; border: 1px solid black; margin: 100px auto;}
+			#word{width: 200px; height: 30px; font-size: 18px;}
+			#desc{
+				width: 200px; height: 150px; 
+				margin-top: 20px; background-color: lightgreen;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-direction: column;
+			}
+		</style>
+		<script type="text/javascript" src="./10demo.js"></script>
+		<script type="text/javascript">
+			//将词典字符串装进集合Map中
+			//第一步：将字符串切割成数组
+			//第二步：将数组装进集合Map中，数组的单数下标是英文(作为集合key)，数组的双数下标是翻译(作为集合value).
+			
+			var arr = word.split("\n");
+			var myMap = new Map();
+			for(let i=0; i<arr.length-1; i+=2){
+				myMap.set(arr[i].substring(1), arr[i+1].substring(6));
+			}
+			
+			
+			
+			window.onload = function(){
+				//通过Map集合实现英文查找
+				//第一步：通过getElementById获取id分别为word和dese的元素节点
+				//第二步：给id为word节点添加keyup事件
+				
+				var oWord = document.getElementById("word");
+				var oDesc = document.getElementById("desc");
+				
+				oWord.onkeyup = function(){
+					if(myMap.has(this.value)){
+						oDesc.innerHTML = myMap.get(this.value);
+					}
+					else{
+						oDesc.innerHTML = "查无此词";
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="div1">
+			<input id="word" type="text" placeholder="输入英文单词" />
+			<div id="desc"></div>
+		</div>
+	</body>
+</html>

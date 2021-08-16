@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>认识运动</title>
+		<style type="text/css">
+			*{margin: 0px; padding: 0px;}
+			#div1{width: 100px; height: 100px; background-color: blue; position: absolute; left: 0px; top: 100px;}
+		</style>
+		<script type="text/javascript">
+		//setInterval     /set  ˈɪntərvl/  
+		//clearInterval   /klɪə(r) ˈɪntərvl/
+		
+		/* 
+			动画：本质就是图像
+			原来：人能识别的最小时间间隔是18帧
+			动画的原理：就是让图像切换的时间间隔大于18帧，一般情况下电影院里放的电影就是24帧的
+		 */	
+		
+		/*
+			需求：
+				简单运动，让一个div从左向右开始运动
+		*/
+	   
+		/*
+			运动框架(必定出现的操作)：
+				1、每次启动定时器之前，必须把上一次定时器关闭
+				2、if...else将运动和停止分割开来
+		*/
+			window.onload = function(){
+				var oBtn = document.getElementById("btn1");
+				var oDiv = document.getElementById("div1");
+				
+				var speed = 5;
+				var timer = null;
+				
+				oBtn.onclick = function(){
+					clearInterval(timer);
+					timer = setInterval(function(){
+						if(oDiv.offsetLeft >=500){
+							clearInterval(timer);
+						}
+						else{
+							oDiv.style.left = oDiv.offsetLeft + speed + "px";
+						}
+					},30)
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<button id="btn1">开始</button>
+		<div id="div1"></div>
+	</body>
+</html>

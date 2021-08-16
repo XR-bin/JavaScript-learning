@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>attribute</title>
+		<script type="text/javascript">
+				//var   /vɑr/
+				//alert   /əˈlɜːrt/
+				// document  /ˈdɒkjumənt/ 
+				// onload   /ˌɒnˈləʊd/
+				// getElementById   /ɡet  elɪmənt  baɪ  ˌaɪ ˈdiː/ 
+				// nodeType      / noʊd   taɪp/
+				// nodeName      / noʊd   neɪm/
+				// nodeValue     / noʊd   vælju/
+				// attributes    /əˈtrɪbjuːt s/
+				// getNamedItem  /ɡet  neɪmd  aɪtəm /
+				
+				/*
+                    nodeType      nodeName      nodeValue
+					元素节点      1           标签名         null
+					属性节点      2           元素名         属性值
+					文本节点      3           #text          文本内容
+				 */
+				
+				// attributes属性：获取当前元素节点上的所有属性，这里的是个集合
+				// 集合特点：无序  不重复
+				
+				
+				window.onload = function(){
+					var Odiv = document.getElementById("id1");
+					// alert(Odiv.attributes);   //object NamedNodeMap
+					
+					
+					// getNamedItem属性，获取一个完整的属性节点
+					//方法一
+					// alert(Odiv.attributes.getNamedItem("title"));   //[object Attr]
+					// alert(Odiv.attributes.getNamedItem("title").nodeType);   //2
+					// alert(Odiv.attributes.getNamedItem("title").nodeName);   //title
+					// alert(Odiv.attributes.getNamedItem("title").nodeValue);  //title3
+					
+					//方法二
+					alert(Odiv.attributes["title"]);   //[object Attr]
+					alert(Odiv.attributes["title"].nodeType);   //2
+					alert(Odiv.attributes["title"].nodeName);   //title
+					alert(Odiv.attributes["title"].nodeValue);  //title3
+				}
+				
+		</script>
+	</head>
+	<body>
+		<div id="id1" class="class2" title="title3">这是一个div</div>
+	</body>
+</html>

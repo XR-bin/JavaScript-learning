@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>圆周运动</title>
+		<style type="text/css">
+			#div1{position: absolute; width: 10px; height: 10px; background-color: blue; }
+		</style>
+		<script type="text/javascript">
+			// createElement    /kriˈeɪt   elɪmənt/
+			// appendChild    /əˈpend   tʃaɪld/
+		
+			/*
+				画圆步骤
+					1、确定圆心
+					2、确定半径
+					3、选择(顺时针)运动
+					
+					Math.PI = π
+					1弧度 = π/180 = Math.PI/100
+					
+					sin() = 对边 / 斜边
+					cos() = 邻边 / 斜边
+			*/
+		
+			window.onload = function(){
+				var oDiv = document.getElementById("div1");
+				//确定圆心
+				var x = 400;
+				var y = 400;
+				
+				//确定半径
+				var r = 100;
+				
+				//弧度
+				var i = 0;   // 1弧度 = π/180
+				
+				setInterval(function(){
+					i++;
+					
+					var radian = i * Math.PI / 180;
+					
+					// sin() = 对边 / 斜边
+					// cos() = 邻边 / 斜边
+					var a = Math.sin(radian) * r;
+					var b = Math.cos(radian) * r;
+					
+					oDiv.style.left = x + a + "px";
+					oDiv.style.top = y - b + "px";
+					
+					var node = document.createElement("div");
+					node.style.width = "5px";
+					node.style.height = "5px";
+					node.style.backgroundColor = "black";
+					node.style.position = "absolute";
+					node.style.left = oDiv.offsetLeft+"px";
+					node.style.top = oDiv.offsetTop+"px";
+					
+					document.body.appendChild(node);
+				}, 30);
+			}
+		</script>
+	</head>
+	<body>
+		<div id="div1"></div>
+	</body>
+</html>

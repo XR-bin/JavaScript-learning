@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>try-catch语法</title>
+    <script type="text/javascript">
+      // try    /traɪ/ 
+      // catch   /kætʃ/
+      // throw    /θrəʊ/
+      // error    /ˈerər/
+      
+      /* 
+        try{
+          尝试运行的代码
+          throw("xxx");  //主动手动抛出错误 
+        } catch (error) {
+          error: 错误对象，try括号中代码指向的异常信息
+          补救代码
+        }
+        
+        执行过程：
+          1、先去执行try中的代码
+          2、如果try中的代码执行正常，catch的代码不执行
+          3、如果try中代码执行异常，直接跳到catch中执行catch中的代码
+      */
+      
+      try{
+        alert("出现异常前");
+        throw("我来抛出错误啦");
+        alert("出现异常后");
+      } catch(error) {
+        alert("补救代码，error" + error);
+      }
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

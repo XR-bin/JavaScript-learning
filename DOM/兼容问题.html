@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>兼容问题</title>
+		<script type="text/javascript">
+			// var   /vɑr/
+			// alert   /əˈlɜːrt/
+			// document  /ˈdɒkjumənt/ 
+			// Array  /əˈreɪ/
+			// length  /leŋkθ/
+			// alert   /əˈlɜːrt/
+			// push  /pʊʃ/ 
+			// onload   /ˌɒnˈləʊd/
+			// getElementsByClassName   /ɡet  elɪmənt  baɪ  klæs  neɪm/ 
+			// getElementsByTagName   /ɡet  elɪmənt  baɪ  tæɡ  neɪm/ 
+			
+
+/*************************************************************************************************/			
+			//因为getElementsByClassName方法IE8以下的不兼容，所以我们写一个兼容函数
+			/*
+				elementsByClassName(node, classStr);
+				参数说明 ：
+						node---某个元素节点，也可以是document
+						classStr---node元素节点中要获取的子节点的class名字，这里要填字符串。
+				返回值：
+						符合条件的子节点元素
+			*/
+			function elementsByClassName(node, classStr){
+				//第一步，获取node元素下得所有子节点
+				//第二步，遍历所有字节点的class属性，找到与之classStr匹配的子节点
+				//第三步，通过push方法把符合条件的子元素添加到数组中
+				//第四步，返回数组
+				
+				var nodes = node.getElementsByTagName("*");
+				var arr = [];
+				for(let i=0; i<nodes.length; i++){
+					if(nodes[i].className === classStr){
+						arr.push(nodes[i]);
+					}
+				}
+				return arr;
+			}
+/*************************************************************************************************/	
+			// currentStyle   /kɜːrənt  staɪl/
+			// getComputedStyle    /ɡet  kəmˈpjuːtɪd  staɪl/ 
+			
+			//currentStyle和getComputedStyle 则可以获取当前有效样式，即行内没有设置，但行外有设置，就能获取到
+			//currentStyle和getComputedStyle效果一样，区别在于他们的兼容性
+			//currentStyle 是IE使用的
+			//getComputedStyle 是火狐、谷歌、safari支持的
+			
+			/*
+				getStyle(node, cssStyle);
+				参数说明 ：
+						node---某个元素节点对象
+						cssStyle---CSS样式名，这里要填字符串。
+				返回值：
+						要获取的css样式值
+			*/
+			
+			function getStyle(node, cssStyle){
+				// 第一步：currentStyle是否存在
+				// 第二步：如果存在就使用currentStyle，不存在就使用getComputedStyle，并返回获取到的css样式值
+				
+				return node.currentStyle ? node.currentStyle[cssStyle] : getComputedStyle(node)[cssStyle];
+			}
+/*************************************************************************************************/	
+			// cancelBubble    /kænsl  bʌbl/
+			// stopPropagation /stɒp ˌprɒpəˈɡeɪʃn/
+			
+			//封装跨浏览器兼容的阻止事件冒泡
+			function stopBubble(e){
+				// e是事件对象
+				if(e.stopPropagation){
+					e.stopPropagation();
+				}
+				else{
+					e.cancelBubble = true;
+				}
+			}
+/**************************************************************************************************/			
+			// preventDefault   /prɪˈvent   diːfɔːlt/
+			// returnValue      /rɪˈtɜːn   vælju/
+			
+			//取消超链接默认行为（跨浏览器兼容）
+			function preDef(e){
+				if(e.preventDefault){
+					e.preventDefault();
+				}
+				else{
+					window.event.returnValue = false;
+				}
+			}
+/**************************************************************************************************/
+			
+			
+			window.onload = function(){
+				// var Oul = document.getElementsByTagName("ul");
+				var arr = elementsByClassName(document, '1');
+				alert(arr.length);
+				alert(arr[0]);
+				alert(getStyle(arr[0], "width"));
+			}
+		</script>
+	</head>
+	<body>
+		<ul>
+			<li class="1" style="width: 200px;"></li>
+			<li class="1"></li>
+			<li class="1"></li>
+			<li class="1"></li>
+			<li class="1"></li>
+		</ul>
+	</body>
+</html>

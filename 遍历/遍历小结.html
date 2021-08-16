@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>遍历小结</title>
+		<script type="text/javascript">
+			/*
+				数组:
+					for循环
+					for...in
+					forEach
+					for...of
+				
+				对象:
+					for...in
+					
+				集合Map和Set:
+					for...of
+			*/
+		   
+			var arr = [10,20,30,40,50];
+			
+			for(let i=0; i<arr.length; i++){
+				document.write("数组for循环：" + i + " , " + arr[i] + "<br/>");
+			}
+			
+			for(let i in arr){
+				document.write("数组for...in：" + i + " , " + arr[i] + "<br/>");
+			}
+			
+			arr.forEach(function(item,index,myArr){
+				document.write("数组forEach：" + index + " , " + item + "<br/>");
+			});
+			
+			for(let item of arr){
+				document.write("数组for...of：" + item + "<br/>");
+			}
+			
+			
+			
+			var Obj = {
+				name: "小明",
+				age: 18,
+				job: "老师"
+			}
+			
+			for(let index in Obj){
+				document.write("对象for...in：" + index + " , " + Obj[index] + "<br/>");
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

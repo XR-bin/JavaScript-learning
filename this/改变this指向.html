@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>改变this指向</title>
+		<script type="text/javascript">
+			// call     /kɔːl/
+			// apply    /əˈplaɪ/
+			// bind     /baɪnd/
+		
+			/***********************回顾this的认识***********************/
+			/*
+				每个用function创建的的函数中都会内置一个this，this指向当前该函数的主人，函数的主人要根据
+				上下文关系进行判断
+				【注】在没有特殊改变的情况下，this指向当前函数主人
+			*/
+			//常见this，一般情况下是下面三种情况
+		   
+			//1、全局函数，在直接调用下，该函数的主人是Object window
+			// function show(){
+			// 	alert(this);
+			// }
+			// show(); //[object Window]
+			
+			
+			
+			//2、当这个this存在一个对象的方法中时，这个this指向该对象
+			// var person = {
+			// 	name:"钢铁侠",
+			// 	show:function(){
+			// 		alert(this.name);
+			// 		alert(this);
+			// 	}
+			// }
+			// person.show();  // 钢铁侠   [object Object]
+			
+			
+			
+			//3、当这个this出现在事件中时，这个this指向该事件对象
+			// window.onload = function(){
+			// 	var Obtn = document.getElementById("btn");
+				
+			// 	Obtn.onclick = function(){
+			// 		alert(this);   //[object HTMLButtonElement]
+			// 	}
+			// }
+			
+			/***********************强制改变this指向的三个方法***********************/
+			/*
+				强制改变this指向的方法分别是call、apple、bind
+			*/
+		   
+			// function show(n1, n2){
+			// 	alert(this);
+			// 	alert(n1 + n2);
+			// }
+			/*
+				call
+					格式：函数名.call()
+					参数：
+						参数1   ：传入该函数的this指向的对象，传入什么强制指向什么
+						参数2..n：原来函数的参数
+					
+					这个call方法执行一次，使用call方法的函数也会立即执行一次
+			*/
+			//这里我们把this指向一个call字符串
+			// show.call("call", 1, 2);     //call   3
+			
+			/*
+				apply
+					格式：函数名.apply();
+					参数：
+						参数1：传入该函数的this指向的对象，传入什么强制指向什么
+						参数2：数组，数组存放的东西就是原来函数的参数
+						
+					这个apply方法执行一次，使用apply方法的函数也会立即执行一次
+			*/
+			//这里我们把this指向一个apply字符串
+			// show.apply("apply",[10, 20]);     //apply   30
+			
+			/*
+				bind
+					格式：函数名.bind()
+					参数：
+						参数1：传入该函数的this指向的对象，传入什么强制指向什么
+						
+					返回值：预设置好this指向后的函数
+						
+				这个bind是预设this指向，使用这个方法后它并不会立即执行使用该方法的函数，而是返回
+				预设置好this指向的函数
+			*/
+			// show.bind("bind");
+			// alert(show.bind("bind"));   //function () { [native code] }
+			
+			// var p = show.bind("bind"); //function () { [native code] }
+			// alert(p);
+			// p(100, 200);   //bind  300
+			// show.bind("bind")(100,200);  //bind  300
+			
+			
+			
+			
+			/*
+				在事件中使用call、apply、bind
+			*/
+			// window.onload = function(){
+				// var Obtn = document.getElementById("btn");
+				
+				//用call改变
+				// Obtn.onclick = function(){
+				// 	show.call("call", 1, 2);
+				// }
+				
+				//用apple改变
+				// Obtn.onclick = function(){
+				// 	show.apply("apply",[10, 20]);
+				// }
+				
+				//用bind改变
+				// Obtn.onclick = show.bind("bind");
+			// }
+			
+			
+			/*
+				apply使用小技巧
+				
+				还记得Math对象中的Math.max和Math.min吗
+				这个两个方法的参数就是用来比较的数据，但我们通常是要在数组中找出其中最大或最小的数
+				我们不可能把数组的的每个成员一个一个填进这个两个方法的参数中去吧
+				这个时候，我们就可以灵活使用apply的特性，把多个参数变成一个数组
+			*/
+			var arr = [10,20,5,30,40,50,60,90,70,80];
+			
+			alert(Math.max.apply("", arr));   //90
+			alert(Math.min.apply("", arr));   //5
+		</script>
+	</head>
+	<body>
+		<button id="btn">按键</button>
+	</body>
+</html>

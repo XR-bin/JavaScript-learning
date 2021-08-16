@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>instanceof</title>
+		<script type="text/javascript">
+			// instanceof    /ˈɪnstəns əv;/ 
+			
+			/*
+				instanceof  关键字
+					功能：判断某个对象是否是这个构造函数构成出来的
+			*/
+		   
+			function Person(name, sex){
+				this.name = name;
+				this.sex = sex;
+			}
+			
+			// Person函数构造方法，添加在构造函数原型对象prototype上
+			Person.prototype.showName = function(){
+				alert("我的名字叫" + this.name);
+			}
+			Person.prototype.showSex = function(){
+				alert("性别：" + this.sex);
+			}
+			
+			var p1 = new Person("小明", 18);
+			
+			alert(p1 instanceof Person);   //true
+			
+			
+			//大家都知道，数组创建出来后，用typeof去判断，只能知道它是一个对象，因为数组不是基本数据类型
+			//这个时候我们就可以用instanceof来判断该变量是不是由Array()构造出来的从而知道他是不是数组
+			var arr = [1,2,3,4,5];
+			alert(typeof arr);    //object
+			alert(arr instanceof Array);    //true
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

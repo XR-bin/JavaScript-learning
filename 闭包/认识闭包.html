@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>认识闭包</title>
+		<script type="text/javascript">
+			/*
+				满足一下特点的叫做闭包：
+					1、函数嵌套函数
+					2、内部函数使用外部函数的形参和变量
+					3、被引用的形参和变量不会被【垃圾回收机制所回收】
+			*/
+		   
+			//典型的闭包例子
+			// function fn(){
+			// 	var num = 3;
+			// 	return function(){
+			// 		var n = 0;
+			// 		alert(++n);
+			// 		alert(++num);
+			// 	}
+			// }
+			// var fn1 = fn();
+			// fn1();    //  n=1    num=4
+			// fn1();    //  n=1    num=5
+			// fn1();    //  n=1    num=6
+			
+			//上面的典型闭包例子满足了闭包三大特点，n是内部函数的变量，不是外面层
+			//函数的变量，所以会被垃圾回收，而num是外面层函数的变量被内层函数引用
+			//起到闭包效果，所以没被垃圾回收机制回收
+			
+			
+			
+			/*
+				好处：
+					1、希望一个变量常驻在内存当中
+					2、避免全局变量污染
+					3、可以声明私有成员
+			*/
+		   
+			/*
+				练习：
+					实现需求：1、避免全局污染；2、对a进行累加
+						【注】让a变量常驻内存 => 闭包
+			*/
+			// function aaa(){
+			// 	var a = 2;
+			// 	return function(){
+			// 		a++;
+			// 		alert(a);
+			// 	}
+			// }
+			
+			// var bbb = aaa();
+			// bbb();    //3
+			// bbb();    //4
+			// alert(a); //报错
+			
+			//立即执行函数写法
+			// var ccc = (function(){
+			// 	var a = 5;
+			// 	return function(){
+			// 		a++;
+			// 		alert(a);
+			// 	}
+			// })();
+			
+			// ccc();   //6
+			// ccc();   //7
+			
+			
+			/*
+				通过闭包的特性，实现私有变量
+				
+				场景假设：A、B两名人员被要求一起合作开发，在开发过程中难免会出现相同变量的情况，
+						如果我们把这个变量全局的话会导致变量污染。
+						
+						这个时候解决这种问题的方法就是让A、B人员使用闭包的方式写代码，让变量私有化
+			*/
+		   
+			/*
+				A人员的代码
+			*/
+			var moduleA = (function(){
+				var count = 10;
+				
+				function aaa(){
+					count++;
+					alert("A的aaa的count=" + count);
+				}
+				
+				function bbb(){
+					count *= 10;
+					alert("A的bbb的count=" + count);
+				}
+				
+				return {
+					funcA: aaa(),
+					funcB: bbb()
+				}
+			})();
+			
+			/*
+				B人员的代码
+			*/
+			var moduleB = (function(){
+				var count = 20;
+				
+				function aaa(){
+					count += 2;
+					alert("B的aaa的count=" + count);
+				}
+				
+				function bbb(){
+					count *= 100;
+					alert("B的bbb的count=" + count);
+				}
+				
+				return {
+					funcA: aaa(),
+					funcB: bbb()
+				}
+			})();
+			
+			moduleA.funcA();    //A的aaa的count=11
+			moduleA.funcB();    //A的bbb的count=110
+			moduleB.funcA();    //B的aaa的count=22
+			moduleB.funcB();    //B的bbb的count=2200
+			
+			/*
+				在上面代码中，count虽然moduleA和moduleB都有，但他们却分别是moduleA和moduleB的私有变量，而且不会被垃圾
+				回收机制销毁，aaa()和bbb()也是同理，叫做私有方法
+			*/
+			
+		   
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>节点添加与替换</title>
+		<script type="text/javascript">
+				// var   /vɑr/
+				// alert   /əˈlɜːrt/
+				// document  /ˈdɒkjumənt/ 
+				// onload   /ˌɒnˈləʊd/
+				// getElementById   /ɡet  elɪmənt  baɪ  ˌaɪ ˈdiː/ 
+				// onclick  /ˌɒn  klɪk/
+				// write    /raɪt/
+				// createElement    /kriˈeɪt   elɪmənt/
+				// appendChild    /əˈpend   tʃaɪld/
+				// createTextNode    /kriˈeɪt  tekst  nəʊd/
+				// insertBefore     /ɪnˈsɜːt   bɪˈfɔ/
+				// replaceChild     /rɪˈpleɪs  tʃaɪld /
+				// cloneNode        /kloʊn   nəʊd/ 
+				// removeChild      /rɪˈmuːv   tʃaɪld/
+				
+				// createElement
+				// 格式：document.createElement("标签名")
+				// 返回值：创建好的这个元素节点
+				
+				
+				// appendChild
+				// 格式：node1.appendChild(node2);
+				// 作用：将node2节点插入到node1节点子节点末尾
+				
+				
+				// createTextNode
+				// 格式：document.createTextNode("文本内容")
+				// 返回值：创建的文本节点(纯文本----即不会解析文本中的标签)
+				// 作用：创建一个纯文本的节点
+				
+				
+				// insertBefore
+				// 格式：父节点.insertBefore(子节点2，子节点1)
+				// 作用：将子节点2插入到子节点1之前
+				
+				
+				
+				// replaceChild
+				// 格式：父节点.replaceChild(子节点2， 子节点1)
+				// 作用：用子节点2去把子节点1替换掉
+				
+				
+				
+				// cloneNode  
+				// 格式一：node.cloneNode();
+				// 作用：只克隆node标签本身(包括标签的属性)，其他子节点不克隆
+				// 格式二：node.cloneNode(true)
+				// 作用：完全克隆node节点的所有内容，包括子节点
+				
+				
+				
+				// removeChild
+				// 格式：父节点.removeChild(子节点)
+				// 作用：将该传入的参数子节点从页面中删除
+				
+				
+				
+				
+				window.onload = function(){
+					var Obtn = document.getElementById("btn");
+					var Odiv = document.getElementById("div1");
+					Obtn.onclick = function(){
+						//创建一个元素节点
+						// var Op = document.createElement("p");
+						// var Otext = document.createTextNode("<h1>Hello World</h1>");
+						// Op.appendChild(Otext);
+						
+						
+						// Odiv.appendChild(Op);
+						
+						
+						
+						// document.body.insertBefore(Op, Odiv);
+						
+						
+						
+						// document.body.replaceChild(Op, Odiv);
+						
+						
+						// newDiv = Odiv.cloneNode();
+						// newDiv = Odiv.cloneNode(true);
+						// document.body.appendChild(newDiv);
+						
+						
+						document.body.removeChild(Odiv);
+					}
+				}
+			</script>
+		</head>
+		<body>
+			<div id="div1">
+				<p>这里是一个在div里的p</p>
+			</div>
+			<button id="btn">按键</button>
+		</body>
+	</head>
+</html>

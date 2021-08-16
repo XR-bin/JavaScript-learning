@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>indexOf找某个元素首次出现位置</title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//Array  /əˈreɪ/
+			//alert   /əˈlɜːrt/
+			//indexOf    /ˈɪndeks  əv/
+		
+			// indexOf方法可以返回某个指定的字符或字符串、数在数组中首次出现的位置(这个也适用于字符串)
+			// 如果没有找到匹配的字符或字符串、数则返回-1 ， 找到就返回首次出现的位置
+			
+			/* 
+			indexOf的参数
+				1、参数1：检索的字符或字符串、数   ----  必填
+				2、参数2：从数组的哪个位置开始检索   ----  可不填(默认从0位置开始)
+			*/	
+		    
+			var arr1 = new Array(1,2,3,4,5,6,7,8,9);
+			// alert(arr1.indexOf(5));    //位置在4
+			// alert(arr1.indexOf(4,2));  //位置在3
+			// alert(arr1.indexOf(2,2));  //-1
+			alert(arr1.indexOf(10));    //-1
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

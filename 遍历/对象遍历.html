@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>对象遍历</title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//Object  /ˈɒbdʒɪkt;/
+			//length  /leŋkθ/
+			//document  /ˈdɒkjumənt/
+			//write    /raɪt/
+			
+			var Obj = {
+				name : "小明",
+				age : 18,
+				job  : "前端工程师"
+			}
+			
+/*--------------------------------------------------------------------------*/			
+			//for...in  for…in语句用于遍历数组或者对象的属性（快速枚举法）
+			//for...in 的运行速度比 for 要快，因为for...in不需要进行判断
+			// for(var index in Obj){
+			// 	document.write("对象遍历：" + index + "  ，  " + Obj[index] + "<br>");
+			// }
+			
+			
+			
+/*--------------------------------------------------------------------------*/
+			//利用Object.keys 和 Object.values
+			// document.write(Object.keys(Obj));
+			// document.write(Object.values(Obj));
+			// alert(Object.prototype.toString.call(Object.keys(Obj)));
+			// alert(Object.prototype.toString.call(Object.values(Obj)));
+			
+			
+			
+/*--------------------------------------------------------------------------*/
+			//getOwnPropertyNames    /get oʊn  prɒpəti  nems /
+			//Each   /iːtʃ/ 
+			
+			document.write(Object.getOwnPropertyNames(Obj));  //name,age,job
+			document.write("<br>");
+			Object.getOwnPropertyNames(Obj).forEach(function(item){
+				document.write("对象遍历：" + item + "  ，  " + Obj[item] + "<br>");
+			})
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

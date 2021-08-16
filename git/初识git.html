@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>初识git</title>
+    <script type="text/javascript">
+      /* 
+        准备工作
+          1、安装git客户端(window操作)
+            git bash   支持Linux命令的git控制台  (这个我们比较常用)
+            git CMD    支持window命令的git控制台
+            git GUI    git控制台可视化界面   (虽然好像比较方便，但实在是不美观)
+            
+            如果是苹果电脑的话，电脑内部已经自带git
+            
+          2、VScode  安装git插件(自己百度)
+            快捷键 ctrl + ~
+            
+          3、GitHub官网  注册账号
+          
+          
+          
+        开始操作git
+          1、打开git bash ，并cd 路径 进入当前我们要操作的文件夹
+          2、配置git基本操作
+                $ git config --global user.name "Lonely-Journey"      GitHub的用户名
+                $ git config --global user.email "854866731@qq.com"   GitHub的邮箱
+                
+            【注】在git中输入命令后，没有消息就是好消息，有响应的信息说明出现错误了
+            
+          3、git init         在本地进行初始化
+            输入上面哪行命令后，会在当前文件夹创建一个.git
+            .git文件存储当前项目的所有版本的信息
+            【注】这个文件是隐藏文件，需要显示隐藏文件才能看到
+            
+          4、工作区  =>  暂存区
+            git add 文件名           提交某个文件
+            git add *                提交所有文件
+            
+            git commit -m "对这次提交的内容说明"             描述哦这一次提交的内容
+            
+          5、查看当前工作区的状态
+            git status
+            
+          6、从暂存区恢复到工作区
+            git checkout 文件名                   
+                
+          7、查看工作区和暂存区的代码区别  
+            git diff
+            
+          8、clear   清屏控制台操作
+          
+          9、git log   查看已经提交的历史版本
+          
+          10、git reset --hard HEAD^           退回上一个版本
+              git reset --hard HEAD^^          退回上上一个版本
+              
+          11、恢复文件到指定版本
+              git reset --hard 版本号
+              
+          12、生成ssh密匙
+              ssh-keygen -t rsa -C "GitHub注册用的邮箱"
+      */
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

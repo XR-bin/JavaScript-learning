@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>闭包注意事项</title>
+		<style type="text/css">
+			#div1{width: 200px; height: 200px; background-color: blue;}
+		</style>
+		<script type="text/javascript">
+			// window.onload = function(){
+			// 	var oBtn = document.getElementsByTagName("button");
+				
+				/*
+					这是以前遇到过得典型问题，任意按键按下后都是输出3
+					
+					这里我们可以利用闭包特性去解决
+				*/
+			   
+				//出现问题的写法
+				// for(var i=0; i<oBtn.length; i++){
+				// 	oBtn[i].onclick = function(){
+				// 		alert(i);
+				// 	}
+				// }
+				
+				//闭包的方式解决
+				// for(var i=0; i<oBtn.length; i++){
+				// 	oBtn[i].onclick = (function(index){
+				// 		return function(){
+				// 			alert(index);
+				// 		}
+				// 	})(i)
+				// }
+			// }
+			
+			/*
+				仔细观察下面的代码，会发现下面的代码其实是一个闭包函数，这么说，oDiv就是这个window.onlo
+				的私有变量，但需要注意的是，ODiv存的是HTML元素对象，这个消耗内存可不小，如果有对个存HTML
+				元素节点对象的变量的话，那么有可能造成  内存泄漏  ，但这种情况只出现在IE的浏览器(IE9之前)，
+				这个bug已经被解决了，这里了解一下就好
+			*/
+			window.onload = function(){
+				var oDiv = document.getElementById("div1");
+				
+				var id = oDiv.id;
+				oDiv.onclick = function(){
+					//如果这样写，在IE9之前的IE浏览器会导致内存泄漏
+					// alert(oDiv.id);
+					//用别的小变量代替
+					alert(id);
+				}
+				//销毁oDiv
+				oDiv = null;
+				
+				//方法2，关闭时销毁
+				// oDiv.onclick = function(){
+				// 	alert(oDiv.id);
+				// }
+				// window.onunload = function(){
+				// 	oDiv.onclick = null;
+				// 	oDiv = null;
+				// }
+			}
+		</script>
+	</head>
+	<body>
+		<button>按键1</button>
+		<button>按键2</button>
+		<button>按键3</button>
+		<div id="div1"><div>
+	</body>
+</html>

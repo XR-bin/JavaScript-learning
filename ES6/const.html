@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>关键字const</title>
+		<script type="text/javascript">
+			// const    /kɒnst/ 
+			
+			/*
+				const 声明变量，变量值只能在声明时确定，后续是没办法修改的。
+				【注】const声明常量(没法修改变量值的变量)
+				
+				一般用在修改次数基本为0的变量，这样有保护变量不被意外修改
+			*/
+		   
+			const IP = "192.168.0.0.1";
+			var IP2 = "192.168.0.0.2";
+			
+			alert(IP);    //  192.168.0.0.1
+			alert(IP2);
+			
+			IP2 = 123;
+			alert(IP2);   //123
+			
+			IP = 123;     //直接报错
+			alert(IP);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

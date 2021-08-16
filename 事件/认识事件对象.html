@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>认识事件对象</title>
+		<script type="text/javascript">
+			//event   /ɪˈvent/
+			//click        /klɪk/
+			//arguments   /'ɑrɡjumənts/
+		
+		
+			// 事件绑定
+			// 	元素节点.on + 事件类型 = 匿名函数；
+			// 【注】系统会在事件绑定一旦完成后，生成一个事件对象。
+			
+			// 触发事件时，系统会自动去调用事件绑定的函数，系统会将事件对象当做函数的第一个参数传入
+			
+			// 为了验证上面那句话，我们得使用arguments这个关键词的概念,这个概念我就不多解释了，自己翻
+			// 一下以前写的笔记，下面实验代码
+			// window.onload = function(){
+			// 	var Obtn = document.getElementById("btn");
+			// 	Obtn.onclick = function(){
+			// 		alert(arguments.length);   //1
+			// 		alert(arguments[0]);       //[object MouseEvent]
+			// 	}
+			// }
+			
+			// 一般情况下为了开发过程中能够沟通方便，一般我们不会直接只用argument，而是使用形参
+			// 【注意】这种形参的形式，IE8一下的浏览器不兼容，但它提供了一个window.event方法
+			window.onload = function(){
+				var Obtn = document.getElementById("btn");
+				
+				Obtn.onclick = function(ev){
+					var e = ev || window.event;
+					alert(e);      //[object MouseEvent]
+				}
+			}
+			
+			
+		</script>
+	</head>
+	<body>
+		<button id="btn">按键</button>
+	</body>
+</html>

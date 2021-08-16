@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>正则表示练习</title>
+		<script type="text/javascript">
+			/*
+				判断文件是否是压缩包
+					zip    rar    gz
+			*/
+			// var box1 = /^\w+\.(zip|rar|gz)$/;
+			// alert(box1.test("test.zip"));    //true
+			// alert(box1.test("test.rar"));    //true
+			// alert(box1.test(".rar"));        //false
+			
+			
+			/*
+				验证是否是正确的手机号码
+			*/
+			// var box2 = /^1\d{10}$/
+			// alert(box2.test("18054214353"));   //true
+			// alert(box2.test("1854214353"));    //false
+			// alert(box2.test("08054214353"));   //false
+			// alert(box2.test("18a54214353"));   //false
+			
+			/*
+				验证身份证
+			*/
+			// var box3 = /^[1-9]\d{16}(\d|x)$/;
+			// alert(box3.test("55633220001211653x"));   //true
+			
+			
+			/*
+				验证纯中文
+			*/
+			// var box4 = /^[\u4e00-\u9fa5]+$/;
+			// alert(box4.test("你好呀"));  //true
+			// alert(box4.test("你好呀12"));  //false
+			// alert(box4.test("asd你好呀")); //false
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

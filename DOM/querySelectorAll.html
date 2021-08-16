@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>querySelectorAll</title>
+		<script type="text/javascript">
+			// var   /vɑr/
+			// alert   /əˈlɜːrt/
+			// document  /ˈdɒkjumənt/ 
+			// onload   /ˌɒnˈləʊd/
+			// querySelectorAll   /ˈkwɪri  sɪˈlektər   ɔːl/ 
+			
+			/*
+				document.querySelectorAll 方法
+				功能 ： 获取选择符合条件的所有元素节点
+				参数 ： CSS选择器格式的字符串。
+						例如某个div元素节点的属性为class="div1" id="div2" name="div3"，
+						那么这个参数可以填"div" 、 ".div1" 、 "#div2" 或 "[name=div3]"
+				返回值：伪数组
+						
+				【注】querySelectorAll 的对象只能是 document 对象
+			 */
+			
+			window.onload = function(){
+				var liLi = document.querySelectorAll("li");
+				alert(liLi.length);   //7
+				liLi[0].style.backgroundColor = "green";
+				
+				var liClass2 = document.querySelectorAll(".class2");
+				alert(liClass2.length);   //2
+				liClass2[0].style.backgroundColor = "blue";
+				
+				var liId5 = document.querySelectorAll("#id5");
+				alert(liId5.length);   //1
+				liId5[0].style.backgroundColor = "yellow";
+				
+				var liName = document.querySelectorAll("[name=li2]");
+				alert(liName.length);   //2
+				liName[0].style.backgroundColor = "pink";
+				
+				//两个中选择器写一起表示在第一个选择器元素内部的符合第二次选择器的元素
+				var liLiClass3 = document.querySelectorAll("ul .class3");  //这里表示的是ul元素中符合 .class3 的元素节点
+				alert(liLiClass3.length);  //3
+				liLiClass3[0].style.backgroundColor = "yellow";
+			}
+		</script>	
+	</head>
+	<body>
+		<ul>
+			<li class="class1" id="id1">li1</li>       <!-- 绿色 -->
+			<li class="class1" id="id2" name="li2">li2</li>     <!-- 粉色 -->
+			<li class="class2" id="id3" name="li2">li3</li>       <!-- 蓝色 -->
+			<li class="class2" id="id4">li4</li>
+			<li class="class3" id="id5">li5</li>       <!-- 黄色 -->
+			<li class="class3" id="id6">li6</li>
+			<li class="class3" id="id7">li7</li>
+		</ul>
+	</body>
+</html>

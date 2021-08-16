@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Array创建数组</title>
+		<script type="text/javascript">
+			/* 
+			Array  /əˈreɪ/ 
+			数组创建有三种方法：
+				1、通过new Array创建数组
+				2、直接通过Array创建数组
+				3、直接通过变量赋值的方式
+			*/
+		    
+			//var   /vɑr/
+			//alert   /əˈlɜːrt/
+			//length  /leŋkθ/
+			
+			//方法一  new Array
+			// var arr1 = new Array(100, true, "abc");
+			// alert(arr1.length);   //3
+			// alert(typeof arr1);   //Object
+			
+			//方法二  Array
+			// var arr2 = Array(200, false, "qwe");
+			// alert(arr2.length);     //3
+			// alert(typeof arr2);     //Object
+			
+			//方法三  直接赋值
+			// var arr3 = [300, false, true];
+			// alert(arr3.length);        //3
+			// alert(typeof arr3);        //Object
+			
+			/* 
+			【注】如果通过Array和new Array来创建数组时，
+			     只填了一个参数并且改参数是number的话，那么
+				 该参数不是表示该数组的成员，而是表示该数组的长度
+			*/	 
+			// var arr1 = new Array(10);
+			// alert(arr1.length);    // 10
+			// alert(arr1[0]);        //undefined
+			
+			// var arr2 = Array(15);
+			// alert(arr2.length);    //15
+			// alert(arr2[0]);        //undefined
+			
+			
+			//判断是否是数组
+			//instanceof    /ˈɪnstəns ɒv/
+			var arr = new Array(1,2,3,5);
+			// alert(arr instanceof Array);   //true
+			alert(Object.prototype.toString.call(arr));
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

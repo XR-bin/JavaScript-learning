@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>innerHTML</title>
+		<script type="text/javascript">
+			// var   /vɑr/
+			// alert   /əˈlɜːrt/
+			// document  /ˈdɒkjumənt/ 
+			// onload   /ˌɒnˈləʊd/
+			// getElementById   /ɡet  elɪmənt  baɪ  ˌaɪ ˈdiː/ 
+			// innerHTML    /ɪnər  HTML/
+			
+			// innerHTML 作用是获取标签将的内容，不包括标签本身，但标签内部的其他标签会被获取
+			
+			window.onload = function(){
+				var Odiv = document.getElementById("div1");
+				alert(Odiv.innerHTML);           //div文本<em>em文本</em><strong>strong文本</strong>
+				alert(typeof Odiv.innerHTML);    //string
+				
+				//用下面这种方式赋值，能把 div文本<em>em文本</em><strong>strong文本</strong> 全部覆盖为 <h1>这是h1</h1>
+				//【注】这种方式赋值会解析标签 ，如下<h1>会被解析，而不是像是<h1>这是h1</h1>
+				Odiv.innerHTML = "<h1>这是h1</h1>";
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div id="div1">div文本<em>em文本</em><strong>strong文本</strong></div>
+	</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>clearInterval关闭定时器</title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//alert   /əˈlɜːrt/
+			//document  /ˈdɑːkjumənt/
+			//write   /raɪt/ 
+			//setInterval   /set  ˈɪntərvl/  
+			//clear  /klɪə(r) ˈɪntərvl/
+			
+			// setInterval 方法打开定时器后会不停地调用函数，直到 clearInterval方法被调用或窗口被关闭才会关闭定时器。
+			// clearInterval的参数就是setInterval创建定时器时的返回值(定时器句柄)。
+			var i = 0;
+			var time = setInterval(function(){
+				document.write(i++ + "<br>");
+				
+				if(i == 10){
+					clearInterval(time);
+					document.write("定时器已关闭");
+				}
+			}, 1000);
+		</script>	
+	</head>
+	<body>
+	</body>
+</html>

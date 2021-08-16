@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>onmouseover/onmouseout和onmouseenter/onmouseleave</title>
+		<style type="text/css">
+			div{
+				width: 100px; height: 100px;
+				background-color: gray;
+				line-height: 100px;
+				text-align: center;
+				margin: 20px; padding: 50px;
+			}
+			div span{
+				width: 100px; height: 100px;
+				background-color: red;
+				display: inline-block;
+			}
+		</style>
+		<script type="text/javascript">
+			// click        /klɪk/
+			// dblclick     /dʌbl  klɪk/
+			// mouseover    /ˈmaʊs oʊvər/
+			// mouseout     /ˈmaʊs  aʊt/
+			// mousemove    /ˈmaʊs  muːv/
+			// mousedown    /ˈmaʊs  daʊn/
+			// mouseup      /ˈmaʊs  ʌp/
+			// mouseenter   /ˈmaʊs  entər/
+			// mouseleave   /ˈmaʊs  liːv/
+			
+			// onmouseover/onmouseout
+			// 【注】经过子节点会重复出发
+			// 即从父节点进去子节点会出发一次，从子节点进去到父节点又会触发一次
+			
+			// onmouseenter/onmouseleave
+			// 【注】经过子节点不会重复触发
+			// 即将父子视为整体从父节点进去子节点不会触发
+			
+			window.onload = function(){
+				var Odiv = document.getElementsByTagName("div");
+				
+				var i = 0;
+				Odiv[0].onmouseout = function(){
+					var Ospan = this.getElementsByTagName("span")[0];
+					Ospan.innerHTML = i++;
+				}
+				
+				var j = 0;
+				Odiv[1].onmouseenter = function(){
+					var Ospan = this.getElementsByTagName("span")[0];
+					Ospan.innerHTML = j++;
+				}
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div>
+			<span>mouseover</span>
+		</div>
+		<div>
+			<span>mouseenter</span>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>map遍历数组，并用参数中的方法改变成员</title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//Array  /əˈreɪ/ 
+			//alert   /əˈlɜːrt/
+			//map  /mæp/
+			//item   /ˈaɪtəm/
+			//index  /ˈɪndeks/
+			
+			// map方法返回一个新数组，数组中的元素为原始数组元素调用参数函数处理后的值。
+			// map的参数：
+				// 参数1：遍历时进行的操作函数
+				// 	  函数的参数1：当前遍历到的元素
+				// 	  函数的参数2：当前遍历元素的下标
+				// 	  函数的参数3：被遍历的数组
+				// 参数2：可不填，该值是传递给函数的this值，我们一般不填，默认为undefined
+				
+			var oldArray = new Array(10,20,30,40,50,60);
+			// var newArray = oldArray.map(function(item, index, myarray){
+			// 	return item/10;
+			// });
+			// alert(newArray);    //1,2,3,4,5,6
+			
+			//箭头函数写法
+			var newArray = oldArray.map(item => item/10);
+			alert(newArray);      //1,2,3,4,5,6
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

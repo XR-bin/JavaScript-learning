@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>淡入和淡出效果</title>
+		<style type="text/css">
+			#img1{width: 600px; height: 400px; opacity: 0.3; filter: alpha(opacity=30);}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				var oImg = document.getElementById("img1");
+				
+				oImg.onmouseover = function(){
+					startMove(100);
+				}
+				
+				oImg.onmouseout = function(){
+					startMove(30);
+				}
+			}
+			
+			var alpha = 30;      //透明度中间变量
+			var timer = null;
+			
+			function startMove(myTarget){
+				var oImg = document.getElementById("img1");
+				
+				//清除定时器
+				clearInterval(timer);
+				
+				var speed = 2;
+				speed = myTarget > alpha ? Math.abs(speed) : -Math.abs(speed);
+				
+				timer = setInterval(function(){
+					if(alpha == myTarget){
+						clearInterval(timer);
+					}
+					else{
+						alpha += speed;
+					}
+					
+					oImg.style.opacity = alpha/100;
+					oImg.style.filter = `alpha(opacity=${alpha})`;
+				}, 30)
+			}
+		</script>
+	</head>
+	<body>
+		<img id="img1" src="img/starry.jpg" alt="" />
+	</body>
+</html>

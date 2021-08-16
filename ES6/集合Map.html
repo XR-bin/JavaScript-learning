@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>集合Map</title>
+		<script type="text/javascript">
+			/*
+				集合的特点：    无序     不重复
+			*/
+		   
+			/*
+				Map集合，即映射
+				
+				Map 的 键值(value) 和 键名(key) 可以不一样，而且集合中的键名(key)不能重复
+			*/
+			  
+			var myMap = new Map();
+			
+			//集合Map添加成员的方法是set(键名, 键值);
+			myMap.set("小明", "老师");
+			myMap.set("小红", "老师");
+			myMap.set("小刚", "运动员");
+			myMap.set("小米", "程序员");
+			myMap.set("小刚", "司机");   //如果键名(key)存在，那么这里的键值(value)将会覆盖原来的键值
+			
+			// console.log(myMap);  // {"小明" => "老师"}  {"小红" => "老师"}  {"小刚" => "司机"} {"小米" => "程序员"}
+		
+			// 集合Map通过键名(key)获取键值的方法get(key)
+			// alert(myMap.get("小明"));   //老师
+			
+			// 集合Map通过键名(key)删除键值对的方法delete(key)
+			// myMap.delete("小明");
+			// console.log(myMap);    //{"小红" => "老师"}  {"小刚" => "司机"} {"小米" => "程序员"}
+			
+			// 集合Map通过键名(key)判断键值对是否存在的方法has(key)，存在为true，不存在为false
+			// alert(myMap.has("小刚"));    //true
+			// alert(myMap.has("运动员"));  //false
+			
+			// map集合.clear()        清除所有成员，没有返回值
+			// console.log(myMap);   //{"小明" => "老师"}  {"小红" => "老师"}  {"小刚" => "司机"} {"小米" => "程序员"}
+			// myMap.clear();
+			// console.log(myMap);   //{}
+			
+			
+			
+			/*
+				集合遍历
+					for...of
+			*/
+		   
+			// keys()    返回键名的遍历器    配合for...of使用
+			// for(let key of myMap.keys()){
+			// 	console.log(key);
+			// }   //小明   小红  小刚  小米
+			
+			
+			
+			// values()  返回键值的遍历器   配合for...of使用
+			// for(let value of myMap.values()){
+			// 	console.log(value);
+			// }    //老师  老师  司机  工程师
+			
+			
+			// entries()   返回键值对的遍历器   配合for...of使用
+			// for(let item of myMap.entries()){
+			// 	console.log(item);
+			// }  //["小明", "老师"]  ["小红", "老师"]  ["小刚", "司机"] ["小米", "程序员"]
+			
+			//直接用for...of遍历也行
+			for(let [key, value] of myMap){
+				console.log(key, value);
+			}  //小明 老师    小红 老师    小刚 司机    小米 程序员
+		
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

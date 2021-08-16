@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>缓冲运动</title>
+		<style type="text/css">
+			*{margin: 0px; padding: 0px;}
+			#div1{width: 100px; height: 100px; background-color: blue; position: absolute; left: 1000px; top: 200px;}
+		</style>
+		<script type="text/javascript">
+			/*
+				刹车就是一种缓冲运动。
+				
+				离目标距离越近，速度越慢
+				
+				speed = (目标距离 - 当前距离) / 8；
+			*/
+			window.onload =function(){
+				var oBtn = document.getElementById("btn");
+				var oDiv = document.getElementById("div1");
+				
+				oBtn.onclick = function(){
+					stratMove(500);
+				}
+			}
+			
+			var timer = null;
+			
+			function stratMove(myTarget){
+				var oDiv = document.getElementById("div1");
+				
+				clearInterval(timer);
+				
+				timer = setInterval(function(){
+					var speed = (myTarget - oDiv.offsetLeft) / 8;
+					speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+					
+					
+					if(myTarget == oDiv.offsetLeft){
+						clearInterval(timer);
+					}
+					else{
+						oDiv.style.left = oDiv.offsetLeft + speed + "px";
+					}
+					
+					var oText = document.getElementById("tx1");
+					oText.value += speed + "," + oDiv.offsetLeft + "\n";
+				}, 30);
+			}
+			
+		</script>
+	</head>
+	<body>
+		<button id="btn">开始</button>
+		<div id="div1"></div>
+		<textarea id="tx1" cols="33" rows="10" style="position: absolute; left: 100px;"></textarea>
+		<span style="width: 1px; height: 500px; background-color: black; position: absolute; left: 500px;"></span>
+	</body>
+</html>

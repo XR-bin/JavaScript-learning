@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>use strice 严格模式</title>
+		<script type="text/javascript">
+			/* 
+			严格模式的目的：
+				1、消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为
+				2、消除代码运行的一些不安全之处，保证代码运行的安全
+				3、提高编译器效率，增加运行速度
+				4、为未来新版本的Javascript做好铺垫
+			*/
+		   
+			//var   /vɑr/
+			//Array  /əˈreɪ/ 
+			//length  /leŋkθ/
+			//alert   /əˈlɜːrt/
+			//arguments   /'ɑrɡjumənts/
+			//use strict  /juːz/ /strɪkt/ 
+			
+			/* 
+			进入use strict后的变化
+				1、全局变量声明时，必须加var(这个我们开始学习时就必须规划好自己的编程习惯，这个变化对我们影响不大)
+				2、this无法指向全局对象；
+				3、函数内重名属性---参数(这个我们开始学习时就必须规划好自己的编程习惯，这个变化对我们影响不大)
+				4、arguments对象不允许被动态改变
+				5、新增保留字：implements, interface, let, package, private, protected, public, static, yield。
+			*/	
+		   
+			//这里我们只探讨第4点变化
+			//正常模式
+			function show1(num1, num2){
+				num1 = 10;
+				num2 = 100;
+				
+				alert(num1 + " " + num2);       //10 100
+				alert(arguments[0] + " " + arguments[1]);   //10 100
+			}
+			show1(20,200);
+			
+			//进入严格模式
+			// function show2(num1, num2){
+			// 	"use strict"   //进入严格模式，只有这个函数进入严格模式
+			// 	num1 = 10;
+			// 	num2 = 100;
+				
+			// 	alert(num1 + " " + num2);       //10 100
+			// 	alert(arguments[0] + " " + arguments[1]);   //根据参数，如下得show2(20,200);   结果为20  200
+			// }
+			// show2(20,200);
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

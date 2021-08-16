@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>数组遍历</title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//Array  /əˈreɪ/ 
+			//length  /leŋkθ/
+			//document  /ˈdɒkjumənt/
+			//write    /raɪt/
+			var arr = new Array(100, 200, 300);
+/*--------------------------------------------------------------------------*/			
+			//for循环  ------  这是一种最常见的遍历方式
+			// for(var i=0; i<arr.length; i++){
+			// 	document.write(arr[i] + '<br>');
+			// } 
+/*--------------------------------------------------------------------------*/			
+			//for...in  for…in语句用于遍历数组或者对象的属性（快速枚举法）
+			//for...in 的运行速度比 for 要快，因为for...in不需要进行判断
+			// for(var index in arr){
+			// 	document.write(arr[index] + '<br>');
+			// }
+/*--------------------------------------------------------------------------*/
+			//Each   /iːtʃ/ 
+			//item   /ˈaɪtəm/
+			//index  /ˈɪndeks/ 
+			
+		
+			//forEach循环遍历
+			//forEach方法的参数
+				// 参数1：遍历时进行的操作函数
+				// 	  函数的参数1：当前遍历到的元素
+				// 	  函数的参数2：当前遍历元素的下标
+				// 	  函数的参数3：被遍历的数组
+				// 参数2：可不填，该值是传递给函数的this值，我们一般不填，默认为undefined
+			
+			arr.forEach(function(item, index, myarray){
+				document.write(item + " , " + index + " , " + myarray + "<br>");
+			});
+			//采用箭头函数的方式去写，但一般我们不这样写
+			// arr.forEach((item, index, myarray)=>{
+			// 	document.write(item + " , " + index + " , " + myarray + "<br>");
+			// });
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

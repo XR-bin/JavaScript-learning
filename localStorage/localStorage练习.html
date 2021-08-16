@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>localStorage练习</title>
+		<style type="text/css">
+			#slide{
+				width: 600px; height: 30px; 
+				border: 1px solid black;
+				margin: 100px auto;
+				position: relative;
+			}
+			#block{
+				width: 30px; height: 30px;
+				background-color: blue; position: absolute; left: 0px;
+			}
+			#full{
+				width: 0px; height: 30px;
+				background-color: orange; position: absolute; left: 0px;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				var Oslide = document.getElementById("slide");
+				var Ofull = document.getElementById("full");
+				var Oblock = document.getElementById("block");
+				
+				if(!window.localStorage){
+					alert("该浏览器，不支持localStorage");
+				}
+				else{
+					var x = localStorage.getItem("slide") ? localStorage.getItem("slide") : 0;
+					Oblock.style.left = x + "px";
+					Ofull.style.width = x + "px";
+				}
+				
+				Oblock.onmousedown = function(ev){
+					var e = ev || window.event;
+					var offsetX = e.clientX - Oblock.offsetLeft;
+					
+					document.onmousemove = function(ev){
+						var e = ev || window.event;
+						var x = e.clientX - offsetX;
+						
+						if(x <= 0) x=0;
+						if(x >= 570) x=570;
+						
+						Oblock.style.left = x + "px";
+						Ofull.style.width = x + "px";
+						
+						if(!window.localStorage){
+							alert("该浏览器，不支持localStorage");
+						}
+						else{
+							localStorage.setItem("slide",x);
+						}
+					}
+				}
+				
+				document.onmouseup = function(){
+					document.onmousemove = null;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="slide">
+			<div id="full"></div>
+			<div id="block"></div>
+		</div>
+	</body>
+</html>

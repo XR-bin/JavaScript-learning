@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ECMA6字符串</title>
+		<script type="text/javascript">
+			/*
+				传统字符串：所有单引号''、双引号""括起来的都叫字符串
+				ECMA6字符串：使用反引号``括起来的也能成为字符串  
+				
+					ECMA6字符串的特性：
+						1、ECMA6字符串，想怎么写就怎么写，换行、代码缩进，都能在字符串中体现出来
+						2、通过${变量/表达式/函数}的方式能将 变量/表达式/函数 直接写入字符串中，不用通过+号进行拼接
+			*/
+		   
+			/***1、ECMA6字符串，想怎么写就怎么写，换行、代码缩进，都能在字符串中体现出来***/
+			//传统字符串
+			// var str = "hello \
+			// world";
+			// alert(str);    //hello 			world     //无法体现换行和代码缩进
+			
+			//ECMA6字符串
+			// var str = `hello 
+			// world`;
+			// alert(str);
+/*hello 
+			world*/    //能体现换行和代码缩进
+			
+			
+			
+			/***2、通过$(变量/表达式/函数)的方式能将 变量/表达式/函数 直接写入字符串中，不用通过+号进行拼接***/
+			// function show({name, age, job}){
+			// 	alert(`我叫${name}，今年岁${age}，工作是${job}`);
+			// }
+			
+			// show({
+			// 	age: 18,
+			// 	name: "小明",
+			// 	job: "写代码"
+			// });                  //我叫小明，今年岁18，工作是写代码
+			
+			
+			//在字符串中使用函数
+			function show({name, age, job}){
+				alert(`我叫${name}，今年岁${Math.min(age,18,20)}，工作是${job}`);
+			}
+			
+			show({
+				age: 30,
+				name: "小明",
+				job: "写代码"
+			});               //我叫小明，今年岁18，工作是写代码
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

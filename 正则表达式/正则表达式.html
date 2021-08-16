@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>正则表达式</title>
+		<script type="text/javascript">
+			// var     /vɑr/
+			// alert   /əˈlɜːrt/
+			// RegExp    /redʒ  eksˈpi/
+			// regular expression   /ˈreɡjələ(r)  ɪkˈspreʃn/
+			// test    /test/
+			// exec    /ɪɡˈzek/
+		
+			/* 
+			正则表达式(regular expression)是一种描述字符的对象。ECMAscript的RegExp类表示正则表达式，
+			而 String 和 正则表达式都定义了进行强大的【模式匹配】和【文本检索】与【替换】的函数。 
+			
+			【注意】正则表达式就是一个增强版的字符串,但它不是字符串是一个对象。
+			
+			正则表达式创建有三种方法：
+				1、通过new RegExp创建字符串
+				2、直接通过RegExp创建字符串
+				3、直接通过变量赋值的方式
+			 */	
+			
+			//方法一  new RegExp
+			// var re1 = new RegExp("RegExp1","ig");
+			// alert(re1);
+			// alert(typeof re1);
+			//方法二 RegExp
+			// var re2 = RegExp("RegExp2");
+			// alert(re2);
+			// alert(typeof re2);
+			//方法三  直接赋值
+			// var re3 = /RegExp3/ig;
+			// alert(re3);
+			// alert(typeof re3);
+			
+			
+			/*
+				正则表达式对象只有两个方法
+				test
+					格式：正则.test(字符串);
+					功能：在这个字符串中匹配正则是否存在
+					返回值：匹配成功返回true，匹配失败返回false
+					
+				exec
+					格式：正则.exec(字符串);
+					功能：在这个字符串中匹配正则是否存在
+					返回值：返回匹配到的字符串。
+						匹配成功，返回一个装有字符串的数组
+						匹配失败，返回null。
+					【注】返回的是装有字符串的数组，而不是单个字符串
+					
+				【注意】这里有个特殊情况，当正则表达式设置全局匹配时(即g)，连续调用test或exec方法
+				会出现错误现象。
+			*/
+			// test方法
+			var str = "How are you";
+			var re4 = new RegExp("how");
+			alert(re4.test(str));    //false
+			var re5 = /how/ig;
+			alert(re5.test(str));    //true
+			alert(re5.test(str));    //false
+			
+			// exec方法
+			// var str = "How are you";
+			// var re6 = new RegExp("how","i");
+			// alert(re6.exec(str));          //How
+			// alert(re6.exec(str).length);   //1
+			
+			
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

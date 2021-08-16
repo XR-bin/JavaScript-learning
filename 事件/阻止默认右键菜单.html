@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>阻止右键默认菜单</title>
+		<style type="text/css">
+			*{margin: 0px; padding: 0px;}
+			#menu{width: 100px; height: 100px; background-color: gray; display: none; position: absolute;}
+		</style>
+		<script>
+			// var     /vɑr/
+			// alert   /əˈlɜːrt/
+			// click        /klɪk/
+			// event        /ɪˈvent/
+			// client    /klaɪənt/
+			// contextmenu   /kɒntekst  menju/
+			
+			window.onload = function(){
+				//阻止右键菜单
+				document.oncontextmenu = function(){
+					// alert("右键");
+					return false;
+				}
+				
+				//自定义鼠标右键菜单
+				var Odiv = document.getElementById("menu");
+				document.onmousedown = function(ev){
+					var e = ev || window.event;
+					if(e.button == 2){
+						Odiv.style.display = "block";
+						Odiv.style.left = e.clientX + "px";
+						Odiv.style.top = e.clientY + "px";
+					}
+					else{
+						Odiv.style.display = "none";
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="menu">
+			<ul>
+				<li>菜单1</li>
+				<li>菜单2</li>
+				<li>菜单3</li>
+			</ul>
+		</div>
+	</body>
+</html>

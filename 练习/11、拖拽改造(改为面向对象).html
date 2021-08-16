@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>拖拽改造(改为面向对象)</title>
+		<style type="text/css">
+			#div1{width: 200px; height: 200px; background-color: blue; position: absolute;}
+			#div2{width: 200px; height: 200px; background-color: red; position: absolute; left: 300px;}
+		</style>
+		<script type="text/javascript">
+		
+			/********************面向过程的拖拽********************/
+			// window.onload = function(){
+			// 	var oDiv = document.getElementById("div1");
+				
+			// 	oDiv.onmousedown = function(ev){
+			// 		var e = ev || window.event;
+					
+			// 		//获取鼠标与div1的相对距离----方法1
+			// 		var offsetX = e.clientX - oDiv.offsetLeft;
+			// 		var offsetY = e.clientY - oDiv.offsetTop;
+					
+			// 		//获取鼠标与div1的相对距离----方法2
+			// 		// var offsetX = e.offsetX;
+			// 		// var offsetY = e.offsetY;
+					
+			// 		document.onmousemove = function(ev){
+			// 			var e = ev || window.event;
+						
+			// 			oDiv.style.left = e.clientX - offsetX + "px";
+			// 			oDiv.style.top = e.clientY - offsetY + "px";
+			// 		}
+			// 	}
+				
+			// 	oDiv.onmouseup = function(){
+			// 		document.onmousemove = null;
+			// 	}
+			// }
+			
+			
+			
+			
+			
+			/********************面向对象的拖拽********************/
+			/*
+				改造要求
+					1、不能有函数嵌套
+					2、可以有全局变量
+					
+				面向过程 => 面向对象
+					1、window.onload => 构造函数
+					2、全局变量 => 构造函数的属性
+					3、全局函数 => 构造函数的方法
+			*/
+			
+			function Drag(id){
+				this.oDiv = document.getElementById(id);
+				
+				this.oDiv.onmousedown = ev => this.funcDown(ev);
+				
+				document.onmouseup = this.funcUp;
+			}
+			
+			Drag.prototype.funcDown = function(ev){
+				var e = ev || window.event;
+				
+				//获取鼠标与div1的相对距离----方法1
+				this.offsetX = e.clientX - this.oDiv.offsetLeft;
+				this.offsetY = e.clientY - this.oDiv.offsetTop;
+				var _this = this;
+				document.onmousemove = function(ev){
+					_this.funcMove(ev);
+				}
+			}
+			
+			Drag.prototype.funcMove = function(ev){
+				var e = ev || window.event;
+				
+				this.oDiv.style.left = e.clientX - this.offsetX + "px";
+				this.oDiv.style.top = e.clientY - this.offsetY + "px";
+			}
+			
+			Drag.prototype.funcUp = function(){
+				document.onmousemove = null;
+			}
+			
+			
+			/********************面向对象的限制拖拽(继承与多态)********************/
+			function limitDrag(id){
+				//继承父级属性
+				Drag.call(this, id);
+			}
+			//继承父级方法 
+			for(let funcName in Drag.prototype){
+				limitDrag.prototype[funcName] = Drag.prototype[funcName];
+			}
+			
+			//修改原有函数(多态)
+			limitDrag.prototype.funcMove = function(ev){
+				var e = ev || window.event;
+				
+				var x = e.clientX - this.offsetX;
+				var y = e.clientY - this.offsetY;
+				
+				//获取窗体宽和高
+				var windowWidth = document.documentElement.clientWidth || document.body.clientWidth;
+				var windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+				
+				//限制拖拽出界
+				if(x <= 0) x=0;
+				if(x >= windowWidth - this.oDiv.offsetWidth) x = windowWidth - this.oDiv.offsetWidth;
+				
+				if(y <= 0) y=0;
+				if(y >= windowHeight - this.oDiv.offsetHeight) y = windowHeight - this.oDiv.offsetHeight;
+				
+				this.oDiv.style.left = x + "px";
+				this.oDiv.style.top = y + "px";
+			}
+			
+			window.onload = function(){
+				new Drag("div1");
+				new limitDrag("div2");
+			}
+		</script>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<div id="div2"></div>
+	</body>
+</html>

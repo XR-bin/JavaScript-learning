@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>关键字let</title>
+		<script type="text/javascript">
+			// var    /vɑ:/
+			// let    /let/
+			// console   /kɑːnsoʊl/
+			// log    /lɒɡ/
+			
+			/*
+				let关键字用来申明变量     这个变量的作用域比较窄，遇到大括号就形成一个作用域
+				【注】let申明的变量所在的作用域称为块级作用域
+				
+				var关键字用来申明变量     将变量或形参所在的函数的大括号作为作用域处理
+			*/
+		   
+			/***********************let和var在函数内部作用域的区别****************************/
+			//var的作用域是整个函数
+			// function show(){
+			// 	if(1){
+			// 		//这里定义的i作用域是整个show函数
+			// 		var i=2;
+			// 		alert(i);
+			// 	}
+			// 	alert(i);
+			// }
+			// show(); // 2   2
+			
+			//let的作用域是它所在的大括号里，一个函数里可不止有一个大括号哦
+			// function show(){
+			// 	//这个t的作用域是show旁边的大括号哦，这样相当于作用域是这个show整个函数
+			// 	let t=2;
+				
+			// 	if(1){
+			// 		//这个i的作用域是if旁边的大括号，即出了这个if语句后，i就没了
+			// 		let i=3;
+			// 		alert(t);
+			// 		alert(i);
+			// 	}
+				
+			// 	alert(t);
+			// 	alert(i);
+			// }
+			// show();   // 2  3   2   报错
+			
+			
+			
+			
+			/***********************let和var在函数外部作用域的区别****************************/
+			// var在函数外部使用的话，它的作用域是整个程序，也就是全局变量
+			// if(1){
+			// 	var i = 10;
+			// 	alert(i);
+			// }
+			// alert(i);   
+			//输出结果是10   10   
+			
+			//let在函数外部使用的话，如果没在大括号里定义就是全局变量，但如果在大括号里定义就是局部变量了
+			// let t = 20;
+			// if(1){
+			// 	let i = 30;
+			// 	alert(t);
+			// 	alert(i);
+			// }
+			// alert(t);
+			// alert(i);
+			//输出结果是20  30   20   报错
+			
+			
+			
+			/***********************let和var在函数外部for语句中作用域的区别****************************/
+			// 这个现象比较特别
+			// 我们先来看var在函数外部中的for语句的情况
+			for(var i=0; i<5; i++){
+				setTimeout(function(){
+					console.log(i);
+				},1000);
+			}
+			//输出结果是5个5
+			
+			// 接下来看看let的效果
+			for(let i=0; i<5; i++){
+				setTimeout(function(){
+					console.log(i);
+				},1000);
+			}
+			//输出结果是0,1,2,3,4
+			
+			//这种现象也出现在给多个按键添加点击事件时会出现
+			window.onload = function(){
+				var Obtn = document.getElementsByTagName("button");
+				
+				//用var来定义i，最终按键输出的i都是3
+				for(var i=0; i<Obtn.length; i++){
+					Obtn[i].onclick = function(){
+						alert(i);
+					}
+				}
+				
+				// 用let来定义i，最终按键分别输出0,2,3
+				for(let i=0; i<Obtn.length; i++){
+					Obtn[i].onclick = function(){
+						alert(i);
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<button>按键1</button>
+		<button>按键2</button>
+		<button>按键3</button>
+	</body>
+</html>

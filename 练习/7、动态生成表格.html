@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>动态生成表格</title>
+		<style type="text/css">
+			#t1 tr td{width: 50px; height: 30px;}
+			.box0{background-color: red}
+			.box1{background-color: blue}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				//第一步：通过getElementById分别获取id 为 row、col、btn、t1的元素节点
+				//第二步：给Obtn按键添加点击事件
+						// 1、判断row和col是否为空
+						// 2、如果为空，则弹出提示框
+						// 3、如果不为空，则根据他们的value生成表格
+								// 1)、创建行标签tr元素节点和列标签td元素节点
+								// 2)、把td添加到tr节点上
+								// 3)、把tr添加到id为t1的元素节点上
+								// 4)、创建一个删除按键，并添加到每行末尾
+				//第三步：给创建的表格上的删除按钮添加事件委托，委托是删除按键，处理方式id为t1的table元素
+						// 1、判断触发事件是否是button元素引起的
+						// 2、如果是，则将其button的父节点的父节点删除。
+				
+				var Orow = document.getElementById("row");
+				var Ocol = document.getElementById("col");
+				var Obtn = document.getElementById("btn1");
+				var Ot1 = document.getElementById("t1");
+				
+				Obtn.onclick = function(){
+					if(!Orow.value || !Ocol.value){
+						alert("行列输入框中不能出现空");
+					}
+					else{
+						//行
+						for(var i=0; i<Orow.value; i++){
+							var Otr = document.createElement("tr");
+							Otr.className = "box" + (i % 2);//只是单纯的添加css样式表，好体现删除按键效果
+							//列
+							for(var j=0; j<Ocol.value; j++){
+								var Otd = document.createElement("td");
+								Otr.appendChild(Otd);
+							}
+							
+							// 每行后面添加一个删除按钮
+							var Oclose = document.createElement("td");
+							Oclose.innerHTML = "<button>删除</button>";
+							
+							Otr.appendChild(Oclose);
+							Ot1.appendChild(Otr);
+						}
+					}
+				}
+				
+				//给删除按键添加事件委托，委托是删除按键，处理方式id为t1的table元素
+				Ot1.onclick = function(ev){
+					var e = ev || window.event;
+					var target = e.target || window.event.srcElement;
+					
+					if(target.nodeName.toLowerCase() == "button"){
+						Ot1.removeChild(target.parentNode.parentNode);
+					}
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" placeholder="行" id="row" />
+		<input type="text" placeholder="列" id="col" />
+		<button id="btn1">生成</button>
+		<table id="t1" border="1"></table>
+	</body>
+</html>

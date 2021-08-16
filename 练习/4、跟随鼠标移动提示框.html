@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>跟随鼠标移动提示框</title>
+		<style type="text/css">
+			a{
+				display: block;
+				font-size: 30px;
+				margin: 80px;
+				width: 130px;
+			}
+			#mag{
+				width: 600px; height: 90px;
+				background-color: gray;
+				color: white;
+				display: none;
+				position: absolute;
+			}
+		</style>
+		<script type="text/javascript">
+			var arr = ["唐太宗李世民（598年1月28日－649年7月10日），陇西成纪（今甘肃省秦安县）人。唐朝第二位皇帝（626~649年在位），杰出的政治家、战略家、军事家、诗人，唐高祖李渊嫡次子，母为太穆皇后窦氏",
+					   "唐高宗李治（628年7月21日-683年12月27日） [1]  ，字为善，祖籍陇西成纪，唐朝第三位皇帝（649至683年在位），唐太宗李世民第九子，嫡三子，其母为文德顺圣皇后长孙氏，与唐太宗嫡长子太子李承乾、嫡次子魏王李泰为同母兄弟。",
+					   "武则天（624年－705年12月16日 [1]  ），自名武曌（zhào） [2-3]  ，并州文水（今山西文水）人。中国历史上唯一的正统女皇帝（690年－705年在位），也是即位年龄最大（67岁）、寿命最长的皇帝之一（82岁），与汉朝的吕后并称为“吕武”。",
+					   "唐玄宗李隆基（685年9月8日—762年5月3日），唐高宗李治与武则天之孙，唐睿宗李旦第三子，故又称李三郎，母窦德妃。 [1]  先天元年（712年）至天宝十五年（756年）在位，因安史之乱退位为太上皇，是唐朝在位最长的皇帝，亦是唐朝极盛时期的皇帝。"];
+			
+			//第一步：通过getElementsByTagName获取a标签
+			//第二步：通过getElementById获取div标签
+			//第三步：给每个a标签添加一个index属性，用于a标签编号
+			//第四步：给每个a标签添加鼠标移入事件、鼠标移出事件、鼠标移动事件
+				鼠标移入事件
+					显示div
+					给div添加文本节点
+				鼠标移出事件
+					隐藏div
+				鼠标移动事件
+					获取鼠标位置XY坐标
+					把XY坐标传给div的left和top的CSS属性
+					   
+			window.onload = function(){
+				var Oa = document.getElementsByTagName("a");
+				var Odiv = document.getElementById("mag");
+				
+				for(var i=0; i<Oa.length; i++){
+					Oa[i].index = i;
+					
+					//鼠标移入事件
+					Oa[i].onmouseover = function(){
+						Odiv.style.display = "block";
+						Odiv.innerHTML = arr[this.index];
+					}
+					//鼠标移出事件
+					Oa[i].onmouseout = function(){
+						Odiv.style.display = "none";
+					}
+					//鼠标移动事件
+					Oa[i].onmousemove = function(ev){
+						e = ev || window.event;
+						Odiv.style.left = e.clientX + 15 + "px";
+						Odiv.style.top = e.clientY + 15 + "px";
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<a href="#">唐太宗</a>
+		<a href="#">唐高宗</a>
+		<a href="#">武则天</a>
+		<a href="#">唐玄宗</a>
+		<div id="mag"></div>
+	</body>
+</html>

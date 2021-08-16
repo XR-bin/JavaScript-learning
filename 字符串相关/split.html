@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>split字符串转数组</title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//alert   /əˈlɜːrt/
+			//String   /strɪŋ/
+			//split    /splɪt/ 
+			//length  /leŋkθ/
+		
+			// split方法将字符串切割后做成数组
+			// split方法的参数
+				//参数1：分割符，是字符串如何分割的依据，如" "，就是以空格
+				//      作为分割的依据，"How are you"则分割成How，are，you 
+				//      【注】这个参数支持正则表达式
+				//           i:不区分大小写
+				//参数2：需要切割后数组中的前 X 个元素成员，可不填，默认全部
+				
+			var str = new String("How are you ?");
+			
+			alert(str.split(" "));      //How,are,you,?
+			alert(typeof str.split(" "));  //Object
+			alert(str.split(" ").length);  //4
+			
+			alert(str.split(" ", 2));      //How,are
+			alert(str.split(" ", 2).length);   //2
+			
+			//正则表达式
+			var str2 = String("1a2a3A4A5");
+			alert(str2.split(/a/));     //1,2,3A4A5
+			alert(str2.split(/a/i));    //1,2,3,4,5
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

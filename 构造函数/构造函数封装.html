@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>构造函数封装</title>
+		<script type="text/javascript">
+			//prototype     /ˈprəʊtətaɪp/ 
+		
+			/*
+				内容引导：
+					当我们有个需求，需要创建一个关于人的对象，这个对象是一个叫小明的男人，这个时候，
+				我们第一个想到的就是直接用new Object创建一个对象，并给它添加属性和方法，如下面的代码。
+				这个时候，又来了个需求，要求创建一个叫小红的女人的对象，这个时候，我就只能把刚刚的对象
+				再复制一份，并把name和sex属性改一下就行了，但如果要求创建很多这样的对象怎么办，不可能
+				要全部复制粘贴来修改吧，这个时候我们就必须创建一个构造函数来办我们批量加工了。
+				
+			*/
+			// // 一个名叫小明的男人
+			// var p1 = new Object();
+			// p1.name = "小明";
+			// p1.sex = "男";
+			// p1.showName = function(){
+			// 	alert("我的名字叫" + this.name);
+			// }
+			// p1.showSex = function(){
+			// 	alert("性别：" + this.sex);
+			// }
+			// p1.showName();
+			// p1.showSex();
+			
+			// // 一个名叫小红的女人
+			// var p2 = new Object();
+			// p2.name = "小红";
+			// p2.sex = "女";
+			// p2.showName = function(){
+			// 	alert("我的名字叫" + this.name);
+			// }
+			// p2.showSex = function(){
+			// 	alert("性别：" + this.sex);
+			// }
+			// p2.showName();
+			// p2.showSex();
+			
+			
+			/*
+				非官方构造函数之工厂模式：
+					举个例子：酸奶工厂的工作模式是1、准备酸奶原料；2、对牛奶进行乳酸菌发酵加工；3、装箱出厂
+					
+					非官方构造函数的工厂模式：
+						1、准备原料(创建一个新对象)
+						2、加工处理(给对象添加属性和方法)
+						3、装箱出厂(return返回对象)
+						
+					【注】凡是满足上述步骤的创建对象函数，我们都称为工厂方法
+			*/
+			/* 
+			function createPerson(name, sex){
+				// 1、准备原料(创建一个新对象)
+				var Obj = new Object();
+				
+				// 2、加工处理(给对象添加属性和方法)
+				Obj.name = name;
+				Obj.sex = sex;
+				Obj.showName = function(){
+					alert("我的名字叫" + this.name);
+				}
+				Obj.showSex = function(){
+					alert("性别：" + this.sex);
+				}
+				
+				// 3、装箱出厂(return返回对象)
+				return Obj;
+			}
+			var p1 = createPerson("小明", "男");
+			var p2 = createPerson("小红", "女");
+			p1.showName();
+			p1.showSex();
+			p2.showName();
+			p2.showSex();
+			 */
+			
+			
+			
+			
+			
+			/*
+				官方构造函数
+					我们上面自己写的构造函数与官方的构造函数的区别
+						1、我们的函数没有new
+						2、我们的函数每一个新创建出来的对象，都独有一套函数，而官方的是共用一套函数
+			*/
+			/* 
+			//官方的构造函数可以使用new
+			alert(typeof Array);   //function
+			var arr1 = new Array();
+			var arr2 = new Array();
+			//官方的构造的对象是共用一套函数
+			alert(arr1.push === arr1.push);   //true
+			 */
+			
+			
+			
+			
+			
+			/*
+				对我们自己写的构造函数进行改造
+					1、实现使用new
+						如果我们自己写的构造函数使用new去调用
+						1)、new会帮我们完成   1、准备原料(创建一个新对象)  和  3、装箱出厂(return返回对象)
+						2)、new会将当前函数中的this指向新创建的对象
+						
+					这种通过new调用的函数，我们把它叫做构造函数，构造函数可以构造对象
+					【注】构造函数一般情况下，首字母大写
+			*/
+			/* 
+			//实现使用new
+			function Person(name, sex){
+				//new会帮我们创建创建一个新对象，并将this指向这个对象
+				// this = new Object();
+				
+				// 2、加工处理(给对象添加属性和方法)
+				this.name = name;
+				this.sex = sex;
+				this.showName = function(){
+					alert("我的名字叫" + this.name);
+				}
+				this.showSex = function(){
+					alert("性别：" + this.sex);
+				}
+				
+				//new会帮我们装箱出厂(return返回对象)
+				// return this;
+			}
+			
+			var p1 = new Person("小明", "男");
+			var p2 = new Person("小红", "女");
+			p1.showName();
+			p1.showSex();
+			p2.showName();
+			p2.showSex(); 
+			
+			//虽然实现了new，但内部方法还是没有实现共用一套函数，这个需要进一步改造
+			alert(p1.showName === p2.showName);   //false
+			 */
+			
+			
+			
+			
+			
+			/*
+				对我们自己写的构造函数进行改造
+					2、实现所有创建创建出来的对象共用内部的函数
+						这里我们学习一个新对象：prototype  原型对象
+						概念：每个函数上，都有一个原型对象prototype。
+						
+					用在构造函数上，我们可以给构造函数的原型prototype上，添加方法：
+						1)、如果我们将方法添加到构造函数的prototype对象上，构造函数构造出来的对象共享原型上所有方法
+			*/
+			//实现方法共享
+			function Person(name, sex){
+				this.name = name;
+				this.sex = sex;
+			}
+			
+			// Person函数构造方法，添加在构造函数原型对象prototype上
+			Person.prototype.showName = function(){
+				alert("我的名字叫" + this.name);
+			}
+			Person.prototype.showSex = function(){
+				alert("性别：" + this.sex);
+			}
+			
+			var p1 = new Person("小明", "男");
+			var p2 = new Person("小红", "女");
+			p1.showName();
+			p1.showSex();
+			p2.showName();
+			p2.showSex(); 
+			
+			alert(p1.showName === p2.showName);   //true
+		   
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

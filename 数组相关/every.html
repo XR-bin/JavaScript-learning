@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>every检查数组中元素成员是否有符合条件</title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//Array  /əˈreɪ/ 
+			//alert   /əˈlɜːrt/
+			//every   /ˈevri/
+			//item   /ˈaɪtəm/
+			//index  /ˈɪndeks/ 
+			
+			// every方法用于检测数组中的元素成员是否都满足指点条件
+			// 如果都满足，则返回true，剩余的元素未检测得元素成员不会再执行检测
+			// 如果有一个不满足，则返回false，剩余的元素未检测得元素成员不会再执行检测
+			
+			//every方法的参数
+				// 参数1：遍历时进行的操作函数
+				// 	  函数的参数1：当前遍历到的元素
+				// 	  函数的参数2：当前遍历元素的下标
+				// 	  函数的参数3：被遍历的数组
+				// 参数2：可不填，该值是传递给函数的this值，我们一般不填，默认为undefined
+				
+			var arr = new Array(1,2,3,4,5,6);
+			// var res = arr.every(function(item, index, myarray){
+			// 	alert(item);     //1,2,3
+			// 	return item < 3;
+			// });
+			// alert(res);     //false
+			
+			//采用箭头函数来编写
+			var res = arr.every(item => item <= 6);
+			alert(res);   //true
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>set/getTime</title>
+		<script type="text/javascript">
+			//var   /vɑr/
+			//alert   /əˈlɜːrt/
+			//Date    /deɪt/
+			//set  /set/ 
+			//get  /ɡet/
+			
+			var d = new Date();
+			//getTime方法和parse方法效果一样
+			//都是将日期对象以参照时间点为基准转换成毫秒
+			alert(d.getTime());     //1623595888265
+			
+			//setTime方法是以毫秒形式设置时间，即以参照时间为基准
+			//加上setTime的参数就是我们设置的时间
+			//如参数为1000，即设置时间为1970-01-01 08h 00min 1s（因为是北京时间，所以是8小时）
+			d.setTime(1000);
+			alert(d);     //Thu Jan 01 1970 08:00:01 GMT+0800 (GMT+08:00)
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
