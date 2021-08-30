@@ -77,6 +77,32 @@
           16、每天开始工作前，我们都要先从远程仓库上同步代码(也就是更新我们的代码，避免别人上传了他们那部分，我们还在用旧代码，我们上传前也要先同步)
             git pull
             
+          17、查看分支与创建分支
+            git branch                 查看分支
+            git branch 分支名          创建分支
+            git checkout 分支名        切换分支
+            
+            git checkout -b 分支名        创建分支并切换到分支
+
+            git push origin 分支名        把分支上传到远程仓库
+            
+            分支提交代码到本地版本库时：
+            【注意】git commit --no-verify -m "xxxxxxx"       这样是为了绕过代码规范检查
+            
+            查看状态
+            git status   
+            git branch
+            git log
+            
+            合并某个分支过程
+              git add .                                    添加到暂存区
+              git commit --no-verify -m "xxxxxxx"          添加到版本库 --no-verify表示跳过编程规范校验
+              git checkout 要合并到的分支名                 转会回开发分支
+              git merge 被合并的分支名 --no-ff              将模块分支合并到开发分支
+              git push origin dev                          上传到远程仓库
+              git branch -d 要删除的分子名                  删除没用的分支
+
+             
             
         git基本原理
           git区域划分
