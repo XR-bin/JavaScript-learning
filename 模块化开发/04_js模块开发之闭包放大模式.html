@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js模块开发之闭包放大模式</title>
+    <script>
+        var moduleA = (function(){
+            var count = 10; //私有变量
+
+            function showA(){ //私有函数
+                count += 20;
+                alert(count);
+            }
+            function showB(){
+                count *= 10;
+                alert(count);
+            }
+
+            //对外暴露
+            return {
+                outA: showA,
+                outB: showB
+            }
+        })();
+
+
+        // 这段代码不能写在上面那段代码前面
+        moduleA = (function(mod){
+            function showC(){
+                alert("hello world");
+            }
+
+            mod.outC = showC;
+            return mod;
+        })(moduleA);
+
+        moduleA.outA();
+        moduleA.outB();
+        moduleA.outC();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
