@@ -1,0 +1,2 @@
+所有nood全局安装的都在这里
+	C:\Users\Administrator\AppData\Roaming\npm\node_modules

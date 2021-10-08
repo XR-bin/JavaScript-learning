@@ -1,0 +1,99 @@
+1、安装gulp
+    全局安装gulp
+        cnpm install gulp -g
+        gulp -v  可以查看安装的gulp版本
+
+
+
+2. 在我们要进行操作的文件夹中打开cmd/PowerShell
+    cnpm init   创建工程
+
+    在init中会填写的东西
+        package name(项目包名)
+        version(版本号)
+        description(项目描述)
+        entry point(入口文件名字)
+        test command(js关键字设置，便于被爬虫爬到，可以不填)
+        git repository(要链接到的git仓库)
+        keyword(css关键字)
+        author(作者)
+        license(协议，用默认的就行)
+
+    【注】生成package.json的文件，存放你当前项目一些配置信息。
+
+
+
+3. 在当前目录下安装gulp到本地
+    全写：cnpm install gulp@3.9.1 --save-dev
+    简写：cnpm i gulp@3.9.1 -D
+
+    --save  将这个文件，安装到本地的当前文件夹
+    -dev    将安装gulp的信息保存在package.json里面
+
+
+
+4. 在当前目录下创建gulpfile.js文件，这个文件是专门gulp去编写任务的
+
+
+
+5、gulpfile.js中编写任务，需要在控制台通过
+    gulp 任务名   运行你编写好的任务
+
+
+【注意】gulp是遵从nood.js的commonJS模块规范
+
+
+
+6. 编写任务
+    gulp的.task函数就是创建任务函数
+    task函数有两个参数
+        第一个参数：任务的名字  自定义
+        第二个参数：回调函数，任务执行的功能 
+
+    例子
+        gulp.task("hello", function(){
+            console.log("hello world");
+        }) 
+
+    在cmd下写 gulp hello  便可执行该任务 
+
+
+
+7、给gulp添加插件
+    https://gulpjs.com/plugins/
+
+    使用第三方插件的步骤：
+        commonJS规范
+    <1>先去下载插件到本地
+        cnpm install 插件名字 --save-dev
+        cnpm i 插件名字 -D
+    <2>通过require() 引入文件
+    <3>查阅插件的用法
+
+    比较常用的插件
+        cnpm i sass -D           sass编辑器
+        cnpm i gulp-sass -D       sass转css
+        cnpm i gulp-minify-css -D 压缩css
+        cnpm i gulp-minify-html -D 压缩html
+        cnpm i gulp-rename -D  重命名插件 
+        cnpm i gulp-concat -D     合并.js文件
+        cnpm i gulp-uglify -D     压缩.js文件
+        cnpm i gulp-connect -D    启动一个服务器
+
+    【注意】这里得说说服务器插件的配置
+    connect.server({
+        root: "dist", //设置跟目录
+        port: 8888,   //端口号
+        livereload: true //启动实时刷新功能
+    })
+    在每个任务末尾都加上.pipe(connect.reload());保持监听状态
+
+    同时打开任务监听和服务器监听可实现热更新效果
+
+
+
+    重点：JQuery编写的代码大家不要合并和压缩。
+    记住：给别人代码的时候，node_models删除
+    拿到这个项目以后：进入目录，重新下载所有的依赖文件 cnpm install
+
+    温馨提示：配置两个以上屏幕，进行前端开发。
