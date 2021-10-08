@@ -100,3 +100,94 @@
                 alert("hello world");
 
     【彩蛋】 CMD 规范 是阿里内部的模块规范
+
+    3) ES6提供的模块规范
+        声明编写一个模块:
+        例子：
+        这是在moduleA.js编写的
+
+            function showA() {....}
+            function showB() {....}
+
+            //用export方式导出
+            export out1 = {
+                outA: showA
+                outB: showB
+            }
+
+            //用export default方式导出
+            export default {
+                outA: showA
+                outB: showB
+            }
+
+        引入外部模块：（异步执行）
+            例子：
+                这是在moduleB.js中引用moduleA.js模块
+
+                //用export方式导出
+                import {out} from "moduleA.js"
+
+                out.outA()
+                out.outB();
+
+                //用export default方式导出
+                import myOut from "moduleA.js"
+
+                myOut.outA()
+                myOut.outB();
+
+        【注意】这里要特别强调export和export default的区别
+            1- export在一个模块中可以出现多次，export default只能出现一次
+            2- 引入export的模块时，必须要用{} ，且名字必须和导出时写的一样
+            例子：import {out} from "moduleA.js"
+             如果想重新定义名字可以写成import {out as myOut} from "moduleA.js"
+               引入export default的模块时不用加{}，且可以直接自定义新名字
+            例子：import myOut from "moduleA.js"
+
+
+
+
+3. 学习使用AMD规范
+
+    学习AMD规范就要知道require.js。
+
+    为什么要学习require.js
+        最早的时候，所有Javascript代码都写在一个文件里面，只要加载这一个文件
+    就够了。后来，代码越来越多，一个文件不够了，必须分成多个文件，依次加载。
+    这样的写法有很大的缺点。首先，加载的时候，浏览器会停止网页渲染，加载文件越
+    多，网页失去响应的时间就会越长；其次，由于js文件之间存在依赖关系，因此必须
+    严格保证加载顺序（比如上例的1.js要在2.js的前面），依赖性最大的模块一定要放
+    到最后加载，当依赖关系很复杂的时候，代码的编写和维护都会变得困难。
+
+    require.js的诞生，就是为了解决这两个问题：
+        (1) 实现js文件的异步加载，避免网页失去响应
+        (2) 管理模块之间的依赖性，便于代码的编写和维护
+
+
+    require.js的加载
+        使用require.js的第一步，是先去官方网站下载最新版本。下载后，假定把它放
+    在js子目录下面，就可以加载了。
+    例子：
+        <script type="text/javascript" src="./require.js"></script>
+
+
+        有人可能会想到，加载这个文件，也可能造成网页失去响应。解决办法有两个，一
+    个是把它放在网页底部加载，另一个是写成下面这样：
+    例子：
+        <script type="text/javascript" src="./require.js" defer async = 'true'></script>
+
+    async属性表明这个文件需要异步加载，避免网页失去响应。IE不支持这个属性，只支
+    持defer，所以把defer也写上。
+
+
+        加载require.js以后，下一步就要加载我们自己的代码了。假定我们自己的代码文件
+    是main.js，也放在js目录下面。那么，只需要写成下面这样就行了：
+    例子：
+        <script type="text/javascript" src="./require.js" defer async = 'true' data-main = "main"></script>
+
+    data-main属性的作用是，指定网页程序的主模块。在上例中，就是js目录下面的main.js，
+    这个文件会第一个被require.js加载。由于require.js默认的文件后缀名是js，所以可以
+    把main.js简写成main。
+
+

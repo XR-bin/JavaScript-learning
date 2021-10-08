@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 
+        模块化开发的作用域：管理当前页面上引入的所有.js文件的。
+
+        defer async = 'true' 引入的所有.js文件都是异步加载（defer和async = 'true'都是一样的，只是解决浏览器兼容问题）
+        data-main = ""  设置入口文件
+        【注】每一个.html文件都要一个入口文件，入口文件：管理当前.html页面使用所有的.js代码
+
+        【注】后续引入的所有.js，后缀都可以省略。
+    -->
+    <script type="text/javascript" src="./require.js" defer async = 'true' data-main = "main"></script>
+    <title>require学习</title>
+</head>
+<body>
+    
+</body>
+</html>
